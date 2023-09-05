@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace Project.Views.Pages.SelectPages
 {
     /// <summary>
-    /// Interaction logic for SelectNewTask.xaml
+    /// Interaction logic for SelectNewTestSoil.xaml
     /// </summary>
-    public partial class SelectNewTask : Page
+    public partial class SelectNewTestGeotextile : Page
     {
-        public SelectNewTask()
+        public SelectNewTestGeotextile()
         {
             InitializeComponent();
         }
-
-        
-
-            
     }
 }
