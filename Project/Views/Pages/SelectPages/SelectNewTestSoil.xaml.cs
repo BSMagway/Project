@@ -18,7 +18,7 @@ namespace Project.Views.Pages.SelectPages
     /// <summary>
     /// Interaction logic for SelectNewTestSoil.xaml
     /// </summary>
-    public partial class SelectNewTestSoil : Page
+    public partial class SelectNewTestSoil : UserControl
     {
         public SelectNewTestSoil()
         {

@@ -15,69 +15,92 @@ namespace Project.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         #region Enum
+
+        /// <summary>
+        /// Enum содержащий новые задачи.
+        /// </summary>
         enum SelectNewTaskEnum
         {
             NewTest,
             LoadTest
         }
 
+        /// <summary>
+        /// Enum содержащий возможные материалы для роведения испытаний
+        /// </summary>
         enum SelectTypeTestEnum
         {
             Soil,
-            Sand,
-            Geotextile,
+            Sand,            
             Gravel,
-            SandAndGravel
+            SandAndGravel,
+            Geotextile
         }
 
         #endregion
         
         #region Commands
 
+        /// <summary>
+        /// Команда для выбора новой задачи (создание нового теста, загрузка существующего теста и тд.).
+        /// </summary>
         public ICommand SelectNewTaskCommand { get; }
         private bool CanSelectNewTaskCommandExecute(object p) => true;
         private void OnSelectNewTaskCommandExecuted(object p)
         {
-          int task = (int)p;
+          string task = p.ToString();
 
-            switch (task)
+            switch (Convert.ToInt32(task))
             {
                 case (int)SelectNewTaskEnum.NewTest:
-                    FramePage = SelectTypeTest;
+                    FramePage = SelectTypeTestPage;
                     break;
                 case (int)SelectNewTaskEnum.LoadTest:
-
+                   
                     break;
             }
                           
         }
 
+        /// <summary>
+        /// Команда для выбора теста в зависимости от испытываемого материала.
+        /// </summary>
         public ICommand SelectTypeTestCommand { get; }
         private bool CanSelectTypeTestCommandExecute(object p) => true;
 
         private void OnSelectTypeTestCommandExecuted(object p)
         {
-            int task = (int)p;
+            string task = (string)p;
 
-            switch (task)
+            switch (Convert.ToInt32(task))
             {
                 case (int)SelectTypeTestEnum.Soil:
-                    
+                    FramePage = SoilTestsPage;
                     break;
                 case (int)SelectTypeTestEnum.Sand:
-
+                    FramePage = SandTestsPage;
                     break;
                 case (int)SelectTypeTestEnum.Gravel:
-
+                    FramePage = GravelTestsPage;
                     break;
                 case (int)SelectTypeTestEnum.SandAndGravel:
-
+                    FramePage = SandAndGravelTestsPage;
                     break;
                 case (int)SelectTypeTestEnum.Geotextile:
-
+                    FramePage = GeotextileTestsPage;
                     break;
             }
 
+        }
+
+        /// <summary>
+        /// Команда возвращения к меню выбора новой задачи.
+        /// </summary>
+        public ICommand ReturnToNewTaskPageCommand { get; }
+        private bool CanReturnToNewTaskPageCommandExecute(object p) => true;
+        private void OnReturnToNewTaskPageCommandExecuted(object p)
+        {
+            FramePage = SelectNewTaskPage;
         }
 
 
@@ -85,55 +108,165 @@ namespace Project.ViewModels
 
         #region Page
 
-        private Page framePage;
-        private Page selectNewTask;
-        private Page selectTypeTest;
+        /// <summary>
+        /// Поле которое отображает выбранный элемент.
+        /// </summary>
+        private UserControl framePage;
+        /// <summary>
+        /// Элемент отвечающий за выбор новой задачи
+        /// </summary>
+        private UserControl selectNewTaskPage;
+        /// <summary>
+        /// Элемент отвечающий за выбор материала испытания. 
+        /// </summary>
+        private UserControl selectTypeTestPage;
+        /// <summary>
+        /// Элемент отвечающий за выбор вида испытания грунта.
+        /// </summary>
+        private UserControl soilTestsPage;
+        /// <summary>
+        /// Элемент отвечающий за выбор вида испытания песка.
+        /// </summary>
+        private UserControl sandTestsPage;
+        /// <summary>
+        /// Элемент отвечающий за выбор вида испытания щебня.
+        /// </summary>
+        private UserControl gravelTestsPage;
+        /// <summary>
+        /// Элемент отвечающий за выбор вида испытания ПГС.
+        /// </summary>
+        private UserControl sandAndGravelTestsPage;
+        /// <summary>
+        /// Элемент отвечающий за выбор вида испытания геотекстиля.
+        /// </summary>
+        private UserControl geotextileTestsPage;
 
-        public Page FramePage
+        public UserControl FramePage
         {
             get => framePage;
             set => Set(ref framePage, value);
         }
-        public Page SelectNewTask
+        public UserControl SelectNewTaskPage
         {
             get
             {
-                if (selectNewTask == null)
+                if (selectNewTaskPage == null)
                 {
-                    selectNewTask = new SelectNewTask();
-                    selectNewTask.DataContext = this;
+                    selectNewTaskPage = new SelectNewTask();
+                    selectNewTaskPage.DataContext = this;
                 }
 
-                return selectNewTask;
+                return selectNewTaskPage;
             }
 
-            set => Set(ref selectNewTask, value);
+            set => Set(ref selectNewTaskPage, value);
         }
-        public Page SelectTypeTest
+        public UserControl SelectTypeTestPage
         {
             get
             {
-                if (selectTypeTest == null)
+                if (selectTypeTestPage == null)
                 {
-                    selectTypeTest = new SelectTypeTest();
-                    selectTypeTest.DataContext = this;
+                    selectTypeTestPage = new SelectTypeTest();
+                    selectTypeTestPage.DataContext = this;
                 }
 
-                return selectTypeTest;
+                return selectTypeTestPage;
             }
 
-            set => Set(ref selectTypeTest, value);
+            set => Set(ref selectTypeTestPage, value);
         }
-        
+        public UserControl SoilTestsPage
+        {
+            get
+            {
+                if (soilTestsPage == null)
+                {
+                    soilTestsPage = new SelectNewTestSoil();
+                    soilTestsPage.DataContext = this;
+                }
+
+                return soilTestsPage;
+            }
+
+            set => Set(ref soilTestsPage, value);
+        }
+        public UserControl SandTestsPage
+        {
+            get
+            {
+                if (sandTestsPage == null)
+                {
+                    sandTestsPage = new SelectNewTestSand();
+                    sandTestsPage.DataContext = this;
+                }
+
+                return sandTestsPage;
+            }
+
+            set => Set(ref sandTestsPage, value);
+        }
+        public UserControl GravelTestsPage
+        {
+            get
+            {
+                if (gravelTestsPage == null)
+                {
+                    gravelTestsPage = new SelectNewTestGravel();
+                    gravelTestsPage.DataContext = this;
+                }
+
+                return gravelTestsPage;
+            }
+
+            set => Set(ref gravelTestsPage, value);
+        }
+        public UserControl SandAndGravelTestsPage
+        {
+            get
+            {
+                if (sandAndGravelTestsPage == null)
+                {
+                    sandAndGravelTestsPage = new SelectNewTestSandAndGravel();
+                    sandAndGravelTestsPage.DataContext = this;
+                }
+
+                return sandAndGravelTestsPage;
+            }
+
+            set => Set(ref sandAndGravelTestsPage, value);
+        }
+        public UserControl GeotextileTestsPage
+        {
+            get
+            {
+                if (geotextileTestsPage == null)
+                {
+                    geotextileTestsPage = new SelectNewTestGeotextile();
+                    geotextileTestsPage.DataContext = this;
+                }
+
+                return geotextileTestsPage;
+            }
+
+            set => Set(ref geotextileTestsPage, value);
+        }
+
+
+
         #endregion
 
 
 
         public MainWindowViewModel()
         {
-            FramePage = SelectNewTask;
- 
+            FramePage = SelectNewTaskPage;
+            
+            #region Create Commands
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
+            SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
+            ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
+            #endregion
         }
     }
 

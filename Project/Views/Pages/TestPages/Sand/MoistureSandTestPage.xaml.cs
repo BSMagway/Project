@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project.Views.Pages.SelectPages
+namespace Project.Views.Pages.TestPages.Sand
 {
     /// <summary>
-    /// Interaction logic for SelectNewTestSoil.xaml
+    /// Interaction logic for MoistureSandTestPage.xaml
     /// </summary>
-    public partial class SelectNewTestSandAndGravel : UserControl
+    public partial class MoistureSandTestPage : Page
     {
-        public SelectNewTestSandAndGravel()
+        public MoistureSandTestPage()
         {
             InitializeComponent();
         }

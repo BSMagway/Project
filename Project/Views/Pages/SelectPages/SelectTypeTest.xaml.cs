@@ -18,7 +18,7 @@ namespace Project.Views.Pages.SelectPages
     /// <summary>
     /// Interaction logic for SelectTypeTest.xaml
     /// </summary>
-    public partial class SelectTypeTest : Page
+    public partial class SelectTypeTest : UserControl
     {
         public SelectTypeTest()
         {

@@ -25,6 +25,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding FramePage}"/>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding FramePage}" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -8,13 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Pages\TestPages\Gravel\" />
-    <Folder Include="Views\Pages\TestPages\Geotextile\" />
-    <Folder Include="Views\Pages\TestPages\SandAndGravel\" />
-    <Folder Include="Views\Pages\TestPages\Sand\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\Pages\SelectPages\SelectNewTestSand.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -18,7 +18,7 @@ namespace Project.Views.Pages.SelectPages
     /// <summary>
     /// Interaction logic for SelectNewTask.xaml
     /// </summary>
-    public partial class SelectNewTask : Page
+    public partial class SelectNewTask : UserControl
     {
         public SelectNewTask()
         {

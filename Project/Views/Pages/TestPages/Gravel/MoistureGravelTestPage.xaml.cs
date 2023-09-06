@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project.Views.Pages.TestPages.Soil
+namespace Project.Views.Pages.TestPages.Gravel
 {
     /// <summary>
-    /// Interaction logic for MoistureTestPage.xaml
+    /// Interaction logic for MoistureGravelTestPage.xaml
     /// </summary>
-    public partial class MoistureTestPage : Page
+    public partial class MoistureGravelTestPage : Page
     {
-        public MoistureTestPage()
+        public MoistureGravelTestPage()
         {
             InitializeComponent();
         }
