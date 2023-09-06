@@ -1,5 +1,4 @@
-﻿using Project.Views.UserControls.SelectUsercontrols;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project
+namespace Project.Views.UserControls.TestUserControls.Sand
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MoistureSandTestUC.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MoistureSandTestUC : UserControl
     {
-        public MainWindow()
+        public MoistureSandTestUC()
         {
             InitializeComponent();
         }

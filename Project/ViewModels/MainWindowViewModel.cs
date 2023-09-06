@@ -1,4 +1,4 @@
-﻿using Project.Views.Pages.SelectPages;
+﻿using Project.Views.UserControls.SelectUsercontrols;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Project.ViewModels.Base;
 using System.Windows.Input;
 using Project.ViewModels.Comands;
+using Project.Views.UserControls.TestUserControls.Soil;
 
 namespace Project.ViewModels
 {
@@ -94,6 +95,16 @@ namespace Project.ViewModels
         }
 
         /// <summary>
+        /// Команда для выбора вида испытания грунта.
+        /// </summary>
+        public ICommand SelectSoilTestCommand { get; }
+        private bool CanSelectSoilTestCommandExecute(object p) => true;
+        private void OnSelectSoilTestCommandExecuted(object p)
+        {
+            FramePage = new MoistureSoilTestUC();
+        }
+
+        /// <summary>
         /// Команда возвращения к меню выбора новой задачи.
         /// </summary>
         public ICommand ReturnToNewTaskPageCommand { get; }
@@ -106,7 +117,8 @@ namespace Project.ViewModels
 
         #endregion
 
-        #region Page
+        
+        #region UserControls
 
         /// <summary>
         /// Поле которое отображает выбранный элемент.
@@ -159,7 +171,7 @@ namespace Project.ViewModels
                 return selectNewTaskPage;
             }
 
-            set => Set(ref selectNewTaskPage, value);
+            set => selectNewTaskPage = value;
         }
         public UserControl SelectTypeTestPage
         {
@@ -174,7 +186,7 @@ namespace Project.ViewModels
                 return selectTypeTestPage;
             }
 
-            set => Set(ref selectTypeTestPage, value);
+            set => selectTypeTestPage = value;
         }
         public UserControl SoilTestsPage
         {
@@ -189,7 +201,7 @@ namespace Project.ViewModels
                 return soilTestsPage;
             }
 
-            set => Set(ref soilTestsPage, value);
+            set => soilTestsPage = value;
         }
         public UserControl SandTestsPage
         {
@@ -204,7 +216,7 @@ namespace Project.ViewModels
                 return sandTestsPage;
             }
 
-            set => Set(ref sandTestsPage, value);
+            set => sandTestsPage = value;
         }
         public UserControl GravelTestsPage
         {
@@ -219,7 +231,7 @@ namespace Project.ViewModels
                 return gravelTestsPage;
             }
 
-            set => Set(ref gravelTestsPage, value);
+            set => gravelTestsPage = value;
         }
         public UserControl SandAndGravelTestsPage
         {
@@ -234,7 +246,7 @@ namespace Project.ViewModels
                 return sandAndGravelTestsPage;
             }
 
-            set => Set(ref sandAndGravelTestsPage, value);
+            set => sandAndGravelTestsPage = value;
         }
         public UserControl GeotextileTestsPage
         {
@@ -249,10 +261,8 @@ namespace Project.ViewModels
                 return geotextileTestsPage;
             }
 
-            set => Set(ref geotextileTestsPage, value);
+            set => geotextileTestsPage = value;
         }
-
-
 
         #endregion
 
@@ -266,6 +276,7 @@ namespace Project.ViewModels
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
             SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
             ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
+            SelectSoilTestCommand = new LambdaCommand(OnSelectSoilTestCommandExecuted, CanSelectSoilTestCommandExecute);
             #endregion
         }
     }

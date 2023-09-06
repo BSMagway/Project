@@ -8,16 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Pages\SelectPages\SelectNewTestSand.xaml.cs">
+    <Compile Update="Views\UserControls\SelectUserControls\SelectNewTestSand.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pages\SelectPages\SelectNewTestGravel.xaml.cs">
+    <Compile Update="Views\UserControls\SelectUserControls\SelectNewTestGravel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pages\SelectPages\SelectNewTestSandAndGravel.xaml.cs">
+    <Compile Update="Views\UserControls\SelectUserControls\SelectNewTestSandAndGravel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pages\SelectPages\SelectNewTestGeotextile.xaml.cs">
+    <Compile Update="Views\UserControls\SelectUserControls\SelectNewTestGeotextile.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

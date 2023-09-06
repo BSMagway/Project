@@ -1,5 +1,4 @@
-﻿using Project.Views.UserControls.SelectUsercontrols;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project
+namespace Project.Views.UserControls.TestUserControls.Soil
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MoistureSoilTestUC.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MoistureSoilTestUC : UserControl
     {
-        public MainWindow()
+        public MoistureSoilTestUC()
         {
             InitializeComponent();
         }
