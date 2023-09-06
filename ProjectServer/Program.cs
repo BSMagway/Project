@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
+using ProjectServer.Services;
+using ProjectServer.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IMoistureSoilTestService, MoistureSoilTestService>();
+//builder.Services.AddManagedSingleton<IDbService>(null);
 
 var app = builder.Build();
 

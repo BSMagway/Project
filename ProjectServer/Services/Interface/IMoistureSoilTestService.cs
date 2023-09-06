@@ -2,7 +2,7 @@
 
 namespace ProjectServer.Services.Interface
 {
-    interface IMoistureSoilTestService
+    public interface IMoistureSoilTestService
     {
         public MoistureSoilTest Get(Guid moistureSoilTestId);
 
