@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,26 @@ namespace Project.Models.Data.Base
     /// <summary>
     /// Заказчик испытания.
     /// </summary>
-    internal class Costumer
+    internal class Costumer : ViewModel
     {
+        private string title = string.Empty;
+        private int contractNumber;
+
         /// <summary>
         /// Название компании.
         /// </summary>
-        private string title;
+        public string Title
+        {
+            get => title;
+            set => Set(ref title, value);
+        }
         /// <summary>
         /// Номер договора
         /// </summary>
-        private int contractNumber;
-
-
-
+        public int ContractNumber
+        {
+            get => contractNumber;
+            set => Set(ref contractNumber, value);
+        }
     }
 }

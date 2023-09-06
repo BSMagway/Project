@@ -23,7 +23,7 @@ namespace Project.Models.Data.Base
         /// <summary>
         /// Заказчик испытания
         /// </summary>
-        private Costumer customerTest;
+        private Costumer? customerTest;
         /// <summary>
         /// Дата проведения испытания
         /// </summary>
@@ -35,11 +35,26 @@ namespace Project.Models.Data.Base
 
 
 
-
-        public int Id { get { return id; } set { id = value; } }
-        public string MaterialName { get { return materialName; } set { materialName = value; } }
-        public string DateTest { get { return dateTest; } set { dateTest = value; } }
-        public string DocumentTest { get { return documentTest; } set { documentTest = value; } }
+        public int Id
+        {
+            get => id;
+            set => Set(ref id, value);
+        }
+        public string MaterialName
+        {
+            get => materialName;
+            set => Set(ref materialName, value);
+        }
+        public string DateTest
+        {
+            get => dateTest;
+            set => Set(ref dateTest, value);
+        }
+        public string DocumentTest
+        {
+            get => documentTest;
+            set => Set(ref documentTest, value);
+        }
         public Costumer CustomerTest
         {
             get
@@ -52,7 +67,7 @@ namespace Project.Models.Data.Base
                 return customerTest;
             }
 
-            set { customerTest = value; }
+            set => Set(ref customerTest, value);
         }
 
 

@@ -24,13 +24,42 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding MoistureTest.SoilWetMassWithBox.DimensionValue}"/>
-        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding MoistureTest.SoilDryMassWithBox.DimensionValue}"/>
-        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding MoistureTest.BoxMass.DimensionValue}"/>
-        <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding MoistureTest.MoistureSoil.DimensionValue}"/>
-        <Button Grid.Row="4" Grid.Column="0" Command="{Binding CalculateMoistureCommand}"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Номер протокола"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Материал"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Заказчик"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Номер договора"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата испытания"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Нормативный документ"/>
+
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding MoistureTest.Id}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MoistureTest.MaterialName}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MoistureTest.CustomerTest.Title}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding MoistureTest.CustomerTest.ContractNumber}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding MoistureTest.DateTest}"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding MoistureTest.DocumentTest}"/>
+
+        <Button Grid.Row="2" Grid.Column="2" Content="Выбрать заказчика"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding MoistureTest.SoilWetMassWithBox.DimensionName}"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding MoistureTest.SoilDryMassWithBox.DimensionName}"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding MoistureTest.BoxMass.DimensionName}"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding MoistureTest.MoistureSoil.DimensionName}"/>
+        <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding MoistureTest.SoilWetMassWithBox.DimensionValue}"/>
+        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding MoistureTest.SoilDryMassWithBox.DimensionValue}"/>
+        <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding MoistureTest.BoxMass.DimensionValue}"/>
+        <TextBox Grid.Row="3" Grid.Column="4" Text="{Binding MoistureTest.MoistureSoil.DimensionValue}"/>
+        <Button Grid.Row="4" Grid.Column="4" Content="Рассчитать влажность" Command="{Binding CalculateMoistureCommand}"/>
+
+        <Button Grid.Row="7" Grid.Column="4" Content="Вернуться"/>
+
+
 
 
     </Grid>
