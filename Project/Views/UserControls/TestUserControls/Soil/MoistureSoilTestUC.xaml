@@ -38,7 +38,7 @@
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата испытания"/>
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Нормативный документ"/>
 
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding MoistureTest.Id}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding MoistureTest.MoistureSoilTestId}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MoistureTest.MaterialName}"/>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MoistureTest.CustomerTest.Title}"/>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding MoistureTest.CustomerTest.ContractNumber}"/>
@@ -56,8 +56,10 @@
         <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding MoistureTest.BoxMass.DimensionValue}"/>
         <TextBox Grid.Row="3" Grid.Column="4" Text="{Binding MoistureTest.MoistureSoil.DimensionValue}"/>
         <Button Grid.Row="4" Grid.Column="4" Content="Рассчитать влажность" Command="{Binding CalculateMoistureCommand}"/>
+        <Button Grid.Row="5" Grid.Column="4" Content="Save" Command="{Binding SaveTestCommand}"/>
 
         <Button Grid.Row="7" Grid.Column="4" Content="Вернуться"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="4" TextWrapping="Wrap" Text="{Binding ContentSt}"/>
 
 
 

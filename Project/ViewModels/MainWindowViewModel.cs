@@ -9,6 +9,7 @@ using Project.ViewModels.Base;
 using System.Windows.Input;
 using Project.ViewModels.Comands;
 using Project.Views.UserControls.TestUserControls.Soil;
+using Project.Views.UserControls.LoadUserControl;
 
 namespace Project.ViewModels
 {
@@ -57,7 +58,7 @@ namespace Project.ViewModels
                     FramePage = SelectTypeTestPage;
                     break;
                 case (int)SelectNewTaskEnum.LoadTest:
-                   
+                    FramePage = LoadUserControl;
                     break;
             }
                           
@@ -152,6 +153,8 @@ namespace Project.ViewModels
         /// Элемент отвечающий за выбор вида испытания геотекстиля.
         /// </summary>
         private UserControl geotextileTestsPage;
+
+        private UserControl loadUserControl;
 
         public UserControl FramePage
         {
@@ -262,6 +265,20 @@ namespace Project.ViewModels
             }
 
             set => geotextileTestsPage = value;
+        }
+        public UserControl LoadUserControl
+        {
+            get
+            {
+                if (loadUserControl == null)
+                {
+                    loadUserControl = new LoadUserControl();
+                }
+
+                return loadUserControl;
+            }
+
+            set => loadUserControl = value;
         }
 
         #endregion

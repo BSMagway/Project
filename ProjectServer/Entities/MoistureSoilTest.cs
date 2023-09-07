@@ -17,7 +17,7 @@ namespace ProjectServer.Entities
         /// Заказчик испытания
         /// </summary>
         public Guid CostumerId { get; set; }
-        public Costumer Costumer { get; set; }
+        public Costumer CostumerTest { get; set; }
         /// <summary>
         /// Дата проведения испытания
         /// </summary>
@@ -26,7 +26,9 @@ namespace ProjectServer.Entities
         /// Нормативная документация на испытание
         /// </summary>
         public string DocumentTest { get; set; }
-
-        public List<Dimension> Dimensions { get; set; }
+        public Dimension<double> SoilWetMassWithBox { get; set; }
+        public Dimension<double> SoilDryMassWithBox { get; set; }
+        public Dimension<double> BoxMass { get; set; }
+        public Dimension<double> MoistureSoil { get; set; }
     }
 }

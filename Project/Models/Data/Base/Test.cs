@@ -12,10 +12,11 @@ namespace Project.Models.Data.Base
     /// </summary>
     internal abstract class Test : ViewModel
     {
+        public Guid Guid { get; set; }
         /// <summary>
         /// Порядковый номер теста (протокола)
         /// </summary>
-        private int id;
+        private int moistureSoilTestId;
         /// <summary>
         /// Название испытываемого материала 
         /// </summary>
@@ -35,10 +36,10 @@ namespace Project.Models.Data.Base
 
 
 
-        public int Id
+        public int MoistureSoilTestId
         {
-            get => id;
-            set => Set(ref id, value);
+            get => moistureSoilTestId;
+            set => Set(ref moistureSoilTestId, value);
         }
         public string MaterialName
         {

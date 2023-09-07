@@ -12,7 +12,8 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -25,6 +26,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding FramePage}" NavigationUIVisibility="Hidden"/>
+        <Button Grid.Row="1" Grid.Column="6" Content="Возврат" Command="{Binding ReturnToNewTaskPageCommand}"/>
+        <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding FramePage}" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

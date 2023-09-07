@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Project.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.DirectoryServices;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,5 +16,16 @@ namespace Project
     /// </summary>
     public partial class App : Application
     {
+        private static IServiceProvider? serviceProvider;
+
+        public static IServiceProvider ServiceProvider => serviceProvider ??= InitializeServices().BuildServiceProvider();  
+        private static IServiceCollection? InitializeServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddSingleton<MainWindowViewModel>();
+
+            return services;
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Project.Models.Data.Base
     /// </summary>
     internal class Costumer : ViewModel
     {
+        public Guid Id { get; set; }
         private string title = string.Empty;
         private int contractNumber;
 

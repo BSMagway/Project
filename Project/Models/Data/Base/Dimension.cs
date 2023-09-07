@@ -13,6 +13,7 @@ namespace Project.Models.Data.Base
     /// </summary>
     internal class Dimension<T> : ViewModel
     {
+        public Guid Id { get; set; }
         /// <summary>
         /// Название испытанной величины
         /// </summary>

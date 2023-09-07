@@ -1,9 +1,8 @@
 ﻿namespace ProjectServer.Entities
 {
-    public class Dimension
+    public class Dimension<T>
     {
         public Guid Id { get; set; }
-        public Guid MoistureSoilTestId { get; set; }
         /// <summary>
         /// Название испытанной величины
         /// </summary>
@@ -11,6 +10,6 @@
         /// <summary>
         /// Значение испытанной величины
         /// </summary>
-        public double DimensionValue { get; set; }
+        public T DimensionValue { get; set; }
     }
 }

@@ -40,10 +40,10 @@ namespace Project.Models.Data.Tests
 
         public MoistureTest()
         {
-            soilWetMassWithBox = new Dimension<double>("Масса влажного грунта с бюксой");
-            soilDryMassWithBox = new Dimension<double>("Масса сухого грунта с бюксой");
-            boxMass = new Dimension<double>("Масса бюксы");
-            moistureSoil = new Dimension<double>("Влажность грунта");
+            soilWetMassWithBox = new Dimension<double>("Wet");
+            soilDryMassWithBox = new Dimension<double>("Dry");
+            boxMass = new Dimension<double>("Box");
+            moistureSoil = new Dimension<double>("Hum");
         }
 
         public MoistureTest(Dimension<double> soilWetMassWithBox, Dimension<double> soilDryMassWithBox, Dimension<double> boxMass, Dimension<double> moistureSoil)

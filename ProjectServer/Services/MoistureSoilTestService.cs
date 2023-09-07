@@ -57,12 +57,15 @@ namespace ProjectServer.Services
                 return false;
             }
 
-            dbMoistureSoilTest.Id = moistureSoilTest.Id;
+            dbMoistureSoilTest.MoistureSoilTestId = moistureSoilTest.MoistureSoilTestId;
             dbMoistureSoilTest.MaterialName = moistureSoilTest.MaterialName;
             dbMoistureSoilTest.CostumerId = moistureSoilTest.CostumerId;
             dbMoistureSoilTest.DateTest = moistureSoilTest.DateTest;
             dbMoistureSoilTest.DocumentTest = moistureSoilTest.DocumentTest;
-            dbMoistureSoilTest.Dimensions = moistureSoilTest.Dimensions;
+            dbMoistureSoilTest.SoilDryMassWithBox = moistureSoilTest.SoilDryMassWithBox;
+            dbMoistureSoilTest.SoilWetMassWithBox = moistureSoilTest.SoilWetMassWithBox;
+            dbMoistureSoilTest.BoxMass = dbMoistureSoilTest.BoxMass;
+            dbMoistureSoilTest.MoistureSoil = dbMoistureSoilTest.MoistureSoil;
             _appDb.SaveChanges();
 
             return true;
