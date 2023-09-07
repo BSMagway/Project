@@ -21,6 +21,7 @@ namespace ProjectServer.Services
         public MoistureSoilTest Add(MoistureSoilTest moistureSoilTest)
         {
             moistureSoilTest.Id = Guid.NewGuid();
+            moistureSoilTest.CostumerTest.Id = Guid.NewGuid();
 
             var entity = _appDb.MoistureSoilTests.Add(moistureSoilTest);
             _appDb.SaveChanges();

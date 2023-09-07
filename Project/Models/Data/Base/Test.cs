@@ -24,7 +24,7 @@ namespace Project.Models.Data.Base
         /// <summary>
         /// Заказчик испытания
         /// </summary>
-        private Costumer? customerTest;
+        private Costumer? costumerTest;
         /// <summary>
         /// Дата проведения испытания
         /// </summary>
@@ -56,19 +56,19 @@ namespace Project.Models.Data.Base
             get => documentTest;
             set => Set(ref documentTest, value);
         }
-        public Costumer CustomerTest
+        public Costumer CostumerTest
         {
             get
             {
-                if (customerTest is null)
+                if (costumerTest is null)
                 {
-                    customerTest = new Costumer();
+                    costumerTest = new Costumer();
                 }
 
-                return customerTest;
+                return costumerTest;
             }
 
-            set => Set(ref customerTest, value);
+            set => Set(ref costumerTest, value);
         }
 
 
