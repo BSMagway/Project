@@ -27,6 +27,6 @@
         </Grid.ColumnDefinitions>
 
         <Button Grid.Row="1" Grid.Column="6" Content="Возврат" Command="{Binding ReturnToNewTaskPageCommand}"/>
-        <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding FramePage}" NavigationUIVisibility="Hidden"/>
+        <UserControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding FramePage}"/>
     </Grid>
 </Window>

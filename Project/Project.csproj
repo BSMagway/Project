@@ -32,4 +32,11 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Data\Tests\Gravel\" />
+    <Folder Include="Models\Data\Tests\Geotextile\" />
+    <Folder Include="Models\Data\Tests\SandAndGravel\" />
+    <Folder Include="Models\Data\Tests\Sand\" />
+  </ItemGroup>
+
 </Project>

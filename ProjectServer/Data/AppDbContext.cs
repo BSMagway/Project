@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Costumer> Costumers { get; set; }
+    public DbSet<Dimension> Dimensions { get; set; }
     public DbSet<MoistureSoilTest> MoistureSoilTests { get; set; }
 }
 

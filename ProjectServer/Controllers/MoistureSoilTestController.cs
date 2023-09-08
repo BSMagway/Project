@@ -16,8 +16,8 @@ namespace ProjectServer.Controllers
             _moistureSoilTestService = moistureSoilTestService;
         }
 
-        //[HttpGet]
-        //public Note[] GetAll([FromQuery] Guid notepadId) => _noteService.GetAll(notepadId);
+        [HttpGet]
+        public MoistureSoilTest Get([FromQuery] Guid moistureSoilTestId) => _moistureSoilTestService.Get(moistureSoilTestId);
 
         [HttpPost]
         public MoistureSoilTest Add([FromBody] MoistureSoilTest moistureSoilTest) => _moistureSoilTestService.Add(moistureSoilTest);

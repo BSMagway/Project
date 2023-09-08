@@ -5,24 +5,29 @@ using ProjectServer.Services.Interface;
 
 namespace ProjectServer.Services
 {
-    public class FullTestsListService : IFullTestsListService
+    public class FullShortListTestsService : IFullShortListTestsService
     {
+        #region Fields
         private readonly AppDbContext _appDb;
+        #endregion
 
-        public FullTestsListService(AppDbContext appDb)
+        #region Constructor
+        public FullShortListTestsService(AppDbContext appDb)
         {
             _appDb = appDb;
         }
+        #endregion
 
-        public List<FullTestsList> Get()
+        #region Methods
+        public List<FullShortListTests> Get()
         {
-            List<FullTestsList> fullTestsLists = new List<FullTestsList>();
+            List<FullShortListTests> fullTestsLists = new List<FullShortListTests>();
 
 
             foreach (MoistureSoilTest test in _appDb.MoistureSoilTests.ToList())
             {
                 fullTestsLists.Add(
-                    new FullTestsList()
+                    new FullShortListTests()
                     {
                         TestId = test.Id,
                         TestDate = test.DateTest,
@@ -32,6 +37,6 @@ namespace ProjectServer.Services
 
             return fullTestsLists;
         }
-
+        #endregion
     }
 }

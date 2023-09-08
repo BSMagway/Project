@@ -16,7 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IMoistureSoilTestService, MoistureSoilTestService>();
-builder.Services.AddScoped<IFullTestsListService, FullTestsListService>();
+builder.Services.AddScoped<IFullShortListTestsService, FullShortListTestsService>();
+builder.Services.AddScoped<ICostumersService, CostumersService>();
 //builder.Services.AddManagedSingleton<IDbService>(null);
 
 var app = builder.Build();

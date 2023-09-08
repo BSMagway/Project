@@ -1,7 +1,13 @@
 ﻿namespace ProjectServer.Entities
 {
-    public class Dimension<T>
+    /// <summary>
+    /// Класс для результатов измерений
+    /// </summary>
+    public class Dimension
     {
+        /// <summary>
+        /// Id в базе данных
+        /// </summary>
         public Guid Id { get; set; }
         /// <summary>
         /// Название испытанной величины
@@ -10,6 +16,6 @@
         /// <summary>
         /// Значение испытанной величины
         /// </summary>
-        public T DimensionValue { get; set; }
+        public double DimensionValue { get; set; }
     }
 }

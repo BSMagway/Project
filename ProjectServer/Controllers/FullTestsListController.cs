@@ -9,15 +9,15 @@ namespace ProjectServer.Controllers
     [Route("api/[controller]")]
     public class FullTestsListController : ControllerBase
     {
-        private readonly IFullTestsListService _fullTestService;
+        private readonly IFullShortListTestsService _fullTestService;
 
-        public FullTestsListController(IFullTestsListService moistureSoilTestService)
+        public FullTestsListController(IFullShortListTestsService moistureSoilTestService)
         {
             _fullTestService = moistureSoilTestService;
         }
 
         [HttpGet]
-        public List<FullTestsList> GetAll() => _fullTestService.Get();
+        public List<FullShortListTests> GetAll() => _fullTestService.Get();
 
 
     }

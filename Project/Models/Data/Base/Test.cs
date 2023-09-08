@@ -12,7 +12,10 @@ namespace Project.Models.Data.Base
     /// </summary>
     internal abstract class Test : ViewModel
     {
-        public Guid Guid { get; set; }
+        /// <summary>
+        /// Id в базе данных
+        /// </summary>
+        private Guid id { get; set; }
         /// <summary>
         /// Порядковый номер теста (протокола)
         /// </summary>
@@ -35,27 +38,45 @@ namespace Project.Models.Data.Base
         private string documentTest = string.Empty;
 
 
-
+        /// <summary>
+        /// Id в базе данных
+        /// </summary>
+        public Guid Id { get; set; }
+        /// <summary>
+        /// Порядковый номер теста (протокола)
+        /// </summary>
         public int MoistureSoilTestId
         {
             get => moistureSoilTestId;
             set => Set(ref moistureSoilTestId, value);
         }
+        /// <summary>
+        /// Название испытываемого материала 
+        /// </summary>
         public string MaterialName
         {
             get => materialName;
             set => Set(ref materialName, value);
         }
+        /// <summary>
+        /// Дата проведения испытания
+        /// </summary>
         public string DateTest
         {
             get => dateTest;
             set => Set(ref dateTest, value);
         }
+        /// <summary>
+        /// Нормативная документация на испытание
+        /// </summary>
         public string DocumentTest
         {
             get => documentTest;
             set => Set(ref documentTest, value);
         }
+        /// <summary>
+        /// Заказчик испытания
+        /// </summary>
         public Costumer CostumerTest
         {
             get

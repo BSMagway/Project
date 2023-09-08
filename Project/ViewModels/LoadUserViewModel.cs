@@ -39,7 +39,7 @@ namespace Project.ViewModels
 
         public async Task LoadAllTest()
         {
-            using var response = await httpClient.GetAsync("https://localhost:7143/api/FullTestsList");
+            using var response = await httpClient.GetAsync("https://localhost:7143/api/FullTestsList/all");
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {

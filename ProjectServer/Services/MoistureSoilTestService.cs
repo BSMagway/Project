@@ -13,9 +13,13 @@ namespace ProjectServer.Services
             _appDb = appDb;
         }
 
-        public MoistureSoilTest Get(Guid notepadId)
+        public MoistureSoilTest Get(Guid moistureSoilTestId)
         {
-            throw new NotImplementedException();
+            var moistureSoilTest = _appDb.MoistureSoilTests
+                .Where(x => x.Id == moistureSoilTestId)
+                .FirstOrDefault();
+
+            return moistureSoilTest;
         }
 
         public MoistureSoilTest Add(MoistureSoilTest moistureSoilTest)

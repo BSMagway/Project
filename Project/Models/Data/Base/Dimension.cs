@@ -11,7 +11,7 @@ namespace Project.Models.Data.Base
     /// <summary>
     /// Значения испытаных величин
     /// </summary>
-    internal class Dimension<T> : ViewModel
+    internal class Dimension : ViewModel
     {
         public Guid Id { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace Project.Models.Data.Base
         /// <summary>
         /// Значение испытанной величины
         /// </summary>
-        private T? dimensionValue;
+        private double dimensionValue;
 
         public string DimensionName
         {
@@ -29,7 +29,7 @@ namespace Project.Models.Data.Base
             set => dimensionName = value;
         }
 
-        public T? DimensionValue
+        public double DimensionValue
         {
             get => dimensionValue;
             set => Set(ref dimensionValue, value);
@@ -47,7 +47,7 @@ namespace Project.Models.Data.Base
 
         }
 
-        public Dimension(string dimensionName, T dimensionValue)
+        public Dimension(string dimensionName, double dimensionValue)
         {
             this.dimensionName = dimensionName;
             this.dimensionValue = dimensionValue;

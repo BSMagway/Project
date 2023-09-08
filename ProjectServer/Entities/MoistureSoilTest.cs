@@ -2,8 +2,14 @@
 
 namespace ProjectServer.Entities
 {
+    /// <summary>
+    /// Класс для хранения протоколв испытаний по определению влажности грунта
+    /// </summary>
     public class MoistureSoilTest
     {
+        /// <summary>
+        /// Id в базе данных
+        /// </summary>
         public Guid Id { get; set; }
         /// <summary>
         /// Порядковый номер теста (протокола)
@@ -26,9 +32,21 @@ namespace ProjectServer.Entities
         /// Нормативная документация на испытание
         /// </summary>
         public string DocumentTest { get; set; }
-        public Dimension<double> SoilWetMassWithBox { get; set; }
-        public Dimension<double> SoilDryMassWithBox { get; set; }
-        public Dimension<double> BoxMass { get; set; }
-        public Dimension<double> MoistureSoil { get; set; }
+        /// <summary>
+        /// Результат измерения массы влажного грунта с бюксой
+        /// </summary>
+        public Dimension SoilWetMassWithBox { get; set; }
+        /// <summary>
+        /// Результаты измерения массы сухого грунта с бюксой
+        /// </summary>
+        public Dimension SoilDryMassWithBox { get; set; }
+        /// <summary>
+        /// Результаты измерения массы бюксы
+        /// </summary>
+        public Dimension BoxMass { get; set; }
+        /// <summary>
+        /// Влажность пробы грунта
+        /// </summary>
+        public Dimension MoistureSoil { get; set; }
     }
 }
