@@ -22,13 +22,17 @@ namespace Project.Models.Data.Base
         /// Значение испытанной величины
         /// </summary>
         private double dimensionValue;
-
+        /// <summary>
+        /// Название испытанной величины
+        /// </summary>
         public string DimensionName
         {
             get => dimensionName;
             set => dimensionName = value;
         }
-
+        /// <summary>
+        /// Значение испытанной величины
+        /// </summary>
         public double DimensionValue
         {
             get => dimensionValue;

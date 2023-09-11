@@ -10,7 +10,6 @@ using System.Windows.Input;
 using Project.ViewModels.Comands;
 using Project.Views.UserControls.TestUserControls.Soil;
 using Project.Views.UserControls.LoadUserControl;
-using Project.ViewModels.TestViewModel.Soil;
 using Microsoft.Extensions.DependencyInjection;
 using Project.Models.Data.Base;
 using System.Collections.ObjectModel;
@@ -18,6 +17,13 @@ using System.Net.Http;
 using System.Net;
 using Azure.Identity;
 using System.Net.Http.Json;
+using Project.Views.Windows;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
+using System.Windows;
+using Project.Models.Data.Tests.Soil;
+using Project.Services.Interface;
 
 namespace Project.ViewModels
 {
@@ -50,17 +56,31 @@ namespace Project.ViewModels
         #endregion
 
         #region Fields
-        //private IServiceProvider serviceProvider;
+        private const string LOADALLTESTADRESS = "https://localhost:7143/api/FullTestsList";
+        private const string LOADCOSTUMERSADRESS = "https://localhost:7143/api/Costumers/all";
+        private const string SAVEMOISTURESOILTESTADRESS = "https://localhost:7143/api/MoistureSoilTest";
 
+        IWorkWithBD workWithBDService;
+
+        private ObservableCollection<LoadedListTest> loadedListTests;
         private ObservableCollection<Costumer> costumers;
-        /// <summary>
-        /// Http клиент для загрузки из БД 
-        /// </summary>
-        private HttpClient httpClient = new HttpClient();
         #endregion
 
         #region Properties
+        public ObservableCollection<LoadedListTest> LoadedListTests
+        {
+            get
+            {
+                if (loadedListTests == null)
+                {
+                    loadedListTests = new ObservableCollection<LoadedListTest>();
+                }
 
+                return loadedListTests;
+            }
+
+            set => Set(ref loadedListTests, value);
+        }
         public ObservableCollection<Costumer> Costumers
         {
             get
@@ -78,9 +98,6 @@ namespace Project.ViewModels
             }
         
         }
-
-
-
         #endregion
 
         #region UserControls
@@ -237,6 +254,7 @@ namespace Project.ViewModels
                 if (loadUserControl == null)
                 {
                     loadUserControl = new LoadUserControl();
+                    loadUserControl.DataContext = this;
                 }
 
                 return loadUserControl;
@@ -309,6 +327,7 @@ namespace Project.ViewModels
         private void OnSelectSoilTestCommandExecuted(object p)
         {
             FramePage = new MoistureSoilTestUC();
+            FramePage.DataContext = this;
         }
 
         /// <summary>
@@ -325,24 +344,28 @@ namespace Project.ViewModels
         #endregion
 
         #region Constructors
-        public MainWindowViewModel()
+        public MainWindowViewModel(IWorkWithBD workWithBDService)
         {
             FramePage = SelectNewTaskPage;
+            this.workWithBDService = workWithBDService; 
 
             LoadCostumersFromBD();
+            LoadAllTest();
 
             #region Create Commands
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
             SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
             ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
             SelectSoilTestCommand = new LambdaCommand(OnSelectSoilTestCommandExecuted, CanSelectSoilTestCommandExecute);
+
+
+            CalculateMoistureCommand = new LambdaCommand(OnCalculateMoistureCommandExecuted, CanCalculateMoistureCommandExecute);
+            SaveTestCommand = new LambdaCommand(OnSaveTestCommandExecuted, CanSaveTestCommandExecute);
+            OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
+            LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
             #endregion
         }
 
-        //public MainWindowViewModel(IServiceProvider serviceProvider) : this()
-        //{
-        //    this.serviceProvider = serviceProvider;
-        //}
         #endregion
 
         #region Load Methods
@@ -352,20 +375,91 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task LoadCostumersFromBD()
         {
-            using var response = await httpClient.GetAsync("https://localhost:7143/api/Costumers/all");
-
-            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
-            {
-                
-            }
-            else
-            {
-                Costumers = await response.Content.ReadFromJsonAsync<ObservableCollection<Costumer>>();
-            }
+            Costumers = await workWithBDService.LoadCostumersFromBD(LOADCOSTUMERSADRESS);
+        }
+        public async Task LoadAllTest()
+        {
+            LoadedListTests = await workWithBDService.LoadAllTest(LOADALLTESTADRESS);
         }
 
 
         #endregion
+
+
+        #region Moisture Soil Test
+        #region Fields
+        private MoistureSoilTest moistureTest;
+        private Costumer selectedCostumer;
+        private Window window;
+
+        public MainWindowViewModel ViewModel { get; set; }
+        #endregion
+
+        #region Properties
+        public Costumer SelectedCostumer
+        {
+            get => selectedCostumer;
+            set => Set(ref selectedCostumer, value);
+        }
+        public MoistureSoilTest MoistureTest
+        {
+            get
+            {
+                if (moistureTest == null)
+                {
+                    moistureTest = new MoistureSoilTest();
+                }
+
+                return moistureTest;
+            }
+            set => Set(ref moistureTest, value);
+        }
+
+        #endregion
+
+        #region Methods
+
+        public async Task SaveTest()
+        {
+            workWithBDService.SaveMoistureSoilTestInBD(SAVEMOISTURESOILTESTADRESS, MoistureTest);
+        }
+        #endregion
+
+        #region Commands
+        public ICommand CalculateMoistureCommand { get; }
+        private bool CanCalculateMoistureCommandExecute(object p) => true;
+        private void OnCalculateMoistureCommandExecuted(object p)
+        {
+            moistureTest.CalculateMoistureSoil();
+        }
+
+        public ICommand SaveTestCommand { get; }
+        private bool CanSaveTestCommandExecute(object p) => true;
+        private void OnSaveTestCommandExecuted(object p)
+        {
+            SaveTest();
+        }
+
+        public ICommand OpenSelectCostumerCommand { get; }
+        private bool CanOpenSelectCostumerCommandExecute(object p) => true;
+        private void OnOpenSelectCostumerCommandExecuted(object p)
+        {
+            window = new LoadCostumerDialogWindow();
+            window.DataContext = this;
+            window.ShowDialog();
+        }
+
+        public ICommand LoadCostumerFromListCommand { get; }
+        private bool CanLoadCostumerFromListCommandExecute(object p) => true;
+        private void OnLoadCostumerFromListCommandExecuted(object p)
+        {
+            MoistureTest.CostumerTest = SelectedCostumer;
+            window.DialogResult = true;
+        }
+
+        #endregion
+        #endregion
+
     }
 
 

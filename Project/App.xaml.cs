@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Project.Services.Implementation;
+using Project.Services.Interface;
 using Project.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,23 +18,30 @@ namespace Project
     /// </summary>
     public partial class App : Application
     {
-        //private static IServiceProvider? serviceProvider;
+        private static IServiceProvider? serviceProvider;
 
-        //public static IServiceProvider ServiceProvider => serviceProvider ??= InitializeServices().BuildServiceProvider();
-        //private static IServiceCollection? InitializeServices()
-        //{
-        //    var services = new ServiceCollection();
+        public static IServiceProvider ServiceProvider => serviceProvider ??= InitializeServices().BuildServiceProvider();
+        private static IServiceCollection? InitializeServices()
+        {
+            var services = new ServiceCollection();
 
-        //    services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<MainWindow>(provider => new MainWindow
+            {
+                DataContext = provider.GetRequiredService<MainWindowViewModel>()
+            }); 
+                
+            services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<IWorkWithBD, WorkWithBD>();
 
-        //    return services;
-        //}
+            return services;
+        }
 
-        //protected override void OnStartup(StartupEventArgs e)
-        //{
-        //    base.OnStartup(e);
-        //    MainWindow mainWindow = new MainWindow();
-        //    mainWindow.DataContext = ServiceProvider.GetService<MainWindowViewModel>();
-        //}
+        protected override void OnStartup(StartupEventArgs e)
+        {
+
+            MainWindow mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
+            base.OnStartup(e);
+        }
     }
 }

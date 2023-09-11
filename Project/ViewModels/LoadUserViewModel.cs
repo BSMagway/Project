@@ -18,48 +18,48 @@ namespace Project.ViewModels
 {
     internal class LoadUserViewModel : ViewModel
     {
-        private readonly IServiceProvider _Services;
-        private ObservableCollection<LoadedListTest> loadedListTests;
-        public ObservableCollection<LoadedListTest> LoadedListTests
-        {
-            get
-            {
-                if (loadedListTests == null)
-                {
-                    loadedListTests = new ObservableCollection<LoadedListTest>();
-                }
+        //private readonly IServiceProvider _Services;
+        //private ObservableCollection<LoadedListTest> loadedListTests;
+        //public ObservableCollection<LoadedListTest> LoadedListTests
+        //{
+        //    get
+        //    {
+        //        if (loadedListTests == null)
+        //        {
+        //            loadedListTests = new ObservableCollection<LoadedListTest>();
+        //        }
 
-                return loadedListTests;
-            }
+        //        return loadedListTests;
+        //    }
 
-            set => Set(ref loadedListTests, value);
-        }
+        //    set => Set(ref loadedListTests, value);
+        //}
 
-        HttpClient httpClient = new HttpClient();
+        //HttpClient httpClient = new HttpClient();
 
-        public async Task LoadAllTest()
-        {
-            using var response = await httpClient.GetAsync("https://localhost:7143/api/FullTestsList/all");
+        //public async Task LoadAllTest()
+        //{
+        //    using var response = await httpClient.GetAsync("https://localhost:7143/api/FullTestsList/all");
 
-            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
-            {
-                Console.WriteLine(response.StatusCode);
-            }
-            else
-            {
-                // если запрос завершился успешно, получаем объект Person
-                LoadedListTests = await response.Content.ReadFromJsonAsync<ObservableCollection<LoadedListTest>>();
+        //    if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+        //    {
+        //        Console.WriteLine(response.StatusCode);
+        //    }
+        //    else
+        //    {
+        //        // если запрос завершился успешно, получаем объект Person
+        //        LoadedListTests = await response.Content.ReadFromJsonAsync<ObservableCollection<LoadedListTest>>();
 
 
-            }
-        }
+        //    }
+        //}
 
         public LoadUserViewModel()
         {
             
-            ObservableCollection<LoadedListTest> LoadedListTests = new ObservableCollection<LoadedListTest>();
+            //ObservableCollection<LoadedListTest> LoadedListTests = new ObservableCollection<LoadedListTest>();
 
-            LoadAllTest();
+            //LoadAllTest();
 
 
         }
