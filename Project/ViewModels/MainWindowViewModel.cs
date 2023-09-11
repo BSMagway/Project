@@ -385,7 +385,6 @@ namespace Project.ViewModels
 
         #endregion
 
-
         #region Moisture Soil Test
         #region Fields
         private MoistureSoilTest moistureTest;
