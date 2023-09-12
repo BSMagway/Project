@@ -24,6 +24,7 @@ using System.Text.Unicode;
 using System.Windows;
 using Project.Models.Data.Tests.Soil;
 using Project.Services.Interface;
+using Project.Views.UserControls.CostumersUserControl;
 
 namespace Project.ViewModels
 {
@@ -38,7 +39,8 @@ namespace Project.ViewModels
         enum SelectNewTaskEnum
         {
             NewTest,
-            LoadTest
+            LoadTest,
+            CostumersList
         }
 
         /// <summary>
@@ -136,6 +138,12 @@ namespace Project.ViewModels
         private UserControl geotextileTestsPage;
 
         private UserControl loadUserControl;
+
+        private UserControl costumersSelectUserControl;
+
+        private UserControl costumersListUserControl;
+
+        private UserControl moistureSoilTestUserControl;
 
         public UserControl FramePage
         {
@@ -263,6 +271,54 @@ namespace Project.ViewModels
             set => loadUserControl = value;
         }
 
+        public UserControl CostumersSelectUserControl
+        {
+            get
+            {
+                if (costumersSelectUserControl == null)
+                {
+                    costumersSelectUserControl = new CostumersSelectUserControl();
+                    costumersSelectUserControl.DataContext = this;
+                }
+
+                return costumersSelectUserControl;
+            }
+
+            set => costumersSelectUserControl = value;
+        }
+
+        public UserControl CostumersListUserControl
+        {
+            get
+            {
+                if (costumersListUserControl == null)
+                {
+                    costumersListUserControl = new CostumersListUserControl();
+                    costumersListUserControl.DataContext = this;
+                }
+
+                return costumersListUserControl;
+            }
+
+            set => costumersListUserControl = value;
+        }
+
+        public UserControl MoistureSoilTestUserControl
+        {
+            get
+            {
+                if (moistureSoilTestUserControl == null)
+                {
+                    moistureSoilTestUserControl = new MoistureSoilTestUC();
+                    moistureSoilTestUserControl.DataContext = this;
+                }
+
+                return moistureSoilTestUserControl;
+            }
+
+            set => moistureSoilTestUserControl = value;
+        }
+
         #endregion
 
         #region Commands
@@ -283,6 +339,9 @@ namespace Project.ViewModels
                     break;
                 case (int)SelectNewTaskEnum.LoadTest:
                     FramePage = LoadUserControl;
+                    break;
+                case (int)SelectNewTaskEnum.CostumersList:
+                    FramePage = CostumersListUserControl;
                     break;
             }
 
@@ -326,8 +385,7 @@ namespace Project.ViewModels
         private bool CanSelectSoilTestCommandExecute(object p) => true;
         private void OnSelectSoilTestCommandExecuted(object p)
         {
-            FramePage = new MoistureSoilTestUC();
-            FramePage.DataContext = this;
+            FramePage = MoistureSoilTestUserControl;
         }
 
         /// <summary>
@@ -443,9 +501,8 @@ namespace Project.ViewModels
         private bool CanOpenSelectCostumerCommandExecute(object p) => true;
         private void OnOpenSelectCostumerCommandExecuted(object p)
         {
-            window = new LoadCostumerDialogWindow();
-            window.DataContext = this;
-            window.ShowDialog();
+            FramePage = CostumersSelectUserControl;
+            
         }
 
         public ICommand LoadCostumerFromListCommand { get; }
@@ -453,7 +510,7 @@ namespace Project.ViewModels
         private void OnLoadCostumerFromListCommandExecuted(object p)
         {
             MoistureTest.CostumerTest = SelectedCostumer;
-            window.DialogResult = true;
+            FramePage = MoistureSoilTestUserControl;
         }
 
         #endregion

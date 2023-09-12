@@ -13,26 +13,8 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <UserControl Grid.Row="0" />
 
-        
-        <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="CostumersList" ItemsSource="{Binding ViewModel.Costumers}"
-                 SelectedItem="{Binding SelectedCostumer}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=Id}" />
-                        <TextBlock Text="{Binding Path=Title}" />
-                        <TextBlock Text="{Binding Path=ContractNumber}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <Button Grid.Row="1" Grid.Column="0" Content="Select" Command="{Binding LoadCostumerFromListCommand}"/>
         <Button Grid.Row="1" Grid.Column="0" Content="Select" Command="{Binding LoadCostumerFromListCommand}"/>
     </Grid>
 </Window>

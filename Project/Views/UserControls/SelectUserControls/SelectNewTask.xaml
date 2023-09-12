@@ -26,10 +26,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Create new test" Command="{Binding SelectNewTaskCommand}" CommandParameter="0" ></Button>
-        <Button Grid.Row="0" Grid.Column="1" Content="Load test" Command="{Binding SelectNewTaskCommand}" CommandParameter="1"></Button>
-        <Button Grid.Row="0" Grid.Column="2" Content="2" Command="{Binding SelectNewTaskCommand}" ></Button>
-        <Button Grid.Row="0" Grid.Column="3" Content="3" Command="{Binding SelectNewTaskCommand}" ></Button>
+        <Button Grid.Row="0" Grid.Column="0" Content="Создать новый тест" Command="{Binding SelectNewTaskCommand}" CommandParameter="0" ></Button>
+        <Button Grid.Row="0" Grid.Column="1" Content="Загрузить тест" Command="{Binding SelectNewTaskCommand}" CommandParameter="1"></Button>
+        <Button Grid.Row="0" Grid.Column="2" Content="Список заказчиков" Command="{Binding SelectNewTaskCommand}" CommandParameter="2"></Button>
+        <Button Grid.Row="0" Grid.Column="3" Content="3" Command="{Binding SelectNewTaskCommand}" CommandParameter="3"></Button>
         
     </Grid>
 </UserControl>

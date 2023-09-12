@@ -39,7 +39,7 @@ namespace Project.Services.Implementation
         }
         public async Task<ObservableCollection<Costumer>> LoadCostumersFromBD(string adress)
         {
-            using var response = await httpClient.GetAsync("adress");
+            using var response = await httpClient.GetAsync(adress);
 
             ObservableCollection<Costumer> costumers = new ObservableCollection<Costumer>();    
 
