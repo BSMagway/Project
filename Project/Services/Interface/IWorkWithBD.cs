@@ -18,5 +18,9 @@ namespace Project.Services.Interface
         public Task<ObservableCollection<Costumer>> LoadCostumersFromBD(string adress);
 
         public Task<MoistureSoilTest> SaveMoistureSoilTestInBD(string adress, MoistureSoilTest moistureSoilTest);
+
+        public Task EditMoistureSoilTestInBD(string adress, MoistureSoilTest moistureSoilTest);
+
+        public Task<MoistureSoilTest> GetMoistureSoilTestFromBD(string adress, Guid id);
     }
 }

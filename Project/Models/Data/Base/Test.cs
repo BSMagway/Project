@@ -27,7 +27,7 @@ namespace Project.Models.Data.Base
         /// <summary>
         /// Заказчик испытания
         /// </summary>
-        private Costumer? costumerTest;
+        private Costumer costumerTest;
         /// <summary>
         /// Дата проведения испытания
         /// </summary>

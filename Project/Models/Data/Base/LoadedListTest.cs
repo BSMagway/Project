@@ -13,5 +13,9 @@ namespace Project.Models.Data.Base
         public string TestDate { get; set; }
         public int TestNumber { get; set; }
 
+        public int MaterialTypeEnumNumber { get; set; }
+
+        public int TestTypeEnumNumber { get; set;}
+
     }
 }

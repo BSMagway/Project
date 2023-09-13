@@ -7,6 +7,23 @@ namespace ProjectServer.Services
 {
     public class FullShortListTestsService : IFullShortListTestsService
     {
+        #region Enum
+        enum SelectMaterialTypeTestEnum
+        {
+            Soil,
+            Sand,
+            Gravel,
+            SandAndGravel,
+            Geotextile
+        }
+
+        enum SelectTypeTestEnum
+        {
+            Moister
+        }
+
+        #endregion
+
         #region Fields
         private readonly AppDbContext _appDb;
         #endregion
@@ -31,7 +48,10 @@ namespace ProjectServer.Services
                     {
                         TestId = test.Id,
                         TestDate = test.DateTest,
-                        TestNumber = test.MoistureSoilTestId
+                        TestNumber = test.MoistureSoilTestId,
+                        MaterialTypeEnumNumber = (int)SelectMaterialTypeTestEnum.Soil,
+                        TestTypeEnumNumber = (int)SelectTypeTestEnum.Moister
+
                     });              
             }
 

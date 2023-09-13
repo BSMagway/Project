@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -77,6 +78,45 @@ namespace Project.Services.Implementation
             }
 
 
+
+            return moistureSoilTest;
+        }
+
+        public async Task EditMoistureSoilTestInBD(string adress, MoistureSoilTest moistureSoilTest)
+        {
+            JsonSerializerOptions optionsCyr = new JsonSerializerOptions()
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            };
+
+            JsonContent content = JsonContent.Create(moistureSoilTest, null, optionsCyr);
+
+            using var response = await httpClient.PutAsync(adress, content);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+
+            }
+        }
+
+        public async Task<MoistureSoilTest> GetMoistureSoilTestFromBD(string adress, Guid id)
+        {
+            MoistureSoilTest moistureSoilTest = new MoistureSoilTest();
+
+            using var response = await httpClient.GetAsync(adress);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+
+            }
 
             return moistureSoilTest;
         }

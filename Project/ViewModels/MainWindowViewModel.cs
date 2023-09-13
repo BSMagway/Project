@@ -1,8 +1,5 @@
 ﻿using Project.Views.UserControls.SelectUsercontrols;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Project.ViewModels.Base;
@@ -10,17 +7,8 @@ using System.Windows.Input;
 using Project.ViewModels.Comands;
 using Project.Views.UserControls.TestUserControls.Soil;
 using Project.Views.UserControls.LoadUserControl;
-using Microsoft.Extensions.DependencyInjection;
 using Project.Models.Data.Base;
 using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Net;
-using Azure.Identity;
-using System.Net.Http.Json;
-using Project.Views.Windows;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Unicode;
 using System.Windows;
 using Project.Models.Data.Tests.Soil;
 using Project.Services.Interface;
@@ -46,7 +34,7 @@ namespace Project.ViewModels
         /// <summary>
         /// Enum содержащий возможные материалы для роведения испытаний
         /// </summary>
-        enum SelectTypeTestEnum
+        enum SelectMaterialTypeTestEnum
         {
             Soil,
             Sand,            
@@ -55,17 +43,30 @@ namespace Project.ViewModels
             Geotextile
         }
 
+        enum SelectaTypeTestEnum
+        {
+            Moister
+        }
+
         #endregion
 
         #region Fields
-        private const string LOADALLTESTADRESS = "https://localhost:7143/api/FullTestsList";
-        private const string LOADCOSTUMERSADRESS = "https://localhost:7143/api/Costumers/all";
-        private const string SAVEMOISTURESOILTESTADRESS = "https://localhost:7143/api/MoistureSoilTest";
+        private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList";
+        private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Costumers/all";
+        private const string SAVE_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
+
+        private const string LOAD_MOISTURE_SOIL_TEST_ADRESS = "";
 
         IWorkWithBD workWithBDService;
 
         private ObservableCollection<LoadedListTest> loadedListTests;
         private ObservableCollection<Costumer> costumers;
+        private bool saveTestStatus = false;
+
+        private Costumer selectedCostumer;
+        private LoadedListTest testForLoading;
+
+
         #endregion
 
         #region Properties
@@ -99,6 +100,16 @@ namespace Project.ViewModels
                 Set(ref costumers, value);
             }
         
+        }
+        public Costumer SelectedCostumer
+        {
+            get => selectedCostumer;
+            set => Set(ref selectedCostumer, value);
+        }
+        public LoadedListTest TestForLoading
+        {
+            get => testForLoading;
+            set => Set(ref testForLoading, value);
         }
         #endregion
 
@@ -336,6 +347,7 @@ namespace Project.ViewModels
             {
                 case (int)SelectNewTaskEnum.NewTest:
                     FramePage = SelectTypeTestPage;
+                    saveTestStatus = false;
                     break;
                 case (int)SelectNewTaskEnum.LoadTest:
                     FramePage = LoadUserControl;
@@ -359,19 +371,19 @@ namespace Project.ViewModels
 
             switch (Convert.ToInt32(task))
             {
-                case (int)SelectTypeTestEnum.Soil:
+                case (int)SelectMaterialTypeTestEnum.Soil:
                     FramePage = SoilTestsPage;
                     break;
-                case (int)SelectTypeTestEnum.Sand:
+                case (int)SelectMaterialTypeTestEnum.Sand:
                     FramePage = SandTestsPage;
                     break;
-                case (int)SelectTypeTestEnum.Gravel:
+                case (int)SelectMaterialTypeTestEnum.Gravel:
                     FramePage = GravelTestsPage;
                     break;
-                case (int)SelectTypeTestEnum.SandAndGravel:
+                case (int)SelectMaterialTypeTestEnum.SandAndGravel:
                     FramePage = SandAndGravelTestsPage;
                     break;
-                case (int)SelectTypeTestEnum.Geotextile:
+                case (int)SelectMaterialTypeTestEnum.Geotextile:
                     FramePage = GeotextileTestsPage;
                     break;
             }
@@ -385,7 +397,16 @@ namespace Project.ViewModels
         private bool CanSelectSoilTestCommandExecute(object p) => true;
         private void OnSelectSoilTestCommandExecuted(object p)
         {
-            FramePage = MoistureSoilTestUserControl;
+            string task = (string)p;
+
+            switch (Convert.ToInt32(task))
+            {
+                case (int)SelectaTypeTestEnum.Moister:
+                    FramePage = MoistureSoilTestUserControl;
+                    break;
+            }
+
+
         }
 
         /// <summary>
@@ -396,6 +417,18 @@ namespace Project.ViewModels
         private void OnReturnToNewTaskPageCommandExecuted(object p)
         {
             FramePage = SelectNewTaskPage;
+        }
+
+        public ICommand LoadTestFromBD { get; }
+        private bool CanLoadTestFromBDExecute(object p) => true;
+        private void OnLoadTestFromBDExecuted(object p)
+        {
+            switch(TestForLoading.MaterialTypeEnumNumber)
+            {
+                case (int)SelectMaterialTypeTestEnum.Soil:
+
+                break;
+            }
         }
 
 
@@ -418,7 +451,7 @@ namespace Project.ViewModels
 
 
             CalculateMoistureCommand = new LambdaCommand(OnCalculateMoistureCommandExecuted, CanCalculateMoistureCommandExecute);
-            SaveTestCommand = new LambdaCommand(OnSaveTestCommandExecuted, CanSaveTestCommandExecute);
+            SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);
             OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
             LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
             #endregion
@@ -433,11 +466,15 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task LoadCostumersFromBD()
         {
-            Costumers = await workWithBDService.LoadCostumersFromBD(LOADCOSTUMERSADRESS);
+            Costumers = await workWithBDService.LoadCostumersFromBD(LOAD_COSTUMERS_ADRESS);
         }
         public async Task LoadAllTest()
         {
-            LoadedListTests = await workWithBDService.LoadAllTest(LOADALLTESTADRESS);
+            LoadedListTests = await workWithBDService.LoadAllTest(LOAD_ALL_TEST_ADRESS);
+        }
+        public async Task LoadMoistureSoilTest()
+        {
+            MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(LOAD_MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
         }
 
 
@@ -446,18 +483,9 @@ namespace Project.ViewModels
         #region Moisture Soil Test
         #region Fields
         private MoistureSoilTest moistureTest;
-        private Costumer selectedCostumer;
-        private Window window;
-
-        public MainWindowViewModel ViewModel { get; set; }
         #endregion
 
         #region Properties
-        public Costumer SelectedCostumer
-        {
-            get => selectedCostumer;
-            set => Set(ref selectedCostumer, value);
-        }
         public MoistureSoilTest MoistureTest
         {
             get
@@ -476,9 +504,14 @@ namespace Project.ViewModels
 
         #region Methods
 
-        public async Task SaveTest()
+        public async Task SaveNewMoistureSoilTest()
         {
-            workWithBDService.SaveMoistureSoilTestInBD(SAVEMOISTURESOILTESTADRESS, MoistureTest);
+            workWithBDService.SaveMoistureSoilTestInBD(SAVE_MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+        }
+
+        public async Task EditMoistureSoilTest()
+        {
+            workWithBDService.EditMoistureSoilTestInBD(SAVE_MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
         }
         #endregion
 
@@ -490,19 +523,26 @@ namespace Project.ViewModels
             moistureTest.CalculateMoistureSoil();
         }
 
-        public ICommand SaveTestCommand { get; }
-        private bool CanSaveTestCommandExecute(object p) => true;
-        private void OnSaveTestCommandExecuted(object p)
+        public ICommand SaveMoistureSoilTestCommand { get; }
+        private bool CanSaveMoistureSoilTestCommandExecute(object p) => true;
+        private void OnSaveMoistureSoilTestCommandExecuted(object p)
         {
-            SaveTest();
+            if (saveTestStatus)
+            {
+                EditMoistureSoilTest();
+            } 
+            else
+            {
+                SaveNewMoistureSoilTest();
+                saveTestStatus = true;
+            }
         }
 
         public ICommand OpenSelectCostumerCommand { get; }
         private bool CanOpenSelectCostumerCommandExecute(object p) => true;
         private void OnOpenSelectCostumerCommandExecuted(object p)
         {
-            FramePage = CostumersSelectUserControl;
-            
+            FramePage = CostumersSelectUserControl;            
         }
 
         public ICommand LoadCostumerFromListCommand { get; }

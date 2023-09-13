@@ -17,5 +17,9 @@
         /// Номер протокола
         /// </summary>
         public int TestNumber { get; set; }
+
+        public int MaterialTypeEnumNumber { get; set; }
+
+        public int TestTypeEnumNumber { get; set; }
     }
 }
