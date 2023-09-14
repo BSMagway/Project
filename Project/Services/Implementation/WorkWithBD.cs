@@ -107,7 +107,7 @@ namespace Project.Services.Implementation
         {
             MoistureSoilTest moistureSoilTest = new MoistureSoilTest();
 
-            using var response = await httpClient.GetAsync(adress);
+            using var response = await httpClient.GetAsync(adress + $"?moistureSoilTestId={id}");
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
@@ -115,7 +115,7 @@ namespace Project.Services.Implementation
             }
             else
             {
-
+                moistureSoilTest = await response.Content.ReadFromJsonAsync<MoistureSoilTest>();
             }
 
             return moistureSoilTest;

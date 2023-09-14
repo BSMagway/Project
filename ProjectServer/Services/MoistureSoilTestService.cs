@@ -1,4 +1,5 @@
-﻿using ProjectServer.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectServer.Data;
 using ProjectServer.Entities;
 using ProjectServer.Services.Interface;
 
@@ -15,8 +16,12 @@ namespace ProjectServer.Services
 
         public MoistureSoilTest Get(Guid moistureSoilTestId)
         {
-            var moistureSoilTest = _appDb.MoistureSoilTests
-                .Where(x => x.Id == moistureSoilTestId)
+            var moistureSoilTest = _appDb.MoistureSoilTests.Where(x => x.Id == moistureSoilTestId)
+                .Include(x => x.CostumerTest)
+                .Include(x => x.SoilWetMassWithBox)
+                .Include(x => x.SoilDryMassWithBox)
+                .Include(x => x.BoxMass)
+                .Include(x => x.MoistureSoil)
                 .FirstOrDefault();
 
             return moistureSoilTest;

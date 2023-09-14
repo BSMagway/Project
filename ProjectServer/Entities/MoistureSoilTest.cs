@@ -35,18 +35,26 @@ namespace ProjectServer.Entities
         /// <summary>
         /// Результат измерения массы влажного грунта с бюксой
         /// </summary>
+
+        public Guid SoilWetMassWithBoxId { get; set; }
         public Dimension SoilWetMassWithBox { get; set; }
         /// <summary>
         /// Результаты измерения массы сухого грунта с бюксой
         /// </summary>
+
+        public Guid SoilDryMassWithBoxId { get; set; }
         public Dimension SoilDryMassWithBox { get; set; }
         /// <summary>
         /// Результаты измерения массы бюксы
         /// </summary>
+
+        public Guid BoxMassId { get; set; }
         public Dimension BoxMass { get; set; }
         /// <summary>
         /// Влажность пробы грунта
         /// </summary>
+
+        public Guid MoistureId { get; set; }
         public Dimension MoistureSoil { get; set; }
     }
 }

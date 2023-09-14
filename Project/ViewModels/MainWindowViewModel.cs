@@ -43,7 +43,7 @@ namespace Project.ViewModels
             Geotextile
         }
 
-        enum SelectaTypeTestEnum
+        enum SelectTypeTestEnum
         {
             Moister
         }
@@ -55,7 +55,7 @@ namespace Project.ViewModels
         private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Costumers/all";
         private const string SAVE_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
 
-        private const string LOAD_MOISTURE_SOIL_TEST_ADRESS = "";
+        private const string LOAD_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
 
         IWorkWithBD workWithBDService;
 
@@ -350,6 +350,7 @@ namespace Project.ViewModels
                     saveTestStatus = false;
                     break;
                 case (int)SelectNewTaskEnum.LoadTest:
+                    LoadAllTest();
                     FramePage = LoadUserControl;
                     break;
                 case (int)SelectNewTaskEnum.CostumersList:
@@ -401,7 +402,7 @@ namespace Project.ViewModels
 
             switch (Convert.ToInt32(task))
             {
-                case (int)SelectaTypeTestEnum.Moister:
+                case (int)SelectTypeTestEnum.Moister:
                     FramePage = MoistureSoilTestUserControl;
                     break;
             }
@@ -427,6 +428,20 @@ namespace Project.ViewModels
             {
                 case (int)SelectMaterialTypeTestEnum.Soil:
 
+                    switch(TestForLoading.TestTypeEnumNumber)
+                    {
+                        case (int)SelectTypeTestEnum.Moister:
+                            LoadMoistureSoilTest();
+                            FramePage = MoistureSoilTestUserControl;
+                        break;
+
+
+                    }
+
+
+
+
+
                 break;
             }
         }
@@ -441,7 +456,6 @@ namespace Project.ViewModels
             this.workWithBDService = workWithBDService; 
 
             LoadCostumersFromBD();
-            LoadAllTest();
 
             #region Create Commands
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
@@ -454,6 +468,7 @@ namespace Project.ViewModels
             SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);
             OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
             LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
+            LoadTestFromBD = new LambdaCommand(OnLoadTestFromBDExecuted, CanLoadTestFromBDExecute);
             #endregion
         }
 
