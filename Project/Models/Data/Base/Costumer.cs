@@ -12,10 +12,13 @@ namespace Project.Models.Data.Base
     /// </summary>
     internal class Costumer : ViewModel
     {
-        public Guid Id { get; set; }
         private string title = string.Empty;
         private int contractNumber;
 
+        /// <summary>
+        /// Id в базе данных
+        /// </summary>
+        public Guid Id { get; set; }
         /// <summary>
         /// Название компании.
         /// </summary>

@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -17,9 +18,15 @@ using System.Threading.Tasks;
 
 namespace Project.Services.Implementation
 {
+    /// <summary>
+    /// Класс сервиса для работы с базой данных
+    /// </summary>
     internal class WorkWithBD : IWorkWithBD
     {
         #region Fields
+        /// <summary>
+        /// Клиент для запросов к базе данных
+        /// </summary>
         static HttpClient httpClient = new HttpClient();
         #endregion
 
@@ -32,7 +39,7 @@ namespace Project.Services.Implementation
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                //Console.WriteLine(response.StatusCode);
+
             }
             else
             {

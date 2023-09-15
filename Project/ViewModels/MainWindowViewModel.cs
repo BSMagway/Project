@@ -32,7 +32,7 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Enum содержащий возможные материалы для роведения испытаний
+        /// Enum содержащий возможные материалы для проведения испытаний
         /// </summary>
         enum SelectMaterialTypeTestEnum
         {
@@ -42,7 +42,9 @@ namespace Project.ViewModels
             SandAndGravel,
             Geotextile
         }
-
+        /// <summary>
+        /// Enum содержащий виды испытаний
+        /// </summary>
         enum SelectTypeTestEnum
         {
             Moister
@@ -51,24 +53,50 @@ namespace Project.ViewModels
         #endregion
 
         #region Fields
+        /// <summary>
+        /// Адресная строка для загрузки всех тестов для отображения списком
+        /// </summary>
         private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList";
+        /// <summary>
+        /// Адресная строка для загрузки всех заказчиков для отображения списком
+        /// </summary>
         private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Costumers/all";
+        /// <summary>
+        /// Адресная строка для работы с базой данных заказчиков
+        /// </summary>
         private const string COSTUMER_ADRESS = "https://localhost:7143/api/Costumers";
-        private const string SAVE_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
-
-        private const string LOAD_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
-
+        /// <summary>
+        /// Адресная строка для работы с базой данных тестов по определению влажности грунта
+        /// </summary>
+        private const string MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
+        /// <summary>
+        /// Сервис для работы с базой данных
+        /// </summary>
         IWorkWithBD workWithBDService;
-
+        /// <summary>
+        /// Сокращенный список всех тестов
+        /// </summary>
         private ObservableCollection<LoadedListTest> loadedListTests;
-        private ObservableCollection<Costumer> costumers;
-        private bool saveTestStatus = true;
-
-        private Costumer selectedCostumer;
-        private bool saveCostumerStatus = true;
+        /// <summary>
+        /// выбранный для загрузки тест
+        /// </summary>
         private LoadedListTest testForLoading;
-
-
+        /// <summary>
+        /// Статус теста сохранен или нет в базе данных
+        /// </summary>
+        private bool saveTestStatus = true;
+        /// <summary>
+        /// Список всех заказчиков
+        /// </summary>
+        private ObservableCollection<Costumer> costumers;
+        /// <summary>
+        /// Выбранный для загрузки или установки в тесте заказчик
+        /// </summary>
+        private Costumer selectedCostumer;
+        /// <summary>
+        /// Статус заказчика сохранен или нет в базе данных
+        /// </summary>
+        private bool saveCostumerStatus = true;
         #endregion
 
         #region Properties
@@ -149,13 +177,21 @@ namespace Project.ViewModels
         /// Элемент отвечающий за выбор вида испытания геотекстиля.
         /// </summary>
         private UserControl geotextileTestsPage;
-
+        /// <summary>
+        /// Элемент отвечающий за загрузку краткой версии тестов в виде списка
+        /// </summary>
         private UserControl loadUserControl;
-
+        /// <summary>
+        /// Элемент отвечающий за выбор заказчика для добавления в тест
+        /// </summary>
         private UserControl costumersSelectUserControl;
-
+        /// <summary>
+        /// Элемент отвечающий за отображение списка заказчиков
+        /// </summary>
         private UserControl costumersListUserControl;
-
+        /// <summary>
+        /// Элемент отвечающий за отображение теста на определение влажности грунта
+        /// </summary>
         private UserControl moistureSoilTestUserControl;
 
         public UserControl FramePage
@@ -283,7 +319,6 @@ namespace Project.ViewModels
 
             set => loadUserControl = value;
         }
-
         public UserControl CostumersSelectUserControl
         {
             get
@@ -299,7 +334,6 @@ namespace Project.ViewModels
 
             set => costumersSelectUserControl = value;
         }
-
         public UserControl CostumersListUserControl
         {
             get
@@ -315,7 +349,6 @@ namespace Project.ViewModels
 
             set => costumersListUserControl = value;
         }
-
         public UserControl MoistureSoilTestUserControl
         {
             get
@@ -331,7 +364,6 @@ namespace Project.ViewModels
 
             set => moistureSoilTestUserControl = value;
         }
-
         #endregion
 
         #region Select Commands
@@ -423,6 +455,9 @@ namespace Project.ViewModels
         #endregion
 
         #region Commands
+        /// <summary>
+        /// Команда отвечающая за загрузку теста из базы данных
+        /// </summary>
         public ICommand LoadTestFromBDCommand { get; }
         private bool CanLoadTestFromBDCommandExecute(object p) => true;
         private void OnLoadTestFromBDCommandExecuted(object p)
@@ -442,7 +477,9 @@ namespace Project.ViewModels
                 break;
             }
         }
-
+        /// <summary>
+        /// Команда отвечающая за добавление нового и редактирование существующего заказчика
+        /// </summary>
         public ICommand SaveEditCostumerInBDCommand { get; }
         private bool CanSaveEditCostumerInBDCommandExecute(object p) => true;
         private void OnSaveEditCostumerInBDCommandExecuted(object p)
@@ -458,7 +495,9 @@ namespace Project.ViewModels
 
             FramePage = CostumersListUserControl;
         }
-
+        /// <summary>
+        /// Команда отвечающая за открытие формы для редактирования или добавления заказчика
+        /// </summary>
         public ICommand OpenFormForCostumerAddEditCommand { get; }
         private bool CanOpenFormForCostumerAddEditCommandExecute(object p) => true;
         private void OnOpenFormForCostumerAddEditCommandExecuted(object p)
@@ -496,14 +535,11 @@ namespace Project.ViewModels
             SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
             ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
             SelectSoilTestCommand = new LambdaCommand(OnSelectSoilTestCommandExecuted, CanSelectSoilTestCommandExecute);
-
-
             CalculateMoistureCommand = new LambdaCommand(OnCalculateMoistureCommandExecuted, CanCalculateMoistureCommandExecute);
             SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);
             OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
             LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
             LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
-
             OpenFormForCostumerAddEditCommand = new LambdaCommand(OnOpenFormForCostumerAddEditCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
             SaveEditCostumerInBDCommand = new LambdaCommand(OnSaveEditCostumerInBDCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
         #endregion
@@ -519,26 +555,38 @@ namespace Project.ViewModels
         {
             Costumers = await workWithBDService.LoadCostumersFromBD(LOAD_COSTUMERS_ADRESS);
         }
+        /// <summary>
+        /// Загрузка короткого списка тестов из БД
+        /// </summary>
+        /// <returns></returns>
         public async Task LoadAllTest()
         {
             LoadedListTests = await workWithBDService.LoadAllTest(LOAD_ALL_TEST_ADRESS);
         }
+        /// <summary>
+        /// Загрузка теста по определению влажности грунта
+        /// </summary>
+        /// <returns></returns>
         public async Task LoadMoistureSoilTest()
         {
-            MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(LOAD_MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
+            MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
         }
-
-
         #endregion
 
         #region Save Methods
-
+        /// <summary>
+        /// Метод для редактирования заказчика
+        /// </summary>
+        /// <returns></returns>
         private async Task EditCostumer()
         {
             await workWithBDService.EditCostumerInBD(COSTUMER_ADRESS, selectedCostumer);
             Costumers[Costumers.IndexOf(Costumers.First(x => x.Id == selectedCostumer.Id))] = selectedCostumer;
         }
-
+        /// <summary>
+        /// Метод для добавления нового заказчика
+        /// </summary>
+        /// <returns></returns>
         private async Task SaveCostumer()
         {
             selectedCostumer = await workWithBDService.SaveCostumerInBD(COSTUMER_ADRESS, selectedCostumer);
@@ -549,10 +597,16 @@ namespace Project.ViewModels
 
         #region Moisture Soil Test
         #region Fields
+        /// <summary>
+        /// Тест по определению важности грунта
+        /// </summary>
         private MoistureSoilTest moistureTest;
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Тест по определению важности грунта
+        /// </summary>
         public MoistureSoilTest MoistureTest
         {
             get
@@ -570,26 +624,37 @@ namespace Project.ViewModels
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Метод по добавлению нового теста в бд
+        /// </summary>
+        /// <returns></returns>
         public async Task SaveNewMoistureSoilTest()
         {
-            workWithBDService.SaveMoistureSoilTestInBD(SAVE_MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+            workWithBDService.SaveMoistureSoilTestInBD(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
         }
-
+        /// <summary>
+        /// Метод дя редактирования теста в бд
+        /// </summary>
+        /// <returns></returns>
         public async Task EditMoistureSoilTest()
         {
-            workWithBDService.EditMoistureSoilTestInBD(SAVE_MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+            workWithBDService.EditMoistureSoilTestInBD(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
         }
         #endregion
 
         #region Commands
+        /// <summary>
+        /// Команда для расчета влажности грунта
+        /// </summary>
         public ICommand CalculateMoistureCommand { get; }
         private bool CanCalculateMoistureCommandExecute(object p) => true;
         private void OnCalculateMoistureCommandExecuted(object p)
         {
             moistureTest.CalculateMoistureSoil();
         }
-
+        /// <summary>
+        /// Команда для сохранения и редактирования тестов по определению влажности грунта
+        /// </summary>
         public ICommand SaveMoistureSoilTestCommand { get; }
         private bool CanSaveMoistureSoilTestCommandExecute(object p) => true;
         private void OnSaveMoistureSoilTestCommandExecuted(object p)
@@ -604,14 +669,18 @@ namespace Project.ViewModels
                 saveTestStatus = true;
             }
         }
-
+        /// <summary>
+        /// Команда для открытия выбора заказчика для добавления в тест
+        /// </summary>
         public ICommand OpenSelectCostumerCommand { get; }
         private bool CanOpenSelectCostumerCommandExecute(object p) => true;
         private void OnOpenSelectCostumerCommandExecuted(object p)
         {
             FramePage = CostumersSelectUserControl;            
         }
-
+        /// <summary>
+        /// Команда для добавления выбранного заказчика в тест
+        /// </summary>
         public ICommand LoadCostumerFromListCommand { get; }
         private bool CanLoadCostumerFromListCommandExecute(object p) => true;
         private void OnLoadCostumerFromListCommandExecuted(object p)
