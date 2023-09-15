@@ -43,6 +43,10 @@ namespace ProjectServer.Services
 
             var moistureSoilTest = _appDb.MoistureSoilTests
                 .Where(x => x.Id == moistureSoilTestId)
+                .Include(x => x.SoilWetMassWithBox)
+                .Include(x => x.SoilDryMassWithBox)
+                .Include(x => x.BoxMass)
+                .Include(x => x.MoistureSoil)
                 .FirstOrDefault();
 
             if (moistureSoilTest == null)
@@ -59,7 +63,13 @@ namespace ProjectServer.Services
         public bool Update(MoistureSoilTest moistureSoilTest)
         {
             var dbMoistureSoilTest = _appDb.MoistureSoilTests
+                .AsNoTracking()
                 .Where(x => x.MoistureSoilTestId == moistureSoilTest.MoistureSoilTestId)
+                .Include(x => x.CostumerTest)
+                .Include(x => x.SoilWetMassWithBox)
+                .Include(x => x.SoilDryMassWithBox)
+                .Include(x => x.BoxMass)
+                .Include(x => x.MoistureSoil)
                 .FirstOrDefault();
 
             if (dbMoistureSoilTest == null)
@@ -69,13 +79,18 @@ namespace ProjectServer.Services
 
             dbMoistureSoilTest.MoistureSoilTestId = moistureSoilTest.MoistureSoilTestId;
             dbMoistureSoilTest.MaterialName = moistureSoilTest.MaterialName;
-            dbMoistureSoilTest.CostumerId = moistureSoilTest.CostumerId;
+            dbMoistureSoilTest.CostumerTest = moistureSoilTest.CostumerTest;
             dbMoistureSoilTest.DateTest = moistureSoilTest.DateTest;
             dbMoistureSoilTest.DocumentTest = moistureSoilTest.DocumentTest;
             dbMoistureSoilTest.SoilDryMassWithBox = moistureSoilTest.SoilDryMassWithBox;
             dbMoistureSoilTest.SoilWetMassWithBox = moistureSoilTest.SoilWetMassWithBox;
-            dbMoistureSoilTest.BoxMass = dbMoistureSoilTest.BoxMass;
-            dbMoistureSoilTest.MoistureSoil = dbMoistureSoilTest.MoistureSoil;
+            dbMoistureSoilTest.BoxMass = moistureSoilTest.BoxMass;
+            dbMoistureSoilTest.MoistureSoil = moistureSoilTest.MoistureSoil;
+            _appDb.Entry(dbMoistureSoilTest.CostumerTest).State = EntityState.Modified;
+            _appDb.Entry(dbMoistureSoilTest.SoilDryMassWithBox).State = EntityState.Modified;
+            _appDb.Entry(dbMoistureSoilTest.SoilWetMassWithBox).State = EntityState.Modified;
+            _appDb.Entry(dbMoistureSoilTest.BoxMass).State = EntityState.Modified;
+            _appDb.Entry(dbMoistureSoilTest.MoistureSoil).State = EntityState.Modified;
             _appDb.SaveChanges();
 
             return true;

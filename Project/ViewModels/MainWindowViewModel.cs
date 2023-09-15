@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using Project.Models.Data.Tests.Soil;
 using Project.Services.Interface;
 using Project.Views.UserControls.CostumersUserControl;
+using System.Linq;
 
 namespace Project.ViewModels
 {
@@ -52,6 +53,7 @@ namespace Project.ViewModels
         #region Fields
         private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList";
         private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Costumers/all";
+        private const string COSTUMER_ADRESS = "https://localhost:7143/api/Costumers";
         private const string SAVE_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
 
         private const string LOAD_MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
@@ -60,9 +62,10 @@ namespace Project.ViewModels
 
         private ObservableCollection<LoadedListTest> loadedListTests;
         private ObservableCollection<Costumer> costumers;
-        private bool saveTestStatus = false;
+        private bool saveTestStatus = true;
 
         private Costumer selectedCostumer;
+        private bool saveCostumerStatus = true;
         private LoadedListTest testForLoading;
 
 
@@ -331,7 +334,7 @@ namespace Project.ViewModels
 
         #endregion
 
-        #region Commands
+        #region Select Commands
 
         /// <summary>
         /// Команда для выбора новой задачи (создание нового теста, загрузка существующего теста и тд.).
@@ -405,8 +408,6 @@ namespace Project.ViewModels
                     FramePage = MoistureSoilTestUserControl;
                     break;
             }
-
-
         }
 
         /// <summary>
@@ -419,6 +420,9 @@ namespace Project.ViewModels
             FramePage = SelectNewTaskPage;
         }
 
+        #endregion
+
+        #region Commands
         public ICommand LoadTestFromBDCommand { get; }
         private bool CanLoadTestFromBDCommandExecute(object p) => true;
         private void OnLoadTestFromBDCommandExecuted(object p)
@@ -433,36 +437,47 @@ namespace Project.ViewModels
                             LoadMoistureSoilTest();
                             FramePage = MoistureSoilTestUserControl;
                         break;
-
-
                     }
-
-
-
-
 
                 break;
             }
         }
 
-        public ICommand EditCostumerInBDCommand { get; }
-        private bool CanEditCostumerInBDCommand(object p) => true;
-        private void OnEditCostumerInBDCommand(object p)
+        public ICommand SaveEditCostumerInBDCommand { get; }
+        private bool CanSaveEditCostumerInBDCommandExecute(object p) => true;
+        private void OnSaveEditCostumerInBDCommandExecuted(object p)
         {
+            if (saveCostumerStatus)
+            {
+                EditCostumer();
+            } 
+            else
+            {
+                SaveCostumer();
+            }
 
+            FramePage = CostumersListUserControl;
         }
-        public ICommand SaveCostumerInBDCommand { get; }
-        private bool CanSaveCostumerInBDCommand(object p) => true;
-        private void OnSaveCostumerInBDCommand(object p)
+
+        public ICommand OpenFormForCostumerAddEditCommand { get; }
+        private bool CanOpenFormForCostumerAddEditCommandExecute(object p) => true;
+        private void OnOpenFormForCostumerAddEditCommandExecuted(object p)
         {
+            string key = string.Empty;
 
-        }
+            if (p != null)
+            {
+                key = p.ToString();
+            }
 
-        public ICommand OpenFormForCostumerAddCommand { get; }
-
-        private bool CanOpenFormForCostumerAddCommand(object p) => true;
-        private void OnOpenFormForCostumerAddCommand(object p)
-        {
+            FramePage = new FormForCostumerAddEditUserControl();
+            FramePage.DataContext = this;
+            
+            if(key == "add")
+            {
+                SelectedCostumer = new Costumer();
+                saveCostumerStatus = false;
+            }
 
         }
 
@@ -473,8 +488,7 @@ namespace Project.ViewModels
         public MainWindowViewModel(IWorkWithBD workWithBDService)
         {
             FramePage = SelectNewTaskPage;
-            this.workWithBDService = workWithBDService; 
-
+            this.workWithBDService = workWithBDService;
             LoadCostumersFromBD();
 
             #region Create Commands
@@ -489,9 +503,11 @@ namespace Project.ViewModels
             OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
             LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
             LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
-            #endregion
-        }
 
+            OpenFormForCostumerAddEditCommand = new LambdaCommand(OnOpenFormForCostumerAddEditCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
+            SaveEditCostumerInBDCommand = new LambdaCommand(OnSaveEditCostumerInBDCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
+        #endregion
+    }
         #endregion
 
         #region Load Methods
@@ -517,7 +533,17 @@ namespace Project.ViewModels
 
         #region Save Methods
 
+        private async Task EditCostumer()
+        {
+            await workWithBDService.EditCostumerInBD(COSTUMER_ADRESS, selectedCostumer);
+            Costumers[Costumers.IndexOf(Costumers.First(x => x.Id == selectedCostumer.Id))] = selectedCostumer;
+        }
 
+        private async Task SaveCostumer()
+        {
+            selectedCostumer = await workWithBDService.SaveCostumerInBD(COSTUMER_ADRESS, selectedCostumer);
+            Costumers.Add(selectedCostumer);
+        }
 
         #endregion
 

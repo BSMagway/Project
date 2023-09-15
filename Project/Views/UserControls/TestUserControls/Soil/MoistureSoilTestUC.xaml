@@ -55,9 +55,6 @@
         <Button Grid.Row="4" Grid.Column="4" Content="Рассчитать влажность" Command="{Binding CalculateMoistureCommand}"/>
         <Button Grid.Row="5" Grid.Column="4" Content="Save" Command="{Binding SaveMoistureSoilTestCommand}"/>
 
-        <TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="4" TextWrapping="Wrap"/>
-        <Button Grid.Row="7" Grid.Column="4" Content="Return" Command="{Binding ViewModel.ReturnToNewTaskPageCommand}"/>
-
 
 
 

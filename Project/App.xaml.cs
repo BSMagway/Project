@@ -31,7 +31,7 @@ namespace Project
             }); 
                 
             services.AddSingleton<MainWindowViewModel>();
-            services.AddSingleton<IWorkWithBD, WorkWithBD>();
+            services.AddScoped<IWorkWithBD, WorkWithBD>();
 
             return services;
         }

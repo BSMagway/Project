@@ -18,9 +18,9 @@ namespace Project.Views.UserControls.CostumersUserControl
     /// <summary>
     /// Логика взаимодействия для FormForCostumerAddUserControl.xaml
     /// </summary>
-    public partial class FormForCostumerAddUserControl : UserControl
+    public partial class FormForCostumerAddEditUserControl : UserControl
     {
-        public FormForCostumerAddUserControl()
+        public FormForCostumerAddEditUserControl()
         {
             InitializeComponent();
         }
