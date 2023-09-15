@@ -19,8 +19,11 @@ namespace Project.Services.Implementation
 {
     internal class WorkWithBD : IWorkWithBD
     {
+        #region Fields
         static HttpClient httpClient = new HttpClient();
+        #endregion
 
+        #region Load List
         public async Task<ObservableCollection<LoadedListTest>> LoadAllTest(string adress)
         {
             using var response = await httpClient.GetAsync(adress);
@@ -55,6 +58,9 @@ namespace Project.Services.Implementation
 
             return costumers;
         }
+        #endregion
+
+        #region Moisture
         public async Task<MoistureSoilTest> SaveMoistureSoilTestInBD(string adress, MoistureSoilTest moistureSoilTest)
         {
             JsonSerializerOptions optionsCyr = new JsonSerializerOptions()
@@ -81,7 +87,6 @@ namespace Project.Services.Implementation
 
             return moistureSoilTest;
         }
-
         public async Task EditMoistureSoilTestInBD(string adress, MoistureSoilTest moistureSoilTest)
         {
             JsonSerializerOptions optionsCyr = new JsonSerializerOptions()
@@ -102,7 +107,6 @@ namespace Project.Services.Implementation
 
             }
         }
-
         public async Task<MoistureSoilTest> GetMoistureSoilTestFromBD(string adress, Guid id)
         {
             MoistureSoilTest moistureSoilTest = new MoistureSoilTest();
@@ -120,5 +124,77 @@ namespace Project.Services.Implementation
 
             return moistureSoilTest;
         }
+        #endregion
+
+        #region Costumer
+
+        public async Task EditCostumerInBD(string adress, Costumer costumer)
+        {
+            JsonSerializerOptions optionsCyr = new JsonSerializerOptions()
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            };
+
+            JsonContent content = JsonContent.Create(costumer, null, optionsCyr);
+
+            using var response = await httpClient.PutAsync(adress, content);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+
+            }
+        }
+
+        public async Task<Costumer> SaveCostumerInBD(string adress, Costumer costumer)
+        {
+            JsonSerializerOptions optionsCyr = new JsonSerializerOptions()
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            };
+
+            JsonContent content = JsonContent.Create(costumer, null, optionsCyr);
+
+            using var response = await httpClient.PostAsync(adress, content);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+
+                costumer = await response.Content.ReadFromJsonAsync<Costumer>();
+
+            }
+
+
+
+            return costumer;
+        }
+
+        public async Task<Costumer> GetCostumerFromBD(string adress, Guid id)
+        {
+            Costumer costumer = new Costumer();
+
+            using var response = await httpClient.GetAsync(adress + $"?costumerId={id}");
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+                costumer = await response.Content.ReadFromJsonAsync<Costumer>();
+            }
+
+            return costumer;
+        }
+
+        #endregion
+
     }
 }

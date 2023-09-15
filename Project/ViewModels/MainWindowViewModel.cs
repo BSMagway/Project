@@ -9,7 +9,6 @@ using Project.Views.UserControls.TestUserControls.Soil;
 using Project.Views.UserControls.LoadUserControl;
 using Project.Models.Data.Base;
 using System.Collections.ObjectModel;
-using System.Windows;
 using Project.Models.Data.Tests.Soil;
 using Project.Services.Interface;
 using Project.Views.UserControls.CostumersUserControl;
@@ -420,9 +419,9 @@ namespace Project.ViewModels
             FramePage = SelectNewTaskPage;
         }
 
-        public ICommand LoadTestFromBD { get; }
-        private bool CanLoadTestFromBDExecute(object p) => true;
-        private void OnLoadTestFromBDExecuted(object p)
+        public ICommand LoadTestFromBDCommand { get; }
+        private bool CanLoadTestFromBDCommandExecute(object p) => true;
+        private void OnLoadTestFromBDCommandExecuted(object p)
         {
             switch(TestForLoading.MaterialTypeEnumNumber)
             {
@@ -444,6 +443,27 @@ namespace Project.ViewModels
 
                 break;
             }
+        }
+
+        public ICommand EditCostumerInBDCommand { get; }
+        private bool CanEditCostumerInBDCommand(object p) => true;
+        private void OnEditCostumerInBDCommand(object p)
+        {
+
+        }
+        public ICommand SaveCostumerInBDCommand { get; }
+        private bool CanSaveCostumerInBDCommand(object p) => true;
+        private void OnSaveCostumerInBDCommand(object p)
+        {
+
+        }
+
+        public ICommand OpenFormForCostumerAddCommand { get; }
+
+        private bool CanOpenFormForCostumerAddCommand(object p) => true;
+        private void OnOpenFormForCostumerAddCommand(object p)
+        {
+
         }
 
 
@@ -468,7 +488,7 @@ namespace Project.ViewModels
             SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);
             OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
             LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
-            LoadTestFromBD = new LambdaCommand(OnLoadTestFromBDExecuted, CanLoadTestFromBDExecute);
+            LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
             #endregion
         }
 
@@ -491,6 +511,12 @@ namespace Project.ViewModels
         {
             MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(LOAD_MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
         }
+
+
+        #endregion
+
+        #region Save Methods
+
 
 
         #endregion
