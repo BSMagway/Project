@@ -13,6 +13,7 @@ using Project.Models.Data.Tests.Soil;
 using Project.Services.Interface;
 using Project.Views.UserControls.CostumersUserControl;
 using System.Linq;
+using Project.Views.UserControls.EmployeeUserControl;
 
 namespace Project.ViewModels
 {
@@ -146,9 +147,13 @@ namespace Project.ViewModels
         #region UserControls
 
         /// <summary>
-        /// Поле которое отображает выбранный элемент.
+        /// Поле которое отображает основной выбранный элемент.
         /// </summary>
         private UserControl framePage;
+        /// <summary>
+        /// Поле которое отображает выбранный элемент в логин форме.
+        /// </summary>
+        private UserControl loginUserControl;
         /// <summary>
         /// Элемент отвечающий за выбор новой задачи
         /// </summary>
@@ -193,11 +198,19 @@ namespace Project.ViewModels
         /// Элемент отвечающий за отображение теста на определение влажности грунта
         /// </summary>
         private UserControl moistureSoilTestUserControl;
-
+        /// <summary>
+        /// Элемент отвечающий за логин форму сотрудников
+        /// </summary>
+        private UserControl employeeLoginFormUserControl;
         public UserControl FramePage
         {
             get => framePage;
             set => Set(ref framePage, value);
+        }
+        public UserControl LoginUserControl
+        {
+            get =>loginUserControl;
+            set => Set(ref loginUserControl, value);
         }
         public UserControl SelectNewTaskPage
         {
@@ -364,6 +377,21 @@ namespace Project.ViewModels
 
             set => moistureSoilTestUserControl = value;
         }
+        public UserControl EmployeeLoginFormUserControl
+        {
+            get
+            {
+                if (employeeLoginFormUserControl == null)
+                {
+                    employeeLoginFormUserControl = new EmployeeLoginFormUserControl();
+                    employeeLoginFormUserControl.DataContext = this;
+                }
+
+                return employeeLoginFormUserControl;
+            }
+
+            set => employeeLoginFormUserControl = value;
+        }
         #endregion
 
         #region Select Commands
@@ -527,6 +555,7 @@ namespace Project.ViewModels
         public MainWindowViewModel(IWorkWithBD workWithBDService)
         {
             FramePage = SelectNewTaskPage;
+            LoginUserControl = EmployeeLoginFormUserControl;
             this.workWithBDService = workWithBDService;
             LoadCostumersFromBD();
 
