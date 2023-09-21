@@ -77,5 +77,15 @@ namespace Project.Services.Interface
         /// <returns></returns>
         public Task<MoistureSoilTest> GetMoistureSoilTestFromBD(string adress, Guid id);
         #endregion
+
+        #region Employee
+        /// <summary>
+        /// Логин сотрудника для заполнения теста
+        /// </summary>
+        /// <param name="adress"></param>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public Task<Employee> LoginEmployee(string adress, Employee employee);
+        #endregion
     }
 }

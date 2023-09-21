@@ -203,5 +203,34 @@ namespace Project.Services.Implementation
 
         #endregion
 
+        #region Employee
+        public async Task<Employee> LoginEmployee(string adress, Employee employee)
+        {
+            JsonSerializerOptions optionsCyr = new JsonSerializerOptions()
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            };
+
+            JsonContent content = JsonContent.Create(employee, null, optionsCyr);
+
+            using var response = await httpClient.PostAsync(adress, content);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+
+                employee = await response.Content.ReadFromJsonAsync<Employee>();
+
+            }
+
+
+
+            return employee;
+        }
+        #endregion
+
     }
 }

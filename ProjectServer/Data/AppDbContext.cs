@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
         Database.EnsureCreated();
     }
 
+    public DbSet<Employee> Employees { get; set; }
     public DbSet<Costumer> Costumers { get; set; }
     public DbSet<Dimension> Dimensions { get; set; }
     public DbSet<MoistureSoilTest> MoistureSoilTests { get; set; }

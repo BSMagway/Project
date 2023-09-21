@@ -71,6 +71,10 @@ namespace Project.ViewModels
         /// </summary>
         private const string MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
         /// <summary>
+        /// Адресная строка для работы с сотрудниками
+        /// </summary>
+        private const string EMPLOYEE_ADRESS = "https://localhost:7143/api/Employee";
+        /// <summary>
         /// Сервис для работы с базой данных
         /// </summary>
         IWorkWithBD workWithBDService;
@@ -98,6 +102,10 @@ namespace Project.ViewModels
         /// Статус заказчика сохранен или нет в базе данных
         /// </summary>
         private bool saveCostumerStatus = true;
+        /// <summary>
+        /// Сотрудник заполняющий результаты испытания
+        /// </summary>
+        private Employee employeeTest;
         #endregion
 
         #region Properties
@@ -141,6 +149,20 @@ namespace Project.ViewModels
         {
             get => testForLoading;
             set => Set(ref testForLoading, value);
+        }
+
+        public Employee EmployeeTest
+        {
+            get
+            {
+                if(employeeTest == null)
+                {
+                    employeeTest = new Employee();
+                }
+
+                return employeeTest;
+            }
+            set => Set(ref employeeTest, value);
         }
         #endregion
 
@@ -548,6 +570,13 @@ namespace Project.ViewModels
 
         }
 
+        public ICommand LoginEmployeeCommand { get; }
+        private bool CanLoginEmployeeCommandExecute(object p) => true;
+        private void OnLoginEmployeeCommandExecuted(object p)
+        {
+            LoginEmployee();
+        }
+
 
         #endregion
 
@@ -571,7 +600,8 @@ namespace Project.ViewModels
             LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
             OpenFormForCostumerAddEditCommand = new LambdaCommand(OnOpenFormForCostumerAddEditCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
             SaveEditCostumerInBDCommand = new LambdaCommand(OnSaveEditCostumerInBDCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
-        #endregion
+            LoginEmployeeCommand = new LambdaCommand(OnLoginEmployeeCommandExecuted, CanLoginEmployeeCommandExecute);
+            #endregion
     }
         #endregion
 
@@ -588,7 +618,7 @@ namespace Project.ViewModels
         /// Загрузка короткого списка тестов из БД
         /// </summary>
         /// <returns></returns>
-        public async Task LoadAllTest()
+        private async Task LoadAllTest()
         {
             LoadedListTests = await workWithBDService.LoadAllTest(LOAD_ALL_TEST_ADRESS);
         }
@@ -596,9 +626,23 @@ namespace Project.ViewModels
         /// Загрузка теста по определению влажности грунта
         /// </summary>
         /// <returns></returns>
-        public async Task LoadMoistureSoilTest()
+        private async Task LoadMoistureSoilTest()
         {
             MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
+        }
+        private async Task LoginEmployee()
+        {
+            EmployeeTest = await workWithBDService.LoginEmployee(EMPLOYEE_ADRESS, EmployeeTest);
+
+            if (EmployeeTest.FirstNameEmployee == string.Empty && EmployeeTest.LastNameEmployee == string.Empty)
+            {
+
+            }
+            else
+            {
+                LoginUserControl = new EmployeeUserControl();
+            }
+
         }
         #endregion
 

@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IMoistureSoilTestService, MoistureSoilTestService>();
 builder.Services.AddScoped<IFullShortListTestsService, FullShortListTestsService>();
 builder.Services.AddScoped<ICostumersService, CostumersService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 //builder.Services.AddManagedSingleton<IDbService>(null);
 
 var app = builder.Build();

@@ -14,5 +14,11 @@ namespace Project.Models.Data.Base
         private string password;
         private string firstNameEmployee;
         private string lastNameEmployee;
+
+        public Guid Id { get => id; set => id = value; }
+        public string Login { get => login; set => login = value; }
+        public string Password { get => password; set => password = value; }
+        public string FirstNameEmployee { get => firstNameEmployee; set => firstNameEmployee = value; }
+        public string LastNameEmployee { get => lastNameEmployee; set => lastNameEmployee = value; }
     }
 }
