@@ -90,7 +90,9 @@ namespace Project.Models.Data.Tests.Soil
         {
             if (soilWetMassWithBox.DimensionValue != 0 && soilDryMassWithBox.DimensionValue != 0 && boxMass.DimensionValue != 0)
             {
-                moistureSoil.DimensionValue = (soilWetMassWithBox.DimensionValue - soilDryMassWithBox.DimensionValue) / (soilDryMassWithBox.DimensionValue - boxMass.DimensionValue);
+                moistureSoil.DimensionValue =
+                    (soilWetMassWithBox.DimensionValue - soilDryMassWithBox.DimensionValue)
+                    / (soilDryMassWithBox.DimensionValue - boxMass.DimensionValue);
             }
         }
         #endregion

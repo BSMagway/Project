@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
-using ProjectServer.Entities;
-using ProjectServer.Services.Interface;
+using ProjectServer.Interfaces.Services;
+using ProjectCommon.Models;
 
 namespace ProjectServer.Services
 {
+    /// <inheritdoc cref="ICustomerService"/>
     public class MoistureSoilTestService : IMoistureSoilTestService
     {
         private readonly AppDbContext _appDb;
@@ -17,7 +18,7 @@ namespace ProjectServer.Services
         public MoistureSoilTest Get(Guid moistureSoilTestId)
         {
             var moistureSoilTest = _appDb.MoistureSoilTests.Where(x => x.Id == moistureSoilTestId)
-                .Include(x => x.CostumerTest)
+                .Include(x => x.CustomerTest)
                 .Include(x => x.SoilWetMassWithBox)
                 .Include(x => x.SoilDryMassWithBox)
                 .Include(x => x.BoxMass)
@@ -30,7 +31,7 @@ namespace ProjectServer.Services
         public MoistureSoilTest Add(MoistureSoilTest moistureSoilTest)
         {
             moistureSoilTest.Id = Guid.NewGuid();
-            moistureSoilTest.CostumerTest.Id = Guid.NewGuid();
+            moistureSoilTest.CustomerTest.Id = Guid.NewGuid();
 
             var entity = _appDb.MoistureSoilTests.Add(moistureSoilTest);
             _appDb.SaveChanges();
@@ -65,7 +66,7 @@ namespace ProjectServer.Services
             var dbMoistureSoilTest = _appDb.MoistureSoilTests
                 .AsNoTracking()
                 .Where(x => x.MoistureSoilTestId == moistureSoilTest.MoistureSoilTestId)
-                .Include(x => x.CostumerTest)
+                .Include(x => x.CustomerTest)
                 .Include(x => x.SoilWetMassWithBox)
                 .Include(x => x.SoilDryMassWithBox)
                 .Include(x => x.BoxMass)
@@ -77,20 +78,27 @@ namespace ProjectServer.Services
                 return false;
             }
 
-            dbMoistureSoilTest.MoistureSoilTestId = moistureSoilTest.MoistureSoilTestId;
+            // Пример применения Update
+            if (dbMoistureSoilTest.MoistureSoilTestId != moistureSoilTest.MoistureSoilTestId)
+            {
+                dbMoistureSoilTest.MoistureSoilTestId = moistureSoilTest.MoistureSoilTestId;
+            }
+
             dbMoistureSoilTest.MaterialName = moistureSoilTest.MaterialName;
-            dbMoistureSoilTest.CostumerTest = moistureSoilTest.CostumerTest;
+            dbMoistureSoilTest.CustomerTest = moistureSoilTest.CustomerTest;
             dbMoistureSoilTest.DateTest = moistureSoilTest.DateTest;
             dbMoistureSoilTest.DocumentTest = moistureSoilTest.DocumentTest;
             dbMoistureSoilTest.SoilDryMassWithBox = moistureSoilTest.SoilDryMassWithBox;
             dbMoistureSoilTest.SoilWetMassWithBox = moistureSoilTest.SoilWetMassWithBox;
             dbMoistureSoilTest.BoxMass = moistureSoilTest.BoxMass;
             dbMoistureSoilTest.MoistureSoil = moistureSoilTest.MoistureSoil;
-            _appDb.Entry(dbMoistureSoilTest.CostumerTest).State = EntityState.Modified;
+
+            _appDb.Entry(dbMoistureSoilTest.CustomerTest).State = EntityState.Modified;
             _appDb.Entry(dbMoistureSoilTest.SoilDryMassWithBox).State = EntityState.Modified;
             _appDb.Entry(dbMoistureSoilTest.SoilWetMassWithBox).State = EntityState.Modified;
             _appDb.Entry(dbMoistureSoilTest.BoxMass).State = EntityState.Modified;
             _appDb.Entry(dbMoistureSoilTest.MoistureSoil).State = EntityState.Modified;
+
             _appDb.SaveChanges();
 
             return true;

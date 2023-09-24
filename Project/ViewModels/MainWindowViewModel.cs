@@ -1,26 +1,28 @@
-﻿using Project.Views.UserControls.SelectUsercontrols;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using Project.ViewModels.Base;
-using System.Windows.Input;
-using Project.ViewModels.Comands;
-using Project.Views.UserControls.TestUserControls.Soil;
-using Project.Views.UserControls.LoadUserControl;
-using Project.Models.Data.Base;
-using System.Collections.ObjectModel;
+﻿using Project.Models.Data.Base;
 using Project.Models.Data.Tests.Soil;
 using Project.Services.Interface;
+using Project.ViewModels.Base;
+using Project.ViewModels.Comands;
 using Project.Views.UserControls.CostumersUserControl;
-using System.Linq;
 using Project.Views.UserControls.EmployeeUserControl;
+using Project.Views.UserControls.LoadUserControl;
+using Project.Views.UserControls.SelectUsercontrols;
+using Project.Views.UserControls.TestUserControls.Soil;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Project.ViewModels
 {
 
-    internal class MainWindowViewModel : ViewModel
+    internal partial class MainWindowViewModel : ViewModel
     {
         #region Enum
+
+        // Можно удалить
 
         /// <summary>
         /// Enum содержащий новые задачи.
@@ -38,7 +40,7 @@ namespace Project.ViewModels
         enum SelectMaterialTypeTestEnum
         {
             Soil,
-            Sand,            
+            Sand,
             Gravel,
             SandAndGravel,
             Geotextile
@@ -57,7 +59,8 @@ namespace Project.ViewModels
         /// <summary>
         /// Адресная строка для загрузки всех тестов для отображения списком
         /// </summary>
-        private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList";
+        private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList"; // ??? Это нарушение наименования и путей
+
         /// <summary>
         /// Адресная строка для загрузки всех заказчиков для отображения списком
         /// </summary>
@@ -70,10 +73,6 @@ namespace Project.ViewModels
         /// Адресная строка для работы с базой данных тестов по определению влажности грунта
         /// </summary>
         private const string MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
-        /// <summary>
-        /// Адресная строка для работы с сотрудниками
-        /// </summary>
-        private const string EMPLOYEE_ADRESS = "https://localhost:7143/api/Employee";
         /// <summary>
         /// Сервис для работы с базой данных
         /// </summary>
@@ -102,10 +101,6 @@ namespace Project.ViewModels
         /// Статус заказчика сохранен или нет в базе данных
         /// </summary>
         private bool saveCostumerStatus = true;
-        /// <summary>
-        /// Сотрудник заполняющий результаты испытания
-        /// </summary>
-        private Employee employeeTest;
         #endregion
 
         #region Properties
@@ -127,7 +122,7 @@ namespace Project.ViewModels
         {
             get
             {
-                if(costumers == null) 
+                if (costumers == null)
                 {
                     costumers = new ObservableCollection<Costumer>();
                 }
@@ -138,7 +133,7 @@ namespace Project.ViewModels
             {
                 Set(ref costumers, value);
             }
-        
+
         }
         public Costumer SelectedCostumer
         {
@@ -149,20 +144,6 @@ namespace Project.ViewModels
         {
             get => testForLoading;
             set => Set(ref testForLoading, value);
-        }
-
-        public Employee EmployeeTest
-        {
-            get
-            {
-                if(employeeTest == null)
-                {
-                    employeeTest = new Employee();
-                }
-
-                return employeeTest;
-            }
-            set => Set(ref employeeTest, value);
         }
         #endregion
 
@@ -224,6 +205,10 @@ namespace Project.ViewModels
         /// Элемент отвечающий за логин форму сотрудников
         /// </summary>
         private UserControl employeeLoginFormUserControl;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public UserControl FramePage
         {
             get => framePage;
@@ -231,7 +216,7 @@ namespace Project.ViewModels
         }
         public UserControl LoginUserControl
         {
-            get =>loginUserControl;
+            get => loginUserControl;
             set => Set(ref loginUserControl, value);
         }
         public UserControl SelectNewTaskPage
@@ -457,7 +442,9 @@ namespace Project.ViewModels
             switch (Convert.ToInt32(task))
             {
                 case (int)SelectMaterialTypeTestEnum.Soil:
-                    FramePage = SoilTestsPage;
+                    {
+                        FramePage = SoilTestsPage;
+                    }
                     break;
                 case (int)SelectMaterialTypeTestEnum.Sand:
                     FramePage = SandTestsPage;
@@ -512,19 +499,19 @@ namespace Project.ViewModels
         private bool CanLoadTestFromBDCommandExecute(object p) => true;
         private void OnLoadTestFromBDCommandExecuted(object p)
         {
-            switch(TestForLoading.MaterialTypeEnumNumber)
+            switch (TestForLoading.MaterialTypeEnumNumber)
             {
                 case (int)SelectMaterialTypeTestEnum.Soil:
 
-                    switch(TestForLoading.TestTypeEnumNumber)
+                    switch (TestForLoading.TestTypeEnumNumber)
                     {
                         case (int)SelectTypeTestEnum.Moister:
                             LoadMoistureSoilTest();
                             FramePage = MoistureSoilTestUserControl;
-                        break;
+                            break;
                     }
 
-                break;
+                    break;
             }
         }
         /// <summary>
@@ -537,7 +524,7 @@ namespace Project.ViewModels
             if (saveCostumerStatus)
             {
                 EditCostumer();
-            } 
+            }
             else
             {
                 SaveCostumer();
@@ -561,20 +548,13 @@ namespace Project.ViewModels
 
             FramePage = new FormForCostumerAddEditUserControl();
             FramePage.DataContext = this;
-            
-            if(key == "add")
+
+            if (key == "add")
             {
                 SelectedCostumer = new Costumer();
                 saveCostumerStatus = false;
             }
 
-        }
-
-        public ICommand LoginEmployeeCommand { get; }
-        private bool CanLoginEmployeeCommandExecute(object p) => true;
-        private void OnLoginEmployeeCommandExecuted(object p)
-        {
-            LoginEmployee();
         }
 
 
@@ -600,9 +580,8 @@ namespace Project.ViewModels
             LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
             OpenFormForCostumerAddEditCommand = new LambdaCommand(OnOpenFormForCostumerAddEditCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
             SaveEditCostumerInBDCommand = new LambdaCommand(OnSaveEditCostumerInBDCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
-            LoginEmployeeCommand = new LambdaCommand(OnLoginEmployeeCommandExecuted, CanLoginEmployeeCommandExecute);
             #endregion
-    }
+        }
         #endregion
 
         #region Load Methods
@@ -618,31 +597,18 @@ namespace Project.ViewModels
         /// Загрузка короткого списка тестов из БД
         /// </summary>
         /// <returns></returns>
-        private async Task LoadAllTest()
+        public async Task LoadAllTest()
         {
-            LoadedListTests = await workWithBDService.LoadAllTest(LOAD_ALL_TEST_ADRESS);
+            var collection = await workWithBDService.LoadAllTest(LOAD_ALL_TEST_ADRESS); // List
+            LoadedListTests = collection; // Что хочешь
         }
         /// <summary>
         /// Загрузка теста по определению влажности грунта
         /// </summary>
         /// <returns></returns>
-        private async Task LoadMoistureSoilTest()
+        public async Task LoadMoistureSoilTest()
         {
             MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
-        }
-        private async Task LoginEmployee()
-        {
-            EmployeeTest = await workWithBDService.LoginEmployee(EMPLOYEE_ADRESS, EmployeeTest);
-
-            if (EmployeeTest.FirstNameEmployee == string.Empty && EmployeeTest.LastNameEmployee == string.Empty)
-            {
-
-            }
-            else
-            {
-                LoginUserControl = new EmployeeUserControl();
-            }
-
         }
         #endregion
 
@@ -735,7 +701,7 @@ namespace Project.ViewModels
             if (saveTestStatus)
             {
                 EditMoistureSoilTest();
-            } 
+            }
             else
             {
                 SaveNewMoistureSoilTest();
@@ -749,18 +715,11 @@ namespace Project.ViewModels
         private bool CanOpenSelectCostumerCommandExecute(object p) => true;
         private void OnOpenSelectCostumerCommandExecuted(object p)
         {
-            FramePage = CostumersSelectUserControl;            
+            FramePage = CostumersSelectUserControl;
         }
-        /// <summary>
-        /// Команда для добавления выбранного заказчика в тест
-        /// </summary>
-        public ICommand LoadCostumerFromListCommand { get; }
-        private bool CanLoadCostumerFromListCommandExecute(object p) => true;
-        private void OnLoadCostumerFromListCommandExecuted(object p)
-        {
-            MoistureTest.CostumerTest = SelectedCostumer;
-            FramePage = MoistureSoilTestUserControl;
-        }
+
+
+
 
         #endregion
         #endregion

@@ -33,10 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Interfaces\Services\" />
     <Folder Include="Models\Data\Tests\Geotextile\" />
     <Folder Include="Models\Data\Tests\Gravel\" />
     <Folder Include="Models\Data\Tests\SandAndGravel\" />
     <Folder Include="Models\Data\Tests\Sand\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
 
 </Project>

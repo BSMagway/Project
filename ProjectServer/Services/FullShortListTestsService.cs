@@ -1,62 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
-using ProjectServer.Entities;
-using ProjectServer.Services.Interface;
+using ProjectCommon.Enums;
+using ProjectServer.Interfaces.Services;
+using ProjectCommon.Models;
 
 namespace ProjectServer.Services
 {
+    /// <inheritdoc cref="ICustomerService"/>
     public class FullShortListTestsService : IFullShortListTestsService
     {
-        #region Enum
-        enum SelectMaterialTypeTestEnum
-        {
-            Soil,
-            Sand,
-            Gravel,
-            SandAndGravel,
-            Geotextile
-        }
-
-        enum SelectTypeTestEnum
-        {
-            Moister
-        }
-
-        #endregion
-
-        #region Fields
         private readonly AppDbContext _appDb;
-        #endregion
 
-        #region Constructor
         public FullShortListTestsService(AppDbContext appDb)
         {
             _appDb = appDb;
         }
-        #endregion
 
-        #region Methods
-        public List<FullShortListTests> Get()
+        public async Task<List<FullShortListTests>> GetAsync()
         {
-            List<FullShortListTests> fullTestsLists = new List<FullShortListTests>();
+            var tests = await _appDb.MoistureSoilTests.ToListAsync();
 
-
-            foreach (MoistureSoilTest test in _appDb.MoistureSoilTests.ToList())
+            var list = new List<FullShortListTests>();
+            foreach (var test in tests)
             {
-                fullTestsLists.Add(
-                    new FullShortListTests()
-                    {
-                        TestId = test.Id,
-                        TestDate = test.DateTest,
-                        TestNumber = test.MoistureSoilTestId,
-                        MaterialTypeEnumNumber = (int)SelectMaterialTypeTestEnum.Soil,
-                        TestTypeEnumNumber = (int)SelectTypeTestEnum.Moister
+                var model = new FullShortListTests()
+                {
+                    TestId = test.Id,
+                    TestDate = test.DateTest,
+                    TestNumber = test.MoistureSoilTestId,
+                    MaterialType = MaterialType.Soil,
+                    ExperimentType = ExperimentType.Moister
+                };
 
-                    });              
+                list.Add(model);
             }
 
-            return fullTestsLists;
+            return list;
         }
-        #endregion
     }
 }

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectServer.Entities;
-using ProjectServer.Services;
-using ProjectServer.Services.Interface;
+using ProjectServer.Interfaces.Services;
 
 namespace ProjectServer.Controllers
 {
@@ -17,8 +15,6 @@ namespace ProjectServer.Controllers
         }
 
         [HttpGet]
-        public List<FullShortListTests> GetAll() => _fullTestService.Get();
-
-
+        public async Task<IActionResult> GetAllAsync() => Ok(await _fullTestService.GetAsync());
     }
 }

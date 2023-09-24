@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectServer.Entities;
-using ProjectServer.Services;
-using ProjectServer.Services.Interface;
+using ProjectServer.Interfaces.Services;
+using ProjectCommon.Models;
 
 namespace ProjectServer.Controllers
 {
@@ -17,10 +16,10 @@ namespace ProjectServer.Controllers
         }
 
         [HttpGet]
-        public MoistureSoilTest Get([FromQuery] Guid moistureSoilTestId) => _moistureSoilTestService.Get(moistureSoilTestId);
+        public IActionResult Get([FromQuery] Guid moistureSoilTestId) => Ok(_moistureSoilTestService.Get(moistureSoilTestId));
 
         [HttpPost]
-        public MoistureSoilTest Add([FromBody] MoistureSoilTest moistureSoilTest) => _moistureSoilTestService.Add(moistureSoilTest);
+        public IActionResult Add([FromBody] MoistureSoilTest moistureSoilTest) => Ok(_moistureSoilTestService.Add(moistureSoilTest));
 
         [HttpPut]
         public IActionResult Update([FromBody] MoistureSoilTest moistureSoilTest)
@@ -44,7 +43,4 @@ namespace ProjectServer.Controllers
             return BadRequest();
         }
     }
-
-
 }
-

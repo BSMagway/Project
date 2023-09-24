@@ -25,10 +25,10 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Имя пользователя"/>
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Пароль"/>
 
-        <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding EmployeeTest.Login}"/>
-        <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding EmployeeTest.Password}"/>
+        <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"/>
 
-        <Button Grid.Row="0" Grid.Column="4" Content="Логин" Command="{Binding LoginEmployeeCommand}"/>
+        <Button Grid.Row="0" Grid.Column="4" Content="Логин"/>
 
 
     </Grid>

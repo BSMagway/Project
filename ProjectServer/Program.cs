@@ -1,29 +1,36 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
+using ProjectServer.Interfaces.Services;
 using ProjectServer.Services;
-using ProjectServer.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Solution = LaboratoryTest
+// LaboratoryTest.WpfApp
+// LaboratoryTest.WebApi
+// LaboratoryTest.WebApi.Tests
+// LaboratoryTest.Common
+
+// N-Layer Tier архитектура (почитать)
+
+// JWT Auth (https://jasonwatmore.com/post/2021/12/14/net-6-jwt-authentication-tutorial-with-example-api)
+// Serilog, Worker (Coravel)
+// Проработать async-await для сервисов
+// Почитать про *.resx и зачем используется
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(); // Визуализация WebApi контроллеров
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IMoistureSoilTestService, MoistureSoilTestService>();
 builder.Services.AddScoped<IFullShortListTestsService, FullShortListTestsService>();
-builder.Services.AddScoped<ICostumersService, CostumersService>();
-builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-//builder.Services.AddManagedSingleton<IDbService>(null);
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
