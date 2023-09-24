@@ -1,6 +1,6 @@
-﻿using ProjectServer.Entities;
+﻿using ProjectCommon.Models;
 
-namespace ProjectServer.Services.Interface
+namespace ProjectServer.Interfaces.Services
 {
     public interface IEmployeeService
     {

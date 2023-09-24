@@ -1,4 +1,4 @@
-﻿namespace ProjectServer.Entities
+﻿namespace ProjectCommon.Models
 {
     public class Employee
     {

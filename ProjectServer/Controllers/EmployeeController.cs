@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectServer.Entities;
-using ProjectServer.Services;
-using ProjectServer.Services.Interface;
+using ProjectCommon.Models;
+using ProjectServer.Interfaces.Services;
 
 namespace ProjectServer.Controllers
 {

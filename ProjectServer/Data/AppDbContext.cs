@@ -25,6 +25,11 @@ public class AppDbContext : DbContext
     /// <summary>
     /// 
     /// </summary>
+    public DbSet<Employee> Employees { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public DbSet<Dimension> Dimensions { get; set; }
 
     /// <summary>

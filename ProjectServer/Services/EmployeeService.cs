@@ -1,6 +1,6 @@
 ﻿using ProjectServer.Data;
-using ProjectServer.Entities;
-using ProjectServer.Services.Interface;
+using ProjectServer.Interfaces.Services;
+using ProjectCommon.Models;
 
 namespace ProjectServer.Services
 {
