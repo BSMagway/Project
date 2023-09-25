@@ -8,9 +8,9 @@ namespace ProjectServer.Controllers
     [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeManager _employeeService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeManager employeeService)
         {
             _employeeService = employeeService;
         }

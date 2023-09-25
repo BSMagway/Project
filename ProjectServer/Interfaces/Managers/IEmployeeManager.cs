@@ -2,7 +2,7 @@
 
 namespace ProjectServer.Interfaces.Services
 {
-    public interface IEmployeeService
+    public interface IEmployeeManager
     {
 
         public Employee Get(Employee employee);

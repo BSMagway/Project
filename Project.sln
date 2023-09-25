@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project", "Project\Project.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectServer", "ProjectServer\ProjectServer.csproj", "{7EF00632-53B1-46A1-824B-DFE1C4FD4E58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCommon", "ProjectCommon\ProjectCommon.csproj", "{4435BD0D-84BA-4BEA-BCE8-06D968A01C5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectCommon", "ProjectCommon\ProjectCommon.csproj", "{4435BD0D-84BA-4BEA-BCE8-06D968A01C5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,40 +1,38 @@
 ﻿using ProjectCommon.Models;
 
-namespace ProjectServer.Interfaces.Services
+namespace ProjectServer.Interfaces.Managers
 {
     /// <summary>
-    /// Интерфейс для работы с поротоколами по определению влажности грунта.
+    /// Интерфейс для работы с протоколами по определению влажности грунта.
     /// </summary>
-    public interface IMoistureSoilTestService
+    public interface IMoistureSoilTestManager
     {
         /// <summary>
         /// Получение протокола испытаний по определению влажности грунта из БД.
         /// </summary>
         /// <param name="moistureSoilTestId">Id протокола испытаний в базе данных.</param>
-        /// <returns></returns>
-        public MoistureSoilTest Get(Guid moistureSoilTestId);
+        /// <returns>Протокол испытаний</returns>
+        public Task<MoistureSoilTest> GetAsync(int moistureSoilTestId);
 
         /// <summary>
         /// Добавление нового протокола испытаний по определению влажности грунта в БД.
-        /// Особенности:
-        /// 1. Добавляет Include-CustomerTest.
         /// </summary>
         /// <param name="moistureSoilTest">Новый протокол испытаний для добавления.</param>
-        /// <returns></returns>
-        public MoistureSoilTest Add(MoistureSoilTest moistureSoilTest);
+        /// <returns>Возвращает добавленный протокол.</returns>
+        public Task<MoistureSoilTest> AddAsync(MoistureSoilTest moistureSoilTest);
 
         /// <summary>
-        /// Обнавление данных протокола испытаний по определению влажности грунта в БД.
+        /// Обновление данных протокола испытаний по определению влажности грунта в БД.
         /// </summary>
         /// <param name="moistureSoilTest">Новая версия протокола испытаний для обновления.</param>
-        /// <returns></returns>
-        public bool Update(MoistureSoilTest moistureSoilTest);
+        /// <returns>Возвращает true в случае успешного обновления и false не удачи.</returns>
+        public Task<bool> UpdateAsync(MoistureSoilTest moistureSoilTest);
 
         /// <summary>
         /// Удаление протокола испытаний по определению влажности грунта из БД.
         /// </summary>
         /// <param name="moistureSoilTestId">Id протокола испытаний в базе данных.</param>
-        /// <returns></returns>
-        public bool Remove(Guid moistureSoilTestId);
+        /// <returns>Возвращает true в случае успешного обновления и false не удачи.</returns>
+        public Task<bool> RemoveAsync(int moistureSoilTestId);
     }
 }

@@ -1,44 +1,91 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectServer.Interfaces.Services;
 using ProjectCommon.Models;
-
-// REST архитектура
+using ProjectServer.Interfaces.Managers;
 
 namespace ProjectServer.Controllers
 {
+    /// <summary>
+    /// Контроллер для обработки запросов по работе с базой данных Заказчиков.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly ICustomerService _customerService;
+        private readonly ICustomerManager _customerManager;
 
-        public CustomerController(ICustomerService customerService)
+        /// <summary>
+        /// Конструктор контроллера для обработки запросов по работе с базой данных Заказчиков.
+        /// </summary>
+        /// <param name="customerManager">Менеджер по работе с базой данных заказчиков.</param>
+        public CustomerController(ICustomerManager customerManager)
         {
-            _customerService = customerService;
+            _customerManager = customerManager;
         }
 
+        /// <summary>
+        /// Получение из базы данных и возврат пользователю всех заказчиков.
+        /// </summary>
+        /// <returns>Статус запроса. В случае успешного ответа со списком Заказчиков.</returns>
         [HttpGet]
-        public IActionResult Get() => Ok(_customerService.GetAll());
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync([FromQuery] Guid CustomerId)
+        public async Task<IActionResult> Get()
         {
-            var customer = await _customerService.GetAsync(CustomerId);
+            var customers = await _customerManager.GetAllAsync();
+
+            if (customers is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customers);
+        }
+
+        /// <summary>
+        /// Получение из базы данных заказчика по Id.
+        /// </summary>
+        /// <param name="customerId">Id заказчика.</param>
+        /// <returns>Статус запроса. В случае успешного ответа с запрашиваемым Заказчиком.</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromQuery] int customerId)
+        {
+            var customer = await _customerManager.GetAsync(customerId);
+
             if (customer is null)
             {
                 return NotFound();
             }
 
-            return Ok(_customerService.GetAsync(CustomerId));
+            return Ok(_customerManager.GetAsync(customerId));
         }
 
+        /// <summary>
+        /// Добавление в базу данных Заказчика.
+        /// </summary>
+        /// <param name="customer">Заказчик для добавления в базу данных.</param>
+        /// <returns>Статус запроса. При успешном добавлении возвращает добавленного Заказчика.</returns>
         [HttpPost]
-        public IActionResult Add([FromBody] Customer Customer) => Ok(_customerService.Add(Customer));
-
-        [HttpPut]
-        public IActionResult Update([FromBody] Customer Customer)
+        public async Task<IActionResult> Add([FromBody] Customer customer)
         {
-            if (_customerService.Update(Customer))
+            var customerAdded = await _customerManager.AddAsync(customer);
+
+            if (customerAdded is null)
+            {
+                NotFound();
+            }
+
+            return Ok(customerAdded);
+        }
+
+        /// <summary>
+        /// Обновление данных Заказчика в базе данных.
+        /// </summary>
+        /// <param name="customer">Заказчик для которого необходимо внести изменения.</param>
+        /// <returns>Статус запроса.</returns>
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Customer customer)
+        {
+            var resultUpdate = await _customerManager.UpdateAsync(customer);
+
+            if (resultUpdate)
             {
                 return Ok();
             }
@@ -46,10 +93,17 @@ namespace ProjectServer.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// Удаление заказчика из базы данных.
+        /// </summary>
+        /// <param name="customerId">Id удаляемого заказчика.</param>
+        /// <returns>Статус запроса.</returns>
         [HttpDelete]
-        public IActionResult Remove([FromQuery] Guid CustomerId)
+        public async Task<IActionResult> Remove([FromQuery] int customerId)
         {
-            if (_customerService.Remove(CustomerId))
+            var resultRemove = await _customerManager.RemoveAsync(customerId);
+
+            if (resultRemove)
             {
                 return Ok();
             }

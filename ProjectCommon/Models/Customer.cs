@@ -8,7 +8,7 @@
         /// <summary>
         /// Id в базе данных.
         /// </summary>
-        public Guid Id { get; set; } 
+        public int Id { get; set; } 
 
         /// <summary>
         /// Название организации заказчика.

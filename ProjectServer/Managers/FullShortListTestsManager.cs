@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
 using ProjectCommon.Enums;
-using ProjectServer.Interfaces.Services;
+using ProjectServer.Interfaces.Managers;
 using ProjectCommon.Models;
 
-namespace ProjectServer.Services
+namespace ProjectServer.Managers
 {
-    /// <inheritdoc cref="ICustomerService"/>
-    public class FullShortListTestsService : IFullShortListTestsService
+    /// <inheritdoc cref="IFullShortListTestsManager"/>
+    public class FullShortListTestsManager : IFullShortListTestsManager
     {
         private readonly AppDbContext _appDb;
 
-        public FullShortListTestsService(AppDbContext appDb)
+        public FullShortListTestsManager(AppDbContext appDb)
         {
             _appDb = appDb;
         }

@@ -4,14 +4,14 @@ using ProjectCommon.Models;
 
 namespace ProjectServer.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeManager : IEmployeeManager
     {
         #region Fields
         private readonly AppDbContext _appDb;
         #endregion
 
         #region Constructor
-        public EmployeeService(AppDbContext appDb)
+        public EmployeeManager(AppDbContext appDb)
         {
             _appDb = appDb;
         }
@@ -23,8 +23,6 @@ namespace ProjectServer.Services
 
         public Employee Add(Employee employee)
         {
-            employee.Id = Guid.NewGuid();
-
             var entity = _appDb.Employees.Add(employee);
             _appDb.SaveChanges();
 

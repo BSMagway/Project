@@ -1,4 +1,7 @@
-﻿namespace ProjectCommon.Models
+﻿using ProjectCommon.Models.Base;
+using System.ComponentModel.DataAnnotations;
+
+namespace ProjectCommon.Models
 {
     /// <summary>
     /// Класс для результатов измерений.
@@ -8,7 +11,7 @@
         /// <summary>
         /// Id в базе данных.
         /// </summary>
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Название испытанной величины.
@@ -19,5 +22,6 @@
         /// Значение испытанной величины.
         /// </summary>
         public double DimensionValue { get; set; }
+
     }
 }

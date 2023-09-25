@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectCommon.Models;
+using ProjectCommon.Models.Base;
 
 namespace ProjectServer.Data;
 
@@ -17,6 +18,11 @@ public class AppDbContext : DbContext
         Database.EnsureCreated(); // Лучше использовать подход EF Core Migrations (https://metanit.com/sharp/entityframeworkcore/2.15.php)
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Test>().UseTptMappingStrategy();
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -31,6 +37,8 @@ public class AppDbContext : DbContext
     /// 
     /// </summary>
     public DbSet<Dimension> Dimensions { get; set; }
+
+    public DbSet<Test> Tests { get; set; }
 
     /// <summary>
     /// 

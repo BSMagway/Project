@@ -1,11 +1,11 @@
 ﻿using ProjectCommon.Models;
 
-namespace ProjectServer.Interfaces.Services
+namespace ProjectServer.Interfaces.Managers
 {
     /// <summary>
-    /// Интерфейс получения короткого сиписка всех протоколов.
+    /// Интерфейс получения короткого списка всех протоколов.
     /// </summary>
-    public interface IFullShortListTestsService
+    public interface IFullShortListTestsManager
     {
         /// <summary>
         /// Метод для получения короткого списка всех протоколов.

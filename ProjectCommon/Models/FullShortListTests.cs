@@ -10,7 +10,7 @@ namespace ProjectCommon.Models
         /// <summary>
         /// Id протокола испытания в базе данных.
         /// </summary>
-        public Guid TestId { get; set; }
+        public int TestId { get; set; }
 
         /// <summary>
         /// Дата испытания.
