@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Project.ViewModels.Comands.Base
+namespace Project.ViewModels.Commands.Base
 {
     internal abstract class Command : ICommand
     {

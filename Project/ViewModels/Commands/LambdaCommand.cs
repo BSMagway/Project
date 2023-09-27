@@ -1,7 +1,7 @@
-﻿using Project.ViewModels.Comands.Base;
+﻿using Project.ViewModels.Commands.Base;
 using System;
 
-namespace Project.ViewModels.Comands
+namespace Project.ViewModels.Commands
 {
     internal class LambdaCommand : Command
     {

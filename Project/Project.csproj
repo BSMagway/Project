@@ -2,10 +2,21 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Constants\**" />
+    <Compile Remove="Helpers\**" />
+    <EmbeddedResource Remove="Constants\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <None Remove="Constants\**" />
+    <None Remove="Helpers\**" />
+    <Page Remove="Constants\**" />
+    <Page Remove="Helpers\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.7.2" />
@@ -34,13 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Services\" />
-    <Folder Include="Models\Data\Tests\Geotextile\" />
-    <Folder Include="Models\Data\Tests\Gravel\" />
-    <Folder Include="Models\Data\Tests\SandAndGravel\" />
-    <Folder Include="Models\Data\Tests\Sand\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Constants\" />
+    <ProjectReference Include="..\ProjectCommon\ProjectCommon.csproj" />
   </ItemGroup>
 
 </Project>

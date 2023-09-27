@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Project.Services.Implementation;
-using Project.Services.Interface;
+using Project.Interfaces.Services;
+using Project.Services;
 using Project.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace Project
             }); 
                 
             services.AddSingleton<MainWindowViewModel>();
-            services.AddScoped<IWorkWithBD, WorkWithBD>();
+            services.AddScoped(typeof(IWorkWithBDGeneric<>), typeof(WorkWithBDGenericService<>));
 
             return services;
         }

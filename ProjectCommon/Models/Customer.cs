@@ -1,10 +1,15 @@
-﻿namespace ProjectCommon.Models
+﻿using ProjectCommon.ViewModelBase;
+
+namespace ProjectCommon.Models
 {
     /// <summary>
     /// Класс для учета заказчиков.
     /// </summary>
-    public class Customer
+    public class Customer : ViewModel
     {
+        private string title;
+        private int contractNumber;
+
         /// <summary>
         /// Id в базе данных.
         /// </summary>
@@ -13,11 +18,19 @@
         /// <summary>
         /// Название организации заказчика.
         /// </summary>
-        public string Title { get; set; }
+        public string Title 
+        {
+            get => title;
+            set => Set(ref title, value);
+        }
 
         /// <summary>
         /// Номер договора с заказчиком.
         /// </summary>
-        public int ContractNumber { get; set; }
+        public int ContractNumber
+        {
+            get => contractNumber;
+            set => Set(ref contractNumber, value);
+        }
     }
 }

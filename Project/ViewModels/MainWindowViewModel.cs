@@ -1,8 +1,5 @@
-﻿using Project.Models.Data.Base;
-using Project.Models.Data.Tests.Soil;
-using Project.Services.Interface;
-using Project.ViewModels.Base;
-using Project.ViewModels.Comands;
+﻿using ProjectCommon.Models;
+using Project.ViewModels.Commands;
 using Project.Views.UserControls.CostumersUserControl;
 using Project.Views.UserControls.EmployeeUserControl;
 using Project.Views.UserControls.LoadUserControl;
@@ -14,47 +11,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ProjectCommon.ViewModelBase;
+using Project.Interfaces.Services;
+using ProjectCommon.Enums;
 
 namespace Project.ViewModels
 {
 
     internal partial class MainWindowViewModel : ViewModel
     {
-        #region Enum
-
-        // Можно удалить
-
-        /// <summary>
-        /// Enum содержащий новые задачи.
-        /// </summary>
-        enum SelectNewTaskEnum
-        {
-            NewTest,
-            LoadTest,
-            CostumersList
-        }
-
-        /// <summary>
-        /// Enum содержащий возможные материалы для проведения испытаний
-        /// </summary>
-        enum SelectMaterialTypeTestEnum
-        {
-            Soil,
-            Sand,
-            Gravel,
-            SandAndGravel,
-            Geotextile
-        }
-        /// <summary>
-        /// Enum содержащий виды испытаний
-        /// </summary>
-        enum SelectTypeTestEnum
-        {
-            Moister
-        }
-
-        #endregion
-
         #region Fields
         /// <summary>
         /// Адресная строка для загрузки всех тестов для отображения списком
@@ -64,11 +29,11 @@ namespace Project.ViewModels
         /// <summary>
         /// Адресная строка для загрузки всех заказчиков для отображения списком
         /// </summary>
-        private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Costumers/all";
+        private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Customer";
         /// <summary>
         /// Адресная строка для работы с базой данных заказчиков
         /// </summary>
-        private const string COSTUMER_ADRESS = "https://localhost:7143/api/Costumers";
+        private const string COSTUMER_ADRESS = "https://localhost:7143/api/Customer";
         /// <summary>
         /// Адресная строка для работы с базой данных тестов по определению влажности грунта
         /// </summary>
@@ -76,15 +41,20 @@ namespace Project.ViewModels
         /// <summary>
         /// Сервис для работы с базой данных
         /// </summary>
-        IWorkWithBD workWithBDService;
+        IWorkWithBDGeneric<Customer> _customerDBService;
+
+        IWorkWithBDGeneric<MoistureSoilTest> _moistureSoilTestDBService;
+
+        IWorkWithBDGeneric<FullShortListTests> _fullShortListTestDBService;
+
         /// <summary>
         /// Сокращенный список всех тестов
         /// </summary>
-        private ObservableCollection<LoadedListTest> loadedListTests;
+        private ObservableCollection<FullShortListTests> loadedListTests;
         /// <summary>
         /// выбранный для загрузки тест
         /// </summary>
-        private LoadedListTest testForLoading;
+        private FullShortListTests testForLoading;
         /// <summary>
         /// Статус теста сохранен или нет в базе данных
         /// </summary>
@@ -92,11 +62,11 @@ namespace Project.ViewModels
         /// <summary>
         /// Список всех заказчиков
         /// </summary>
-        private ObservableCollection<Costumer> costumers;
+        private ObservableCollection<Customer> costumers;
         /// <summary>
         /// Выбранный для загрузки или установки в тесте заказчик
         /// </summary>
-        private Costumer selectedCostumer;
+        private Customer selectedCostumer;
         /// <summary>
         /// Статус заказчика сохранен или нет в базе данных
         /// </summary>
@@ -104,13 +74,13 @@ namespace Project.ViewModels
         #endregion
 
         #region Properties
-        public ObservableCollection<LoadedListTest> LoadedListTests
+        public ObservableCollection<FullShortListTests> LoadedListTests
         {
             get
             {
                 if (loadedListTests == null)
                 {
-                    loadedListTests = new ObservableCollection<LoadedListTest>();
+                    loadedListTests = new ObservableCollection<FullShortListTests>();
                 }
 
                 return loadedListTests;
@@ -118,13 +88,13 @@ namespace Project.ViewModels
 
             set => Set(ref loadedListTests, value);
         }
-        public ObservableCollection<Costumer> Costumers
+        public ObservableCollection<Customer> Costumers
         {
             get
             {
                 if (costumers == null)
                 {
-                    costumers = new ObservableCollection<Costumer>();
+                    costumers = new ObservableCollection<Customer>();
                 }
 
                 return costumers;
@@ -135,12 +105,12 @@ namespace Project.ViewModels
             }
 
         }
-        public Costumer SelectedCostumer
+        public Customer SelectedCostumer
         {
             get => selectedCostumer;
             set => Set(ref selectedCostumer, value);
         }
-        public LoadedListTest TestForLoading
+        public FullShortListTests TestForLoading
         {
             get => testForLoading;
             set => Set(ref testForLoading, value);
@@ -414,15 +384,15 @@ namespace Project.ViewModels
 
             switch (Convert.ToInt32(task))
             {
-                case (int)SelectNewTaskEnum.NewTest:
+                case (int)TaskType.NewTest:
                     FramePage = SelectTypeTestPage;
                     saveTestStatus = false;
                     break;
-                case (int)SelectNewTaskEnum.LoadTest:
+                case (int)TaskType.LoadTest:
                     LoadAllTest();
                     FramePage = LoadUserControl;
                     break;
-                case (int)SelectNewTaskEnum.CostumersList:
+                case (int)TaskType.CostumersList:
                     FramePage = CostumersListUserControl;
                     break;
             }
@@ -441,21 +411,21 @@ namespace Project.ViewModels
 
             switch (Convert.ToInt32(task))
             {
-                case (int)SelectMaterialTypeTestEnum.Soil:
+                case (int)MaterialType.Soil:
                     {
                         FramePage = SoilTestsPage;
                     }
                     break;
-                case (int)SelectMaterialTypeTestEnum.Sand:
+                case (int)MaterialType.Sand:
                     FramePage = SandTestsPage;
                     break;
-                case (int)SelectMaterialTypeTestEnum.Gravel:
+                case (int)MaterialType.Gravel:
                     FramePage = GravelTestsPage;
                     break;
-                case (int)SelectMaterialTypeTestEnum.SandAndGravel:
+                case (int)MaterialType.SandAndGravel:
                     FramePage = SandAndGravelTestsPage;
                     break;
-                case (int)SelectMaterialTypeTestEnum.Geotextile:
+                case (int)MaterialType.Geotextile:
                     FramePage = GeotextileTestsPage;
                     break;
             }
@@ -473,7 +443,7 @@ namespace Project.ViewModels
 
             switch (Convert.ToInt32(task))
             {
-                case (int)SelectTypeTestEnum.Moister:
+                case (int)ExperimentType.Moister:
                     FramePage = MoistureSoilTestUserControl;
                     break;
             }
@@ -499,13 +469,13 @@ namespace Project.ViewModels
         private bool CanLoadTestFromBDCommandExecute(object p) => true;
         private void OnLoadTestFromBDCommandExecuted(object p)
         {
-            switch (TestForLoading.MaterialTypeEnumNumber)
+            switch (TestForLoading.MaterialType)
             {
-                case (int)SelectMaterialTypeTestEnum.Soil:
+                case MaterialType.Soil:
 
-                    switch (TestForLoading.TestTypeEnumNumber)
+                    switch (TestForLoading.ExperimentType)
                     {
-                        case (int)SelectTypeTestEnum.Moister:
+                        case ExperimentType.Moister:
                             LoadMoistureSoilTest();
                             FramePage = MoistureSoilTestUserControl;
                             break;
@@ -551,7 +521,7 @@ namespace Project.ViewModels
 
             if (key == "add")
             {
-                SelectedCostumer = new Costumer();
+                SelectedCostumer = new Customer();
                 saveCostumerStatus = false;
             }
 
@@ -561,11 +531,17 @@ namespace Project.ViewModels
         #endregion
 
         #region Constructors
-        public MainWindowViewModel(IWorkWithBD workWithBDService)
+        public MainWindowViewModel(IWorkWithBDGeneric<Customer> customerDBService,
+            IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
+            IWorkWithBDGeneric<FullShortListTests> fullShortListTestDBService)
         {
             FramePage = SelectNewTaskPage;
             LoginUserControl = EmployeeLoginFormUserControl;
-            this.workWithBDService = workWithBDService;
+
+            _customerDBService = customerDBService;
+            _fullShortListTestDBService = fullShortListTestDBService;
+            _moistureSoilTestDBService = moistureSoilTestDBService;
+            
             LoadCostumersFromBD();
 
             #region Create Commands
@@ -591,7 +567,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task LoadCostumersFromBD()
         {
-            Costumers = await workWithBDService.LoadCostumersFromBD(LOAD_COSTUMERS_ADRESS);
+            Costumers = await _customerDBService.GetAll(LOAD_COSTUMERS_ADRESS);
         }
         /// <summary>
         /// Загрузка короткого списка тестов из БД
@@ -599,7 +575,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task LoadAllTest()
         {
-            var collection = await workWithBDService.LoadAllTest(LOAD_ALL_TEST_ADRESS); // List
+            var collection = await _fullShortListTestDBService.GetAll(LOAD_ALL_TEST_ADRESS); // List
             LoadedListTests = collection; // Что хочешь
         }
         /// <summary>
@@ -608,7 +584,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task LoadMoistureSoilTest()
         {
-            MoistureTest = await workWithBDService.GetMoistureSoilTestFromBD(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
+            MoistureTest = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
         }
         #endregion
 
@@ -619,7 +595,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task EditCostumer()
         {
-            await workWithBDService.EditCostumerInBD(COSTUMER_ADRESS, selectedCostumer);
+            await _customerDBService.Update(COSTUMER_ADRESS, selectedCostumer);
             Costumers[Costumers.IndexOf(Costumers.First(x => x.Id == selectedCostumer.Id))] = selectedCostumer;
         }
         /// <summary>
@@ -628,7 +604,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task SaveCostumer()
         {
-            selectedCostumer = await workWithBDService.SaveCostumerInBD(COSTUMER_ADRESS, selectedCostumer);
+            selectedCostumer = await _customerDBService.Add(COSTUMER_ADRESS, selectedCostumer);
             Costumers.Add(selectedCostumer);
         }
 
@@ -669,7 +645,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task SaveNewMoistureSoilTest()
         {
-            workWithBDService.SaveMoistureSoilTestInBD(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+            await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
         }
         /// <summary>
         /// Метод дя редактирования теста в бд
@@ -677,7 +653,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task EditMoistureSoilTest()
         {
-            workWithBDService.EditMoistureSoilTestInBD(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+            await _moistureSoilTestDBService.Update(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
         }
         #endregion
 
@@ -689,7 +665,7 @@ namespace Project.ViewModels
         private bool CanCalculateMoistureCommandExecute(object p) => true;
         private void OnCalculateMoistureCommandExecuted(object p)
         {
-            moistureTest.CalculateMoistureSoil();
+            MoistureTest.Calculate();
         }
         /// <summary>
         /// Команда для сохранения и редактирования тестов по определению влажности грунта

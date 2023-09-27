@@ -39,8 +39,8 @@
 
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding MoistureTest.MoistureSoilTestId}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MoistureTest.MaterialName}"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding MoistureTest.CostumerTest.Title}"/>
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding MoistureTest.CostumerTest.ContractNumber}"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding MoistureTest.CustomerTest.Title}"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding MoistureTest.CustomerTest.ContractNumber}"/>
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding MoistureTest.DateTest}"/>
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding MoistureTest.DocumentTest}"/>
 
