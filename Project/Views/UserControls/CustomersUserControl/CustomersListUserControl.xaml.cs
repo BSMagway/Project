@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project.Views.UserControls.CostumersUserControl
+namespace Project.Views.UserControls.CustomersUserControl
 {
     /// <summary>
-    /// Interaction logic for CostumersSelectUserControl.xaml
+    /// Interaction logic for CostumersLoadUserControl.xaml
     /// </summary>
-    public partial class CostumersSelectUserControl : UserControl
+    public partial class CustomersListUserControl : UserControl
     {
-        public CostumersSelectUserControl()
+        public CustomersListUserControl()
         {
             InitializeComponent();
         }
