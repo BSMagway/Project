@@ -42,19 +42,19 @@ namespace ProjectServer.Controllers
         /// <summary>
         /// Получение из базы данных заказчика по Id.
         /// </summary>
-        /// <param name="customerId">Id заказчика.</param>
+        /// <param name="id">Id заказчика.</param>
         /// <returns>Статус запроса. В случае успешного ответа с запрашиваемым Заказчиком.</returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromQuery] int customerId)
+        public async Task<IActionResult> Get(int id)
         {
-            var customer = await _customerManager.GetAsync(customerId);
+            var customer = await _customerManager.GetAsync(id);
 
             if (customer is null)
             {
                 return NotFound();
             }
 
-            return Ok(_customerManager.GetAsync(customerId));
+            return Ok(_customerManager.GetAsync(id));
         }
 
         /// <summary>
@@ -98,10 +98,10 @@ namespace ProjectServer.Controllers
         /// </summary>
         /// <param name="customerId">Id удаляемого заказчика.</param>
         /// <returns>Статус запроса.</returns>
-        [HttpDelete]
-        public async Task<IActionResult> Remove([FromQuery] int customerId)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
         {
-            var resultRemove = await _customerManager.RemoveAsync(customerId);
+            var resultRemove = await _customerManager.RemoveAsync(id);
 
             if (resultRemove)
             {

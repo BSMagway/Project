@@ -20,102 +20,7 @@ namespace Project.ViewModels
 
     internal partial class MainWindowViewModel : ViewModel
     {
-        #region Fields
-        /// <summary>
-        /// Адресная строка для загрузки всех тестов для отображения списком
-        /// </summary>
-        private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList"; // ??? Это нарушение наименования и путей
 
-        /// <summary>
-        /// Адресная строка для загрузки всех заказчиков для отображения списком
-        /// </summary>
-        private const string LOAD_COSTUMERS_ADRESS = "https://localhost:7143/api/Customer";
-        /// <summary>
-        /// Адресная строка для работы с базой данных заказчиков
-        /// </summary>
-        private const string COSTUMER_ADRESS = "https://localhost:7143/api/Customer";
-        /// <summary>
-        /// Адресная строка для работы с базой данных тестов по определению влажности грунта
-        /// </summary>
-        private const string MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
-        /// <summary>
-        /// Сервис для работы с базой данных
-        /// </summary>
-        IWorkWithBDGeneric<Customer> _customerDBService;
-
-        IWorkWithBDGeneric<MoistureSoilTest> _moistureSoilTestDBService;
-
-        IWorkWithBDGeneric<FullShortListTests> _fullShortListTestDBService;
-
-        /// <summary>
-        /// Сокращенный список всех тестов
-        /// </summary>
-        private ObservableCollection<FullShortListTests> loadedListTests;
-        /// <summary>
-        /// выбранный для загрузки тест
-        /// </summary>
-        private FullShortListTests testForLoading;
-        /// <summary>
-        /// Статус теста сохранен или нет в базе данных
-        /// </summary>
-        private bool saveTestStatus = true;
-        /// <summary>
-        /// Список всех заказчиков
-        /// </summary>
-        private ObservableCollection<Customer> costumers;
-        /// <summary>
-        /// Выбранный для загрузки или установки в тесте заказчик
-        /// </summary>
-        private Customer selectedCostumer;
-        /// <summary>
-        /// Статус заказчика сохранен или нет в базе данных
-        /// </summary>
-        private bool saveCostumerStatus = true;
-        #endregion
-
-        #region Properties
-        public ObservableCollection<FullShortListTests> LoadedListTests
-        {
-            get
-            {
-                if (loadedListTests == null)
-                {
-                    loadedListTests = new ObservableCollection<FullShortListTests>();
-                }
-
-                return loadedListTests;
-            }
-
-            set => Set(ref loadedListTests, value);
-        }
-        public ObservableCollection<Customer> Costumers
-        {
-            get
-            {
-                if (costumers == null)
-                {
-                    costumers = new ObservableCollection<Customer>();
-                }
-
-                return costumers;
-            }
-            set
-            {
-                Set(ref costumers, value);
-            }
-
-        }
-        public Customer SelectedCostumer
-        {
-            get => selectedCostumer;
-            set => Set(ref selectedCostumer, value);
-        }
-        public FullShortListTests TestForLoading
-        {
-            get => testForLoading;
-            set => Set(ref testForLoading, value);
-        }
-        #endregion
 
         #region UserControls
 
@@ -527,38 +432,20 @@ namespace Project.ViewModels
 
         }
 
-
-        #endregion
-
-        #region Constructors
-        public MainWindowViewModel(IWorkWithBDGeneric<Customer> customerDBService,
-            IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
-            IWorkWithBDGeneric<FullShortListTests> fullShortListTestDBService)
+        /// <summary>
+        /// Команда для открытия выбора заказчика для добавления в тест
+        /// </summary>
+        public ICommand OpenSelectCostumerCommand { get; }
+        private bool CanOpenSelectCostumerCommandExecute(object p) => true;
+        private void OnOpenSelectCostumerCommandExecuted(object p)
         {
-            FramePage = SelectNewTaskPage;
-            LoginUserControl = EmployeeLoginFormUserControl;
-
-            _customerDBService = customerDBService;
-            _fullShortListTestDBService = fullShortListTestDBService;
-            _moistureSoilTestDBService = moistureSoilTestDBService;
-            
-            LoadCostumersFromBD();
-
-            #region Create Commands
-            SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
-            SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
-            ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
-            SelectSoilTestCommand = new LambdaCommand(OnSelectSoilTestCommandExecuted, CanSelectSoilTestCommandExecute);
-            CalculateMoistureCommand = new LambdaCommand(OnCalculateMoistureCommandExecuted, CanCalculateMoistureCommandExecute);
-            SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);
-            OpenSelectCostumerCommand = new LambdaCommand(OnOpenSelectCostumerCommandExecuted, CanOpenSelectCostumerCommandExecute);
-            LoadCostumerFromListCommand = new LambdaCommand(OnLoadCostumerFromListCommandExecuted, CanLoadCostumerFromListCommandExecute);
-            LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
-            OpenFormForCostumerAddEditCommand = new LambdaCommand(OnOpenFormForCostumerAddEditCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
-            SaveEditCostumerInBDCommand = new LambdaCommand(OnSaveEditCostumerInBDCommandExecuted, CanOpenFormForCostumerAddEditCommandExecute);
-            #endregion
+            FramePage = CostumersSelectUserControl;
         }
+
+
         #endregion
+
+
 
         #region Load Methods
         /// <summary>
@@ -610,95 +497,7 @@ namespace Project.ViewModels
 
         #endregion
 
-        #region Moisture Soil Test
-        #region Fields
-        /// <summary>
-        /// Тест по определению важности грунта
-        /// </summary>
-        private MoistureSoilTest moistureTest;
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Тест по определению важности грунта
-        /// </summary>
-        public MoistureSoilTest MoistureTest
-        {
-            get
-            {
-                if (moistureTest == null)
-                {
-                    moistureTest = new MoistureSoilTest();
-                }
-
-                return moistureTest;
-            }
-            set => Set(ref moistureTest, value);
-        }
-
-        #endregion
-
-        #region Methods
-        /// <summary>
-        /// Метод по добавлению нового теста в бд
-        /// </summary>
-        /// <returns></returns>
-        public async Task SaveNewMoistureSoilTest()
-        {
-            await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
-        }
-        /// <summary>
-        /// Метод дя редактирования теста в бд
-        /// </summary>
-        /// <returns></returns>
-        public async Task EditMoistureSoilTest()
-        {
-            await _moistureSoilTestDBService.Update(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
-        }
-        #endregion
-
-        #region Commands
-        /// <summary>
-        /// Команда для расчета влажности грунта
-        /// </summary>
-        public ICommand CalculateMoistureCommand { get; }
-        private bool CanCalculateMoistureCommandExecute(object p) => true;
-        private void OnCalculateMoistureCommandExecuted(object p)
-        {
-            MoistureTest.Calculate();
-        }
-        /// <summary>
-        /// Команда для сохранения и редактирования тестов по определению влажности грунта
-        /// </summary>
-        public ICommand SaveMoistureSoilTestCommand { get; }
-        private bool CanSaveMoistureSoilTestCommandExecute(object p) => true;
-        private void OnSaveMoistureSoilTestCommandExecuted(object p)
-        {
-            if (saveTestStatus)
-            {
-                EditMoistureSoilTest();
-            }
-            else
-            {
-                SaveNewMoistureSoilTest();
-                saveTestStatus = true;
-            }
-        }
-        /// <summary>
-        /// Команда для открытия выбора заказчика для добавления в тест
-        /// </summary>
-        public ICommand OpenSelectCostumerCommand { get; }
-        private bool CanOpenSelectCostumerCommandExecute(object p) => true;
-        private void OnOpenSelectCostumerCommandExecuted(object p)
-        {
-            FramePage = CostumersSelectUserControl;
-        }
-
-
-
-
-        #endregion
-        #endregion
+        
 
     }
 
