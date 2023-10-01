@@ -1,5 +1,7 @@
 ﻿using Project.Interfaces.Services;
 using ProjectCommon.Models;
+using ProjectCommon.Models.Base;
+using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
 
 namespace Project.ViewModels
@@ -16,9 +18,8 @@ namespace Project.ViewModels
         /// </summary>
         IWorkWithBDGeneric<MoistureSoilTest> _moistureSoilTestDBService;
 
-        /// <summary>
-        /// Сервис для работы загрузки короткого списка протоколов.
-        /// </summary>
-        IWorkWithBDGeneric<FullShortListTests> _fullShortListTestDBService;
+        IWorkWithBDGeneric<Test> _testDBService;
+
+
     }
 }

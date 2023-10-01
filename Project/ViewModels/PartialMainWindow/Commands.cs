@@ -121,11 +121,11 @@ namespace Project.ViewModels
         private bool CanLoadTestFromBDCommandExecute(object p) => true;
         private void OnLoadTestFromBDCommandExecuted(object p)
         {
-            switch (TestForLoading.MaterialType)
+            switch (TestForLoading.MaterialEnum)
             {
                 case MaterialType.Soil:
 
-                    switch (TestForLoading.ExperimentType)
+                    switch (TestForLoading.TestEnum)
                     {
                         case ExperimentType.Moister:
                             LoadMoistureSoilTest();
@@ -196,7 +196,7 @@ namespace Project.ViewModels
         private bool CanLoadCustomerFromListCommandExecute(object p) => true;
         private void OnLoadCustomerFromListCommandExecuted(object p)
         {
-            MoistureTest.CustomerTest = SelectedCustomer;
+           //MoistureTest.Customer = SelectedCustomer;
             MainUserControl = MoistureSoilTestUserControl;
         }
     }

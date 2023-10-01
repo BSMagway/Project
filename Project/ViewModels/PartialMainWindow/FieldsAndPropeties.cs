@@ -1,4 +1,5 @@
 ﻿using ProjectCommon.Models;
+using ProjectCommon.Models.Base;
 using ProjectCommon.ViewModelBase;
 using System.Collections.ObjectModel;
 
@@ -6,12 +7,12 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
-        private ObservableCollection<FullShortListTests> loadedListTests;
+        private ObservableCollection<Test> loadedListTests;
 
         private ObservableCollection<Customer> customers;
         private Customer selectedCustomer;
 
-        private FullShortListTests testForLoading;
+        private Test testForLoading;
 
         /// <summary>
         /// Статус теста сохранен или нет в базе данных
@@ -26,13 +27,13 @@ namespace Project.ViewModels
         /// <summary>
         /// Сокращенный список всех тестов.
         /// </summary>
-        public ObservableCollection<FullShortListTests> LoadedListTests
+        public ObservableCollection<Test> LoadedListTests
         {
             get
             {
                 if (loadedListTests == null)
                 {
-                    loadedListTests = new ObservableCollection<FullShortListTests>();
+                    loadedListTests = new ObservableCollection<Test>();
                 }
 
                 return loadedListTests;
@@ -74,7 +75,7 @@ namespace Project.ViewModels
         /// <summary>
         /// Выбранный для загрузки тест.
         /// </summary>
-        public FullShortListTests TestForLoading
+        public Test TestForLoading
         {
             get => testForLoading;
             set => Set(ref testForLoading, value);

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectCommon.Models;
+using ProjectCommon.Models.Material.Soil;
 using ProjectServer.Data;
 using ProjectServer.Interfaces.Managers;
-using System.Runtime.InteropServices;
+using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 
-namespace ProjectServer.Managers
+namespace ProjectServer.Managers.MaterialTests.Soil
 {
     /// <inheritdoc cref="ICustomerManager"/>
     public class MoistureSoilTestManager : IMoistureSoilTestManager
@@ -30,22 +30,26 @@ namespace ProjectServer.Managers
         {
             var model = await _appDb.MoistureSoilTests.FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.Id == moistureSoilTestId);
 
-            model.CustomerTest = await _customerManager.GetAsync(model.CustomerTestId);
+            model.Customer = await _customerManager.GetAsync(model.CustomerId);
             model.SoilWetMassWithBox = await _dimensionManager.GetAsync(model.SoilWetMassWithBoxId);
             model.SoilDryMassWithBox = await _dimensionManager.GetAsync(model.SoilDryMassWithBoxId);
             model.BoxMass = await _dimensionManager.GetAsync(model.BoxMassId);
-            model.MoistureSoil = await _dimensionManager.GetAsync(model.MoistureSoilId);
+            model.Moisture = await _dimensionManager.GetAsync(model.MoistureId);
 
             return model;
         }
 
         public async Task<MoistureSoilTest> AddAsync(MoistureSoilTest moistureSoilTest)
         {
+            moistureSoilTest.BoxMass = await _dimensionManager.AddAsync(moistureSoilTest.BoxMass);
+            moistureSoilTest.SoilWetMassWithBox = await _dimensionManager.AddAsync(moistureSoilTest.SoilWetMassWithBox);
+            moistureSoilTest.SoilDryMassWithBox = await _dimensionManager.AddAsync(moistureSoilTest.SoilDryMassWithBox);
+            moistureSoilTest.Moisture = await _dimensionManager.AddAsync(moistureSoilTest.Moisture);
 
-            var entity = await _appDb.MoistureSoilTests.AddAsync(moistureSoilTest);
-            _appDb.SaveChanges();
+            _appDb.Entry(moistureSoilTest).State = EntityState.Added;
+            await _appDb.SaveChangesAsync();
 
-            return entity.Entity;
+            return moistureSoilTest;
         }
 
         public async Task<bool> RemoveAsync(int moistureSoilTestId)
@@ -61,10 +65,10 @@ namespace ProjectServer.Managers
             _appDb.MoistureSoilTests.Remove(moistureSoilTest);
             _appDb.SaveChanges();
 
-            var resultRemoveSoilWetMassWithBox = await _dimensionManager.RemoveAsync(moistureSoilTest.SoilWetMassWithBoxId);
-            var resultRemoveSoilDryMassWithBox = await _dimensionManager.RemoveAsync(moistureSoilTest.SoilDryMassWithBoxId);
-            var resultRemoveBoxMass = await _dimensionManager.RemoveAsync(moistureSoilTest.BoxMassId);
-            var resultRemoveMoistureSoil = await _dimensionManager.RemoveAsync(moistureSoilTest.MoistureSoilId);
+            var resultRemoveSoilWetMassWithBox = await _dimensionManager.RemoveAsync(moistureSoilTest.SoilWetMassWithBox.Id);
+            var resultRemoveSoilDryMassWithBox = await _dimensionManager.RemoveAsync(moistureSoilTest.SoilDryMassWithBox.Id);
+            var resultRemoveBoxMass = await _dimensionManager.RemoveAsync(moistureSoilTest.BoxMass.Id);
+            var resultRemoveMoistureSoil = await _dimensionManager.RemoveAsync(moistureSoilTest.Moisture.Id);
 
             return true;
         }
@@ -72,11 +76,16 @@ namespace ProjectServer.Managers
         public async Task<bool> UpdateAsync(MoistureSoilTest moistureSoilTestUpdate)
         {
             var dbMoistureSoilTest = await _appDb.MoistureSoilTests
-                .FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.MoistureSoilTestId == moistureSoilTestUpdate.MoistureSoilTestId);
+                .FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.Id == moistureSoilTestUpdate.Id);
 
             if (dbMoistureSoilTest == null)
             {
                 return false;
+            }
+
+            if (dbMoistureSoilTest.TestNumber != moistureSoilTestUpdate.TestNumber)
+            {
+                dbMoistureSoilTest.TestNumber = moistureSoilTestUpdate.TestNumber;
             }
 
             if (dbMoistureSoilTest.MaterialName != moistureSoilTestUpdate.MaterialName)
@@ -84,9 +93,9 @@ namespace ProjectServer.Managers
                 dbMoistureSoilTest.MaterialName = moistureSoilTestUpdate.MaterialName;
             }
 
-            if (dbMoistureSoilTest.CustomerTestId != moistureSoilTestUpdate.CustomerTestId)
+            if (dbMoistureSoilTest.CustomerId != moistureSoilTestUpdate.CustomerId)
             {
-                dbMoistureSoilTest.CustomerTestId = moistureSoilTestUpdate.CustomerTestId;
+                dbMoistureSoilTest.CustomerId = moistureSoilTestUpdate.CustomerId;
             }
 
             if (dbMoistureSoilTest.DateTest != moistureSoilTestUpdate.DateTest)
@@ -111,12 +120,12 @@ namespace ProjectServer.Managers
 
             if (dbMoistureSoilTest.BoxMass.DimensionValue != moistureSoilTestUpdate.BoxMass.DimensionValue)
             {
-                await _dimensionManager.UpdateAsync(moistureSoilTestUpdate.SoilWetMassWithBox);
+                await _dimensionManager.UpdateAsync(moistureSoilTestUpdate.BoxMass);
             }
 
-            if (dbMoistureSoilTest.MoistureSoil.DimensionValue != moistureSoilTestUpdate.MoistureSoil.DimensionValue)
+            if (dbMoistureSoilTest.Moisture.DimensionValue != moistureSoilTestUpdate.Moisture.DimensionValue)
             {
-                await _dimensionManager.UpdateAsync(moistureSoilTestUpdate.SoilWetMassWithBox);
+                await _dimensionManager.UpdateAsync(moistureSoilTestUpdate.Moisture);
             }
 
             _appDb.SaveChanges();

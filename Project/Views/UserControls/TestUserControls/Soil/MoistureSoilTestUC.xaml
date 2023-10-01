@@ -44,7 +44,7 @@
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding MoistureTest.DateTest}"/>
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding MoistureTest.DocumentTest}"/>
 
-        <Button Grid.Row="2" Grid.Column="2" Content="Выбрать заказчика" Command="{Binding OpenSelectCostumerCommand}"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="Выбрать заказчика" Command="{Binding OpenSelectCustomerCommand}"/>
 
         <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding MoistureTest.SoilWetMassWithBox.DimensionName}"/>
         <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding MoistureTest.SoilDryMassWithBox.DimensionName}"/>
@@ -53,12 +53,12 @@
         <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding MoistureTest.SoilWetMassWithBox.DimensionValue}"/>
         <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding MoistureTest.SoilDryMassWithBox.DimensionValue}"/>
         <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding MoistureTest.BoxMass.DimensionValue}"/>
-        <TextBox Grid.Row="3" Grid.Column="4" Text="{Binding MoistureTest.MoistureSoil.DimensionValue}"/>
+        <TextBlock Grid.Row="3" Grid.Column="4" Text="{Binding MoistureTest.MoistureSoil.DimensionValue}"/>
         <Button Grid.Row="4" Grid.Column="4" Content="Рассчитать влажность" Command="{Binding CalculateMoistureCommand}"/>
         <Button Grid.Row="5" Grid.Column="4" Content="Save" Command="{Binding SaveMoistureSoilTestCommand}"/>
 
 
-
+        <TextBox Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="4" Text="{Binding Jsoncont}"/>
 
     </Grid>
 </UserControl>

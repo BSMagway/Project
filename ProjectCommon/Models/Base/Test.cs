@@ -1,12 +1,12 @@
-﻿using ProjectCommon.ViewModelBase;
+﻿using ProjectCommon.Enums;
+using ProjectCommon.ViewModelBase;
 
 namespace ProjectCommon.Models.Base
 {
     public class Test : ViewModel
     {
-        private int moistureSoilTestId;
+        private int testNumber;
         private string materialName;
-        private Customer customerTest;
         private string dateTest;
         private string documentTest;
 
@@ -18,10 +18,10 @@ namespace ProjectCommon.Models.Base
         /// <summary>
         /// Порядковый номер теста (протокола).
         /// </summary>
-        public int MoistureSoilTestId
+        public int TestNumber
         {
-            get => moistureSoilTestId;
-            set => Set(ref moistureSoilTestId, value);
+            get => testNumber;
+            set => Set(ref testNumber, value);
         }
 
         /// <summary>
@@ -32,20 +32,15 @@ namespace ProjectCommon.Models.Base
             get => materialName;
             set => Set(ref materialName, value);
         }
-
         /// <summary>
         /// Заказчик испытания.
         /// </summary>
-        public int CustomerTestId { get; set; }
+        public int CustomerId { get; set; }
 
         /// <summary>
         /// Навигационное свойство для Customer.
         /// </summary>
-        public Customer CustomerTest
-        {
-            get => customerTest;
-            set => Set(ref customerTest, value);
-        }
+        public Customer Customer { get; set; }
 
         /// <summary>
         /// Дата проведения испытания.
@@ -64,6 +59,10 @@ namespace ProjectCommon.Models.Base
             get => documentTest;
             set => Set(ref documentTest, value);
         }
+
+        public MaterialType MaterialEnum { get; set; }
+
+        public ExperimentType TestEnum { get; set; }
 
         public virtual void Calculate()
         {

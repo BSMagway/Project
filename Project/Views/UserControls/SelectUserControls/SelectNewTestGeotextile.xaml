@@ -31,9 +31,5 @@
         <Button Grid.Row="0" Grid.Column="1">
             <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Коэффициент фильтрации в поперечном направлении</TextBlock>
         </Button>
-
-        <Button Grid.Row="4" Grid.Column="4" Content="Вернутся на главную" Command="{Binding ReturnToNewTaskPageCommand}"/>
-
-
     </Grid>
 </UserControl>

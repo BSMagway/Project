@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectServer.Interfaces.Managers;
+using ProjectServer.Managers;
 
 namespace ProjectServer.Controllers
 {
@@ -8,17 +9,17 @@ namespace ProjectServer.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class FullTestsListController : ControllerBase
+    public class TestsController : ControllerBase
     {
-        private readonly IFullShortListTestsManager _fullTestService;
+        private readonly ITestsManager _testManager;
 
         /// <summary>
         /// Конструктор контролера по получению короткого списка всех протоколов.
         /// </summary>
         /// <param name="moistureSoilTestService">Интерфейс по работе с базой данный для получения короткого списка всех протоколов.</param>
-        public FullTestsListController(IFullShortListTestsManager moistureSoilTestService)
+        public TestsController(ITestsManager testManager)
         {
-            _fullTestService = moistureSoilTestService;
+            _testManager = testManager;
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace ProjectServer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var model = await _fullTestService.GetAsync();
+            var model = await _testManager.GetAsync();
 
             if (model is null)
             {

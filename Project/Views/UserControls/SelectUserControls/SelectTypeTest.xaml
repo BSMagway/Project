@@ -31,9 +31,5 @@
         <Button Grid.Row="0" Grid.Column="2" Content="Щебень" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Gravel}"/>
         <Button Grid.Row="0" Grid.Column="3" Content="ПГС" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.SandAndGravel}"/>
         <Button Grid.Row="0" Grid.Column="4" Content="Геотекстиль" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Geotextile}"/>
-
-        <Button Grid.Row="4" Grid.Column="4" Content="Вернутся на главную" Command="{Binding ReturnToNewTaskPageCommand}"/>
-
-
     </Grid>
 </UserControl>

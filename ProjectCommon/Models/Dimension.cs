@@ -1,4 +1,5 @@
-﻿using ProjectCommon.ViewModelBase;
+﻿using ProjectCommon.Models.Base;
+using ProjectCommon.ViewModelBase;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProjectCommon.Models
@@ -9,7 +10,6 @@ namespace ProjectCommon.Models
     public class Dimension : ViewModel
     {
         private double dimensionValue;
-        private string dimensionName;
 
         /// <summary>
         /// Id в базе данных.
@@ -19,11 +19,7 @@ namespace ProjectCommon.Models
         /// <summary>
         /// Название испытанной величины.
         /// </summary>
-        public string? DimensionName 
-        {
-            get => dimensionName;
-            set => Set(ref dimensionName, value);
-        }
+        public string? DimensionName {  get; set; }
 
         /// <summary>
         /// Значение испытанной величины.

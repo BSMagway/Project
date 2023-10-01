@@ -1,25 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectCommon.Models;
-using ProjectServer.Interfaces.Managers;
+using ProjectCommon.Models.Material.Soil;
+using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 
-namespace ProjectServer.Controllers
+namespace ProjectServer.Controllers.MaterialTests.Soil
 {
     /// <summary>
     /// Контроллер для обработки запросов по работе с базой данных тестов по определению влажности грунта.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class MoistureSoilTestController : ControllerBase
+    public class DensitySoilTestController : ControllerBase
     {
-        private readonly IMoistureSoilTestManager _moistureSoilTestManager;
+        private readonly IDensitySoilTestManager _densitySoilTestManager;
 
         /// <summary>
         /// Конструктор контролера по работе с базой данных тестов по определению влажности грунта.
         /// </summary>
         /// <param name="moistureSoilTestManager">Менеджер по работе с базой данных тестов по определению влажности грунта.</param>
-        public MoistureSoilTestController(IMoistureSoilTestManager moistureSoilTestManager)
+        public DensitySoilTestController(IDensitySoilTestManager densitySoilTestManager)
         {
-            _moistureSoilTestManager = moistureSoilTestManager;
+            _densitySoilTestManager = densitySoilTestManager;
         }
 
         /// <summary>
@@ -27,10 +27,10 @@ namespace ProjectServer.Controllers
         /// </summary>
         /// <param name="moistureSoilTestId">Id теста по определению влажности грунта.</param>
         /// <returns>Статус запроса. В случае успешного ответа с запрашиваемым тестом по определению влажности грунта.</returns>
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] int moistureSoilTestId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
-            var model = await _moistureSoilTestManager.GetAsync(moistureSoilTestId);
+            var model = await _densitySoilTestManager.GetAsync(id);
 
             if (model is null)
             {
@@ -46,9 +46,9 @@ namespace ProjectServer.Controllers
         /// <param name="moistureSoilTest">Тест для добавления.</param>
         /// <returns>Статус запроса. В случае успешного добавления возвращается добавленный тест.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] MoistureSoilTest moistureSoilTest)
+        public async Task<IActionResult> Add([FromBody] DensitySoilTest densitySoilTest)
         {
-            var model = await _moistureSoilTestManager.AddAsync(moistureSoilTest);
+            var model = await _densitySoilTestManager.AddAsync(densitySoilTest);
 
             if (model is null)
             {
@@ -64,11 +64,11 @@ namespace ProjectServer.Controllers
         /// <param name="moistureSoilTest">Тест по определению влажности грунта для которого необходимо внести изменения.</param>
         /// <returns>Статус запроса.</returns>
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] MoistureSoilTest moistureSoilTest)
+        public async Task<IActionResult> Update([FromBody] DensitySoilTest densitySoilTest)
         {
-            var resultMoistureSoilTestUpdate = await _moistureSoilTestManager.UpdateAsync(moistureSoilTest);
+            var resultDensitySoilTestUpdate = await _densitySoilTestManager.UpdateAsync(densitySoilTest);
 
-            if (resultMoistureSoilTestUpdate)
+            if (resultDensitySoilTestUpdate)
             {
                 return Ok();
             }
@@ -81,12 +81,12 @@ namespace ProjectServer.Controllers
         /// </summary>
         /// <param name="moistureSoilTestId">Id теста для удаления.</param>
         /// <returns>Статус запроса.</returns>
-        [HttpDelete]
-        public async Task<IActionResult> Remove([FromQuery] int moistureSoilTestId)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
         {
-            var resultMoistureSoilTestRemove = await _moistureSoilTestManager.RemoveAsync(moistureSoilTestId);
+            var resultDensitySoilTestRemove = await _densitySoilTestManager.RemoveAsync(id);
 
-            if (resultMoistureSoilTestRemove)
+            if (resultDensitySoilTestRemove)
             {
                 return Ok();
             }

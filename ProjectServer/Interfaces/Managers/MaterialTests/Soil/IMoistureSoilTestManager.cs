@@ -1,6 +1,6 @@
-﻿using ProjectCommon.Models;
+﻿using ProjectCommon.Models.Material.Soil;
 
-namespace ProjectServer.Interfaces.Managers
+namespace ProjectServer.Interfaces.Managers.MaterialTests.Soil
 {
     /// <summary>
     /// Интерфейс для работы с протоколами по определению влажности грунта.

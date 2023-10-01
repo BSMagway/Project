@@ -20,11 +20,11 @@
 
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0">Название компании</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedCostumer.Title}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedCustomer.Title}"/>
         <TextBlock Grid.Row="1" Grid.Column="0">Номер договора</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCostumer.ContractNumber}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCustomer.ContractNumber}"/>
 
-        <Button Grid.Row="2" Content="Сохранить" Command="{Binding SaveEditCostumerInBDCommand}"/>
+        <Button Grid.Row="2" Content="Сохранить" Command="{Binding SaveEditCustomerInBDCommand}"/>
 
     </Grid>
 </UserControl>

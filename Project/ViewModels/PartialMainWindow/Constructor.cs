@@ -1,6 +1,8 @@
 ﻿using Project.Interfaces.Services;
 using Project.ViewModels.Commands;
 using ProjectCommon.Models;
+using ProjectCommon.Models.Base;
+using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
 using System;
 using System.Collections.Generic;
@@ -14,14 +16,14 @@ namespace Project.ViewModels
     {
         public MainWindowViewModel(IWorkWithBDGeneric<Customer> customerDBService,
             IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
-            IWorkWithBDGeneric<FullShortListTests> fullShortListTestDBService)
+            IWorkWithBDGeneric<Test> testDbService)
         {
             MainUserControl = SelectNewTaskUserControl;
             LoginUserControl = EmployeeLoginFormUserControl;
 
             _customerDBService = customerDBService;
-            _fullShortListTestDBService = fullShortListTestDBService;
             _moistureSoilTestDBService = moistureSoilTestDBService;
+            _testDBService = testDbService;
 
             LoadCostumersFromBD();
 

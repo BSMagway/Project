@@ -30,8 +30,5 @@
         <Button Grid.Row="0" Grid.Column="2" Content="2"/>
         <Button Grid.Row="0" Grid.Column="3" Content="3"/>
         <Button Grid.Row="0" Grid.Column="4" Content="4"/>
-
-        <Button Grid.Row="4" Grid.Column="4" Content="Вернутся на главную" Command="{Binding ReturnToNewTaskPageCommand}"/>
-
     </Grid>
 </UserControl>

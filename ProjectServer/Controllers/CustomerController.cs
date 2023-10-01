@@ -54,7 +54,7 @@ namespace ProjectServer.Controllers
                 return NotFound();
             }
 
-            return Ok(_customerManager.GetAsync(id));
+            return Ok(customer);
         }
 
         /// <summary>

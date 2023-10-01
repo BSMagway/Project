@@ -1,4 +1,6 @@
-﻿using ProjectCommon.ViewModelBase;
+﻿using ProjectCommon.Models.Base;
+using ProjectCommon.ViewModelBase;
+using System.Collections.ObjectModel;
 
 namespace ProjectCommon.Models
 {
@@ -7,9 +9,8 @@ namespace ProjectCommon.Models
     /// </summary>
     public class Customer : ViewModel
     {
-        private string title;
+        private string title = string.Empty;
         private int contractNumber;
-
         /// <summary>
         /// Id в базе данных.
         /// </summary>
@@ -32,5 +33,7 @@ namespace ProjectCommon.Models
             get => contractNumber;
             set => Set(ref contractNumber, value);
         }
+
+        public ICollection<Test> Tests { get; } = new List<Test>();
     }
 }

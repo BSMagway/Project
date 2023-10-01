@@ -18,7 +18,7 @@ namespace ProjectServer.Interfaces.Managers
         /// </summary>
         /// <param name="dimensionId">Id измерения.</param>
         /// <returns>Возвращает измерение.</returns>
-        public Task<Dimension> GetAsync(int dimensionId);
+        public Task<Dimension> GetAsync(int? dimensionId);
 
         /// <summary>
         /// Добавить измерение в базу данных.
@@ -39,6 +39,6 @@ namespace ProjectServer.Interfaces.Managers
         /// </summary>
         /// <param name="dimensionId">Id измерения.</param>
         /// <returns>Возвращает true в случае успешного удаления и false если удалить не удалось.</returns>
-        public Task<bool> RemoveAsync(int dimensionId);
+        public Task<bool> RemoveAsync(int? dimensionId);
     }
 }

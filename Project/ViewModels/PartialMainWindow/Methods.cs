@@ -46,7 +46,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task LoadAllTest()
         {
-            var collection = await _fullShortListTestDBService.GetAll(LOAD_ALL_TEST_ADRESS);
+            var collection = await _testDBService.GetAll(LOAD_ALL_TEST_ADRESS);
             LoadedListTests = collection;
         }
 
@@ -56,7 +56,7 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task LoadMoistureSoilTest()
         {
-            var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.TestId);
+            var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id);
             MoistureTest = item;
         }
         #endregion

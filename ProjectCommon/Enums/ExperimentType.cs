@@ -7,5 +7,6 @@
     {
         Unknown = 0,
         Moister = 1,
+        Density = 2,
     }
 }

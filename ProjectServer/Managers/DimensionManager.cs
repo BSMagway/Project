@@ -15,7 +15,7 @@ namespace ProjectServer.Managers
             _appDb = appDb;
         }
 
-        public async Task<Dimension> GetAsync(int dimensionId)
+        public async Task<Dimension> GetAsync(int? dimensionId)
         {
             var model = await _appDb.Dimensions.FirstOrDefaultAsync(dimension => dimension.Id == dimensionId);
             return model;
@@ -36,7 +36,7 @@ namespace ProjectServer.Managers
             return entity.Entity;
         }
 
-        public async Task<bool> RemoveAsync(int dimensionId)
+        public async Task<bool> RemoveAsync(int? dimensionId)
         {
             var model = await _appDb.Dimensions.FirstOrDefaultAsync(dimension => dimension.Id == dimensionId);
 

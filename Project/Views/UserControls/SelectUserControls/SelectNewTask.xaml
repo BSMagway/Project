@@ -31,7 +31,7 @@
         <Button Grid.Row="0" Grid.Column="0" Content="Создать новый тест" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.NewTest}" ></Button>
         <Button Grid.Row="0" Grid.Column="1" Content="Загрузить тест" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.LoadTest}"></Button>
         <Button Grid.Row="0" Grid.Column="2" Content="Список заказчиков" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.CostumersList}"></Button>
-        <Button Grid.Row="0" Grid.Column="3" Content="3" Command="{Binding SelectNewTaskCommand}" CommandParameter="3"></Button>
+        <Button Grid.Row="0" Grid.Column="3" Content="3"></Button>
         
     </Grid>
 </UserControl>

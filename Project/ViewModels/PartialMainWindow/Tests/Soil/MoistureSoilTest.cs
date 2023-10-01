@@ -1,5 +1,9 @@
-﻿using ProjectCommon.Models;
+﻿using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
+using System.Net.Http.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -44,6 +48,8 @@ namespace Project.ViewModels
         {
             await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
         }
+
+
         /// <summary>
         /// Метод дя редактирования теста в бд
         /// </summary>
@@ -73,6 +79,8 @@ namespace Project.ViewModels
         {
             if (saveTestStatus)
             {
+                Jsoncont = JsonSerializer.Serialize(MoistureTest);
+
                 EditMoistureSoilTest();
             }
             else
@@ -81,8 +89,12 @@ namespace Project.ViewModels
                 saveTestStatus = true;
             }
         }
-
-
+        private string jsoncont;
+        public string Jsoncont 
+        {
+            get => jsoncont;
+            set => Set(ref jsoncont, value);
+        }
 
 
 

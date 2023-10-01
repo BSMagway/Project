@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
 using ProjectServer.Interfaces.Managers;
+using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 using ProjectServer.Managers;
+using ProjectServer.Managers.MaterialTests.Soil;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,16 +22,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Почитать про *.resx и зачем используется
 
 // UnitOfWork (https://metanit.com/sharp/mvc5/23.3.php)
+// Лучше использовать подход EF Core Migrations (https://metanit.com/sharp/entityframeworkcore/2.15.php)
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(); // Визуализация WebApi контроллеров
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IMoistureSoilTestManager, MoistureSoilTestManager>();
-builder.Services.AddScoped<IFullShortListTestsManager, FullShortListTestsManager>();
+builder.Services.AddScoped<IDensitySoilTestManager, DensitySoilTestManager>();
+builder.Services.AddScoped<ITestsManager, TestsManager>();
 builder.Services.AddScoped<ICustomerManager, CustomerManager>();
 builder.Services.AddScoped<IDimensionManager, DimensionManager>();
 
