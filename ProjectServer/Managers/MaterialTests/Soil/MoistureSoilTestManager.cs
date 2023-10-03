@@ -6,7 +6,7 @@ using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 
 namespace ProjectServer.Managers.MaterialTests.Soil
 {
-    /// <inheritdoc cref="ICustomerManager"/>
+    /// <inheritdoc cref="IMoistureSoilTestManager"/>
     public class MoistureSoilTestManager : IMoistureSoilTestManager
     {
         private readonly AppDbContext _appDb;
@@ -26,7 +26,7 @@ namespace ProjectServer.Managers.MaterialTests.Soil
             _customerManager = customerManager;
         }
 
-        public async Task<MoistureGravelTest> GetAsync(int moistureSoilTestId)
+        public async Task<MoistureSoilTest> GetAsync(int moistureSoilTestId)
         {
             var model = await _appDb.MoistureSoilTests.FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.Id == moistureSoilTestId);
 
@@ -39,7 +39,7 @@ namespace ProjectServer.Managers.MaterialTests.Soil
             return model;
         }
 
-        public async Task<MoistureGravelTest> AddAsync(MoistureGravelTest moistureSoilTest)
+        public async Task<MoistureSoilTest> AddAsync(MoistureSoilTest moistureSoilTest)
         {
             moistureSoilTest.BoxMass = await _dimensionManager.AddAsync(moistureSoilTest.BoxMass);
             moistureSoilTest.SoilWetMassWithBox = await _dimensionManager.AddAsync(moistureSoilTest.SoilWetMassWithBox);
@@ -73,7 +73,7 @@ namespace ProjectServer.Managers.MaterialTests.Soil
             return true;
         }
 
-        public async Task<bool> UpdateAsync(MoistureGravelTest moistureSoilTestUpdate)
+        public async Task<bool> UpdateAsync(MoistureSoilTest moistureSoilTestUpdate)
         {
             var dbMoistureSoilTest = await _appDb.MoistureSoilTests
                 .FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.Id == moistureSoilTestUpdate.Id);

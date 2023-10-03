@@ -15,7 +15,7 @@ namespace Project.ViewModels
     internal partial class MainWindowViewModel : ViewModel
     {
         public MainWindowViewModel(IWorkWithBDGeneric<Customer> customerDBService,
-            IWorkWithBDGeneric<MoistureGravelTest> moistureSoilTestDBService,
+            IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
             IWorkWithBDGeneric<Test> testDbService)
         {
             MainUserControl = SelectNewTaskUserControl;
@@ -26,7 +26,6 @@ namespace Project.ViewModels
             _testDBService = testDbService;
 
             LoadCostumersFromBD();
-            LoadAllTest();
 
             #region Create Commands
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);

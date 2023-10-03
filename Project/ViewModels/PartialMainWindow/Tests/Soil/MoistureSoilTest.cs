@@ -16,14 +16,14 @@ namespace Project.ViewModels
         /// <summary>
         /// Тест по определению важности грунта
         /// </summary>
-        private MoistureGravelTest moistureTest;
+        private MoistureSoilTest moistureTest;
         #endregion
 
         #region Properties
         /// <summary>
         /// Тест по определению важности грунта
         /// </summary>
-        public MoistureGravelTest MoistureTest
+        public MoistureSoilTest MoistureTest
         {
             get
             {

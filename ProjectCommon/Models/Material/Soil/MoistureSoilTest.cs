@@ -6,7 +6,7 @@ namespace ProjectCommon.Models.Material.Soil
     /// <summary>
     /// Класс для хранения протоколов испытаний по определению влажности грунта.
     /// </summary>
-    public class MoistureGravelTest : Test
+    public class MoistureSoilTest : Test
     {
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace ProjectCommon.Models.Material.Soil
         /// <summary>
         /// Конструктор для создания теста по определению влажности грунта.
         /// </summary>
-        public MoistureGravelTest()
+        public MoistureSoilTest()
         {
             SoilWetMassWithBox = new Dimension("Масса влажного грунта с бюксой, г");
             SoilDryMassWithBox = new Dimension("Масса сухого грунта с бюксой, г");

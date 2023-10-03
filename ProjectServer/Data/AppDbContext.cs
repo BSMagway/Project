@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectCommon.Models;
 using ProjectCommon.Models.Base;
+using ProjectCommon.Models.Material.Gravel;
 using ProjectCommon.Models.Material.Soil;
 using System.Reflection.Metadata;
 
@@ -52,11 +53,26 @@ public class AppDbContext : DbContext
     /// <summary>
     /// Таблица с информацией тестов по определению влажности грунта.
     /// </summary>
-    public DbSet<MoistureGravelTest> MoistureSoilTests { get; set; }
+    public DbSet<MoistureSoilTest> MoistureSoilTests { get; set; }
 
     /// <summary>
     /// Таблица с информацией тестов по определению плотности грунта.
     /// </summary>
     public DbSet<DensitySoilTest> DensitySoilTests { get; set; }
+
+    /// <summary>
+    /// Таблица с информацией тестов по определению границы текучести грунта.
+    /// </summary>
+    public DbSet<YieldLimitSoilTest> YieldLimitSoilTests { get; set; }
+
+    /// <summary>
+    /// Таблица с информацией тестов по определению границы раскатывания грунта.
+    /// </summary>
+    public DbSet<RollingBoundarySoilTest> RollingBoundarySoilTests { get; set; }
+
+    /// <summary>
+    /// Таблица с информацией тестов по определению влажности щебня.
+    /// </summary>
+    public DbSet<MoistureGravelTest> MoistureGravelTests { get; set; }
 }
 

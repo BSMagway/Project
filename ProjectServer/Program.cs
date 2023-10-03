@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectServer.Data;
 using ProjectServer.Interfaces.Managers;
+using ProjectServer.Interfaces.Managers.MaterialTests.Gravel;
 using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 using ProjectServer.Managers;
+using ProjectServer.Managers.MaterialTests.Gravel;
 using ProjectServer.Managers.MaterialTests.Soil;
 using System.Text.Json.Serialization;
 
@@ -40,6 +42,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IMoistureSoilTestManager, MoistureSoilTestManager>();
 builder.Services.AddScoped<IDensitySoilTestManager, DensitySoilTestManager>();
+builder.Services.AddScoped<IYieldLimitSoilTestManager, YieldLimitSoilTestManager>();
+builder.Services.AddScoped<IRollingBoundarySoilTestManager, RollingBoundarySoilTestManager>();
+
+builder.Services.AddScoped<IMoistureGravelTestManager, MoistureGravelTestManager>();
+
 builder.Services.AddScoped<ITestsManager, TestsManager>();
 builder.Services.AddScoped<ICustomerManager, CustomerManager>();
 builder.Services.AddScoped<IDimensionManager, DimensionManager>();

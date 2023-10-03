@@ -4,9 +4,9 @@ using ProjectCommon.Models.Base;
 namespace ProjectCommon.Models.Material.Soil
 {
     /// <summary>
-    /// Класс для хранения протоколов испытаний по определению границы расскатывания грунта.
+    /// Класс для хранения протоколов испытаний по определению границы текучести грунта.
     /// </summary>
-    public class RollingBoundaryTest : Test
+    public class YieldLimitSoilTest : Test
     {
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace ProjectCommon.Models.Material.Soil
         public Dimension BoxMass { get; set; }
 
         /// <summary>
-        /// Id результата определения границы раскатывания пробы грунта.
+        /// Id результата определения границы текучести пробы грунта.
         /// </summary>
-        public int? RollingBoundaryId { get; set; }
+        public int? YieldLimitId { get; set; }
 
         /// <summary>
-        /// Рассчитанная влажность границы раскатывания пробы грунта.
+        /// Рассчитанная граница текучести пробы грунта.
         /// </summary>
-        public Dimension RollingBoundary { get; set; }
+        public Dimension YieldLimit { get; set; }
 
         public override void Calculate()
         {
@@ -66,24 +66,22 @@ namespace ProjectCommon.Models.Material.Soil
                 throw new ArgumentOutOfRangeException("Значение массы бюксы равно 0");
             }
 
-            RollingBoundary.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)
-                / (SoilDryMassWithBox.DimensionValue - BoxMass.DimensionValue)) * 100;
+            YieldLimit.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)
+                                        / (SoilDryMassWithBox.DimensionValue - BoxMass.DimensionValue)) * 100;
         }
 
         /// <summary>
-        /// Конструктор для создания теста по определению границы раскатывания пробы грунта.
+        /// Конструктор для создания теста по определению границы текучести пробы грунта.
         /// </summary>
-        public RollingBoundaryTest()
+        public YieldLimitSoilTest()
         {
             SoilWetMassWithBox = new Dimension("Масса влажного грунта с бюксой, г");
             SoilDryMassWithBox = new Dimension("Масса сухого грунта с бюксой, г");
             BoxMass = new Dimension("Масса бюксы, г");
-            RollingBoundary = new Dimension("Граница раскатывания, %");
-
-            DocumentTest = "ГОСТ 5180-2015";
+            YieldLimit = new Dimension("Граница текучести, %");
 
             MaterialEnum = MaterialType.Soil;
-            TestEnum = ExperimentType.Rolling_Boundary;
+            TestEnum = ExperimentType.Yield_Limit;
         }
     }
 }
