@@ -16,14 +16,14 @@ namespace Project.ViewModels
         /// <summary>
         /// Тест по определению важности грунта
         /// </summary>
-        private MoistureSoilTest moistureTest;
+        private MoistureGravelTest moistureTest;
         #endregion
 
         #region Properties
         /// <summary>
         /// Тест по определению важности грунта
         /// </summary>
-        public MoistureSoilTest MoistureTest
+        public MoistureGravelTest MoistureTest
         {
             get
             {
@@ -77,27 +77,16 @@ namespace Project.ViewModels
         private bool CanSaveMoistureSoilTestCommandExecute(object p) => true;
         private void OnSaveMoistureSoilTestCommandExecuted(object p)
         {
-            if (saveTestStatus)
+            if (isSavedTest)
             {
-                Jsoncont = JsonSerializer.Serialize(MoistureTest);
-
                 EditMoistureSoilTest();
             }
             else
             {
                 SaveNewMoistureSoilTest();
-                saveTestStatus = true;
+                isSavedTest = true;
             }
         }
-        private string jsoncont;
-        public string Jsoncont 
-        {
-            get => jsoncont;
-            set => Set(ref jsoncont, value);
-        }
-
-
-
         #endregion
         #endregion
     }

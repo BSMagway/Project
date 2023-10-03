@@ -16,7 +16,7 @@ namespace Project.ViewModels
         /// <summary>
         /// Сервис для работы с базой данных тестов по определению влажности грунта.
         /// </summary>
-        IWorkWithBDGeneric<MoistureSoilTest> _moistureSoilTestDBService;
+        IWorkWithBDGeneric<MoistureGravelTest> _moistureSoilTestDBService;
 
         /// <summary>
         /// Сервис для работы с базой данных всех тестов с общей информацией о них.

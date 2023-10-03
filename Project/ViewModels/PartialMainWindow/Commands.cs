@@ -25,7 +25,7 @@ namespace Project.ViewModels
                 case TaskType.NewTest:
                     {
                         MainUserControl = SelectTypeTestUserControl;
-                        saveTestStatus = false;
+                        isSavedTest = false;
                     }
                     break;
                 case TaskType.LoadTest:
@@ -57,27 +57,27 @@ namespace Project.ViewModels
             {
                 case MaterialType.Soil:
                     {
-                        MainUserControl = SoilTestsUserControl;
+                        MainUserControl = SelectSoilTestsUserControl;
                     }
                     break;
                 case MaterialType.Sand:
                     {
-                        MainUserControl = SandTestsUserControl;
+                        MainUserControl = SelectSandTestsUserControl;
                     }
                     break;
                 case MaterialType.Gravel:
                     {
-                        MainUserControl = GravelTestsUserControl;
+                        MainUserControl = SelectGravelTestsUserControl;
                     }
                     break;
                 case MaterialType.SandAndGravel:
                     {
-                        MainUserControl = SandAndGravelTestsUserControl;
+                        MainUserControl = SelectSandAndGravelTestsUserControl;
                     }
                     break;
                 case MaterialType.Geotextile:
                     {
-                        MainUserControl = GeotextileTestsUserControl;
+                        MainUserControl = SelectGeotextileTestsUserControl;
                     }
                     break;
             }
@@ -143,7 +143,7 @@ namespace Project.ViewModels
         private bool CanSaveEditCustomerInBDCommandExecute(object p) => true;
         private void OnSaveEditCustomerInBDCommandExecuted(object p)
         {
-            if (saveCustomerStatus)
+            if (isSavedCustomer)
             {
                 EditCostumer();
             }
@@ -152,8 +152,16 @@ namespace Project.ViewModels
                 SaveCostumer();
             }
 
-            MainUserControl = CustomersListUserControl;
+            if (isSavedTest)
+            {
+                MainUserControl = CustomersListUserControl;
+            } else
+            {
+                MainUserControl = CustomersSelectUserControl;
+            }
+
         }
+
         /// <summary>
         /// Команда отвечающая за открытие формы для редактирования заказчика.
         /// </summary>
@@ -175,7 +183,7 @@ namespace Project.ViewModels
             SelectedCustomer = new Customer();
             MainUserControl = new FormForCustomerAddEditUserControl();
             MainUserControl.DataContext = this;
-            saveCustomerStatus = false;
+            isSavedCustomer = false;
         }
 
         /// <summary>
@@ -196,7 +204,7 @@ namespace Project.ViewModels
         private bool CanLoadCustomerFromListCommandExecute(object p) => true;
         private void OnLoadCustomerFromListCommandExecuted(object p)
         {
-           //MoistureTest.Customer = SelectedCustomer;
+            MoistureTest.Customer = SelectedCustomer;
             MainUserControl = MoistureSoilTestUserControl;
         }
     }

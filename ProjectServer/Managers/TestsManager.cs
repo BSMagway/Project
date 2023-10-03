@@ -7,7 +7,9 @@ using ProjectServer.Interfaces.Managers;
 
 namespace ProjectServer.Managers
 {
-    /// <inheritdoc cref="ITestsManager"/>
+    /// <summary>
+    /// Класс для получения списка всех протоколов без значения  измерений.
+    /// </summary>
     public class TestsManager : ITestsManager
     {
         private readonly AppDbContext _appDb;
@@ -19,7 +21,7 @@ namespace ProjectServer.Managers
 
         public async Task<Test[]> GetAsync()
         {
-            var model = await _appDb.Tests.ToArrayAsync();
+            var model = await _appDb.Tests.Include(item => item.Customer).ToArrayAsync();
             return model;
         }
     }

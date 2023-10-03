@@ -34,7 +34,7 @@ namespace Project.ViewModels
         {
             selectedCustomer = await _customerDBService.Add(CUSTOMER_ADRESS, selectedCustomer);
             Customers.Add(selectedCustomer);
-            saveCustomerStatus = true;
+            isSavedCustomer = true;
         }
         #endregion
 

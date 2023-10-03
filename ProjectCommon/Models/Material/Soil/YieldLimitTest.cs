@@ -4,9 +4,9 @@ using ProjectCommon.Models.Base;
 namespace ProjectCommon.Models.Material.Soil
 {
     /// <summary>
-    /// Класс для хранения протоколов испытаний по определению влажности грунта.
+    /// Класс для хранения протоколов испытаний по определению границы текучести грунта.
     /// </summary>
-    public class MoistureGravelTest : Test
+    public class YieldLimitTest : Test
     {
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace ProjectCommon.Models.Material.Soil
         public Dimension BoxMass { get; set; }
 
         /// <summary>
-        /// Id результата влажности пробы грунта.
+        /// Id результата определения границы текучести пробы грунта.
         /// </summary>
-        public int? MoistureId { get; set; }
+        public int? YieldLimitId { get; set; }
 
         /// <summary>
-        /// Рассчитанная влажность пробы грунта.
+        /// Рассчитанная граница текучести пробы грунта.
         /// </summary>
-        public Dimension Moisture { get; set; }
+        public Dimension YieldLimit { get; set; }
 
         public override void Calculate()
         {
@@ -66,22 +66,22 @@ namespace ProjectCommon.Models.Material.Soil
                 throw new ArgumentOutOfRangeException("Значение массы бюксы равно 0");
             }
 
-            Moisture.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)
-                / (SoilDryMassWithBox.DimensionValue - BoxMass.DimensionValue)) * 100;
+            YieldLimit.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)
+                                        / (SoilDryMassWithBox.DimensionValue - BoxMass.DimensionValue)) * 100;
         }
 
         /// <summary>
-        /// Конструктор для создания теста по определению влажности грунта.
+        /// Конструктор для создания теста по определению границы текучести пробы грунта.
         /// </summary>
-        public MoistureGravelTest()
+        public YieldLimitTest()
         {
             SoilWetMassWithBox = new Dimension("Масса влажного грунта с бюксой, г");
             SoilDryMassWithBox = new Dimension("Масса сухого грунта с бюксой, г");
             BoxMass = new Dimension("Масса бюксы, г");
-            Moisture = new Dimension("Влажность грунта, %");
+            YieldLimit = new Dimension("Граница текучести, %");
 
             MaterialEnum = MaterialType.Soil;
-            TestEnum = ExperimentType.Moister;
+            TestEnum = ExperimentType.Yield_Limit;
         }
     }
 }

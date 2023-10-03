@@ -16,11 +16,11 @@ namespace Project.ViewModels
 
         private UserControl selectNewTaskUserControl;
         private UserControl selectTypeTestUserControl;
-        private UserControl soilTestsUserControl;
-        private UserControl sandTestsUserControl;
-        private UserControl gravelTestsUserControl;
-        private UserControl sandAndGravelTestsUserControl;
-        private UserControl geotextileTestsUserControl;
+        private UserControl selectSoilTestsUserControl;
+        private UserControl selectSandTestsUserControl;
+        private UserControl selectGravelTestsUserControl;
+        private UserControl selectSandAndGravelTestsUserControl;
+        private UserControl selectGeotextileTestsUserControl;
 
         private UserControl loadTestsListUserControl;
 
@@ -90,96 +90,96 @@ namespace Project.ViewModels
         /// <summary>
         /// Элемент отвечающий за выбор вида испытания грунта.
         /// </summary>
-        public UserControl SoilTestsUserControl
+        public UserControl SelectSoilTestsUserControl
         {
             get
             {
-                if (soilTestsUserControl == null)
+                if (selectSoilTestsUserControl == null)
                 {
-                    soilTestsUserControl = new SelectNewTestSoil();
-                    soilTestsUserControl.DataContext = this;
+                    selectSoilTestsUserControl = new SelectNewTestSoil();
+                    selectSoilTestsUserControl.DataContext = this;
                 }
 
-                return soilTestsUserControl;
+                return selectSoilTestsUserControl;
             }
 
-            set => soilTestsUserControl = value;
+            set => selectSoilTestsUserControl = value;
         }
 
         /// <summary>
         /// Элемент отвечающий за выбор вида испытания песка.
         /// </summary>
-        public UserControl SandTestsUserControl
+        public UserControl SelectSandTestsUserControl
         {
             get
             {
-                if (sandTestsUserControl == null)
+                if (selectSandTestsUserControl == null)
                 {
-                    sandTestsUserControl = new SelectNewTestSand();
-                    sandTestsUserControl.DataContext = this;
+                    selectSandTestsUserControl = new SelectNewTestSand();
+                    selectSandTestsUserControl.DataContext = this;
                 }
 
-                return sandTestsUserControl;
+                return selectSandTestsUserControl;
             }
 
-            set => sandTestsUserControl = value;
+            set => selectSandTestsUserControl = value;
         }
 
         /// <summary>
         /// Элемент отвечающий за выбор вида испытания щебня.
         /// </summary>
-        public UserControl GravelTestsUserControl
+        public UserControl SelectGravelTestsUserControl
         {
             get
             {
-                if (gravelTestsUserControl == null)
+                if (selectGravelTestsUserControl == null)
                 {
-                    gravelTestsUserControl = new SelectNewTestGravel();
-                    gravelTestsUserControl.DataContext = this;
+                    selectGravelTestsUserControl = new SelectNewTestGravel();
+                    selectGravelTestsUserControl.DataContext = this;
                 }
 
-                return gravelTestsUserControl;
+                return selectGravelTestsUserControl;
             }
 
-            set => gravelTestsUserControl = value;
+            set => selectGravelTestsUserControl = value;
         }
 
         /// <summary>
         /// Элемент отвечающий за выбор вида испытания ПГС.
         /// </summary>
-        public UserControl SandAndGravelTestsUserControl
+        public UserControl SelectSandAndGravelTestsUserControl
         {
             get
             {
-                if (sandAndGravelTestsUserControl == null)
+                if (selectSandAndGravelTestsUserControl == null)
                 {
-                    sandAndGravelTestsUserControl = new SelectNewTestSandAndGravel();
-                    sandAndGravelTestsUserControl.DataContext = this;
+                    selectSandAndGravelTestsUserControl = new SelectNewTestSandAndGravel();
+                    selectSandAndGravelTestsUserControl.DataContext = this;
                 }
 
-                return sandAndGravelTestsUserControl;
+                return selectSandAndGravelTestsUserControl;
             }
 
-            set => sandAndGravelTestsUserControl = value;
+            set => selectSandAndGravelTestsUserControl = value;
         }
 
         /// <summary>
         /// Элемент отвечающий за выбор вида испытания геотекстиля.
         /// </summary>
-        public UserControl GeotextileTestsUserControl
+        public UserControl SelectGeotextileTestsUserControl
         {
             get
             {
-                if (geotextileTestsUserControl == null)
+                if (selectGeotextileTestsUserControl == null)
                 {
-                    geotextileTestsUserControl = new SelectNewTestGeotextile();
-                    geotextileTestsUserControl.DataContext = this;
+                    selectGeotextileTestsUserControl = new SelectNewTestGeotextile();
+                    selectGeotextileTestsUserControl.DataContext = this;
                 }
 
-                return geotextileTestsUserControl;
+                return selectGeotextileTestsUserControl;
             }
 
-            set => geotextileTestsUserControl = value;
+            set => selectGeotextileTestsUserControl = value;
         }
 
         /// <summary>

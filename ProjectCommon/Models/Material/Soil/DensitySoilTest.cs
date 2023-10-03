@@ -10,52 +10,55 @@ namespace ProjectCommon.Models.Material.Soil
     {
 
         /// <summary>
-        /// Результат измерения массы влажного грунта с бюксой.
+        /// Id результата измерения массы грунта с кольцом и пластинками.
         /// </summary>
         public int? SoilMassWithRingAndPlateId { get; set; }
 
         /// <summary>
-        /// 
+        /// Результат измерения массы грунта с кольцом и пластинками.
         /// </summary>
         public Dimension SoilMassWithRingAndPlate { get; set; }
 
         /// <summary>
-        /// Результаты измерения массы сухого грунта с бюксой.
+        /// Id результата измерения массы кольца.
         /// </summary>
         public int? RingMassId { get; set; }
 
         /// <summary>
-        /// 
+        /// Результат измерения массы кольца.
         /// </summary>
         public Dimension RingMass { get; set; }
 
         /// <summary>
-        /// Результаты измерения массы бюксы.
+        /// Id результата измерения массы пластинок.
         /// </summary>
         public int? PlateMassId { get; set; }
 
         /// <summary>
-        /// 
+        /// Результат измерения массы пластинок.
         /// </summary>
         public Dimension PlateMass { get; set; }
 
+        /// <summary>
+        /// Id результата измерения внутреннего объема кольца.
+        /// </summary>
         public int? InternalVolumeRingId { get; set; }
+
+        /// <summary>
+        /// Результат измерения внутреннего объема кольца.
+        /// </summary>
         public Dimension InternalVolumeRing { get; set; }
 
         /// <summary>
-        /// Влажность пробы грунта.
+        /// Id полученной плотности пробы грунта.
         /// </summary>
         public int? DensityId { get; set; }
 
         /// <summary>
-        /// 
+        /// Плотность пробы грунта.
         /// </summary>
         public Dimension Density { get; set; }
 
-        #region Methods
-        /// <summary>
-        /// Расчет значения влажности пробы грунта
-        /// </summary>
         public override void Calculate()
         {
             if (SoilMassWithRingAndPlate.DimensionValue != 0 && RingMass.DimensionValue != 0
@@ -65,30 +68,20 @@ namespace ProjectCommon.Models.Material.Soil
                     / InternalVolumeRing.DimensionValue;
             }
         }
-        #endregion
 
-        #region Constructors
+        /// <summary>
+        /// Конструктор для создания теста по определению плотности грунта.
+        /// </summary>
         public DensitySoilTest()
         {
-            SoilMassWithRingAndPlate = new Dimension("Масса влажного грунта с бюксой");
-            RingMass = new Dimension("Масса сухого грунта с бюксой");
-            PlateMass = new Dimension("Масса бюксы");
-            InternalVolumeRing = new Dimension("Масса бюксы");
-            Density = new Dimension("Влажность грунта");
+            SoilMassWithRingAndPlate = new Dimension("Масса грунта с кольцами и пластинками, г");
+            RingMass = new Dimension("Масса кольца, г");
+            PlateMass = new Dimension("Масса плачтинок, г");
+            InternalVolumeRing = new Dimension("Внутренний объем кольца, см\u00B3");
+            Density = new Dimension("Плотность грунта, г/см\u00B3");
 
             MaterialEnum = MaterialType.Soil;
             TestEnum = ExperimentType.Density;
         }
-
-        //public DensitySoilTest(Dimension soilMassWithRingAndPlate, Dimension ringMass, Dimension plateMass, Dimension internalVolumeRing, Dimension density)
-        //{
-        //    SoilMassWithRingAndPlate = soilMassWithRingAndPlate;
-        //    RingMass = ringMass;
-        //    PlateMass = plateMass;
-        //    InternalVolumeRing = internalVolumeRing;
-        //    Density = density;
-        //}
-
-        #endregion
     }
 }

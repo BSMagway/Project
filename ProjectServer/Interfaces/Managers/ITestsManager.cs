@@ -4,12 +4,12 @@ using ProjectCommon.Models.Base;
 namespace ProjectServer.Interfaces.Managers
 {
     /// <summary>
-    /// Интерфейс получения короткого списка всех протоколов.
+    /// Интерфейс получения списка всех протоколов без значений измерений.
     /// </summary>
     public interface ITestsManager
     {
         /// <summary>
-        /// Метод для получения короткого списка всех протоколов.
+        /// Метод для получения списка всех протоколов без значений измерений.
         /// </summary>
         /// <returns></returns>
         public Task<Test[]> GetAsync();

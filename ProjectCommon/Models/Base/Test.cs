@@ -7,8 +7,9 @@ namespace ProjectCommon.Models.Base
     {
         private int testNumber;
         private string materialName;
+        private Customer customer;
         private string dateTest;
-        private string documentTest;
+        private string documentTest;       
 
         /// <summary>
         /// Id в базе данных.
@@ -32,15 +33,20 @@ namespace ProjectCommon.Models.Base
             get => materialName;
             set => Set(ref materialName, value);
         }
+
         /// <summary>
-        /// Заказчик испытания.
+        /// Id заказчика испытания.
         /// </summary>
         public int CustomerId { get; set; }
 
         /// <summary>
         /// Навигационное свойство для Customer.
         /// </summary>
-        public Customer Customer { get; set; }
+        public Customer Customer
+        {
+            get => customer;
+            set => Set(ref customer, value);
+        }
 
         /// <summary>
         /// Дата проведения испытания.
@@ -60,13 +66,19 @@ namespace ProjectCommon.Models.Base
             set => Set(ref documentTest, value);
         }
 
+        /// <summary>
+        /// Вид материала в Enum MaterialType.
+        /// </summary>
         public MaterialType MaterialEnum { get; set; }
 
+        /// <summary>
+        /// Вид испытания в Enum ExperimentType.
+        /// </summary>
         public ExperimentType TestEnum { get; set; }
 
-        public virtual void Calculate()
-        {
-
-        }
+        /// <summary>
+        /// Метод для расчета испытываемого показателя.
+        /// </summary>
+        public virtual void Calculate() { }
     }
 }

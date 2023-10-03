@@ -15,14 +15,19 @@ namespace Project.ViewModels
         private Test testForLoading;
 
         /// <summary>
-        /// Статус теста сохранен или нет в базе данных
+        /// Статус теста сохранен или нет в базе данных.
         /// </summary>
-        private bool saveTestStatus = true;
+        private bool isSavedTest = true;
 
         /// <summary>
-        /// Статус заказчика сохранен или нет в базе данных
+        /// Статус заказчика сохранен или нет в базе данных.
         /// </summary>
-        private bool saveCustomerStatus = true;
+        private bool isSavedCustomer = true;
+
+        /// <summary>
+        /// Статус редактируется ли в данный момент тест.
+        /// </summary>
+        private bool isEditingTest = false;
 
         /// <summary>
         /// Сокращенный список всех тестов.

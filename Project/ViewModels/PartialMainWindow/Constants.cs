@@ -7,7 +7,7 @@ namespace Project.ViewModels
         /// <summary>
         /// Адресная строка для загрузки всех тестов для отображения списком.
         /// </summary>
-        private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/FullTestsList";
+        private const string LOAD_ALL_TEST_ADRESS = "https://localhost:7143/api/Tests";
 
         /// <summary>
         /// Адресная строка для работы с базой данных заказчиков.

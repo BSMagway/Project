@@ -4,9 +4,9 @@ using ProjectCommon.Models.Base;
 namespace ProjectCommon.Models.Material.Soil
 {
     /// <summary>
-    /// Класс для хранения протоколов испытаний по определению влажности грунта.
+    /// Класс для хранения протоколов испытаний по определению границы расскатывания грунта.
     /// </summary>
-    public class MoistureGravelTest : Test
+    public class RollingBoundaryTest : Test
     {
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace ProjectCommon.Models.Material.Soil
         public Dimension BoxMass { get; set; }
 
         /// <summary>
-        /// Id результата влажности пробы грунта.
+        /// Id результата определения границы раскатывания пробы грунта.
         /// </summary>
-        public int? MoistureId { get; set; }
+        public int? RollingBoundaryId { get; set; }
 
         /// <summary>
-        /// Рассчитанная влажность пробы грунта.
+        /// Рассчитанная влажность границы раскатывания пробы грунта.
         /// </summary>
-        public Dimension Moisture { get; set; }
+        public Dimension RollingBoundary { get; set; }
 
         public override void Calculate()
         {
@@ -66,22 +66,24 @@ namespace ProjectCommon.Models.Material.Soil
                 throw new ArgumentOutOfRangeException("Значение массы бюксы равно 0");
             }
 
-            Moisture.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)
+            RollingBoundary.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)
                 / (SoilDryMassWithBox.DimensionValue - BoxMass.DimensionValue)) * 100;
         }
 
         /// <summary>
-        /// Конструктор для создания теста по определению влажности грунта.
+        /// Конструктор для создания теста по определению границы раскатывания пробы грунта.
         /// </summary>
-        public MoistureGravelTest()
+        public RollingBoundaryTest()
         {
             SoilWetMassWithBox = new Dimension("Масса влажного грунта с бюксой, г");
             SoilDryMassWithBox = new Dimension("Масса сухого грунта с бюксой, г");
             BoxMass = new Dimension("Масса бюксы, г");
-            Moisture = new Dimension("Влажность грунта, %");
+            RollingBoundary = new Dimension("Граница раскатывания, %");
+
+            DocumentTest = "ГОСТ 5180-2015";
 
             MaterialEnum = MaterialType.Soil;
-            TestEnum = ExperimentType.Moister;
+            TestEnum = ExperimentType.Rolling_Boundary;
         }
     }
 }

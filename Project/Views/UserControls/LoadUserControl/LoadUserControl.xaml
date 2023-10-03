@@ -24,8 +24,10 @@
                 <DataTemplate>
                     <StackPanel Margin="5">
                         <TextBlock FontSize="18" Text="{Binding Path=TestNumber}" />
-                        <TextBlock Text="{Binding Path=TestDate}" />
-                        <TextBlock Text="{Binding Path=TestId}" />
+                        <TextBlock Text="{Binding Path=DateTest}" />
+                        <TextBlock Text="{Binding Path=MaterialName}" />
+                        <TextBlock Text="{Binding Path=Customer.Title}" />
+                        <TextBlock Text="{Binding Path=Customer.ContractNumber}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -26,7 +26,7 @@ namespace ProjectServer.Managers.MaterialTests.Soil
             _customerManager = customerManager;
         }
 
-        public async Task<MoistureSoilTest> GetAsync(int moistureSoilTestId)
+        public async Task<MoistureGravelTest> GetAsync(int moistureSoilTestId)
         {
             var model = await _appDb.MoistureSoilTests.FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.Id == moistureSoilTestId);
 
@@ -39,7 +39,7 @@ namespace ProjectServer.Managers.MaterialTests.Soil
             return model;
         }
 
-        public async Task<MoistureSoilTest> AddAsync(MoistureSoilTest moistureSoilTest)
+        public async Task<MoistureGravelTest> AddAsync(MoistureGravelTest moistureSoilTest)
         {
             moistureSoilTest.BoxMass = await _dimensionManager.AddAsync(moistureSoilTest.BoxMass);
             moistureSoilTest.SoilWetMassWithBox = await _dimensionManager.AddAsync(moistureSoilTest.SoilWetMassWithBox);
@@ -73,7 +73,7 @@ namespace ProjectServer.Managers.MaterialTests.Soil
             return true;
         }
 
-        public async Task<bool> UpdateAsync(MoistureSoilTest moistureSoilTestUpdate)
+        public async Task<bool> UpdateAsync(MoistureGravelTest moistureSoilTestUpdate)
         {
             var dbMoistureSoilTest = await _appDb.MoistureSoilTests
                 .FirstOrDefaultAsync(moistureSoilTest => moistureSoilTest.Id == moistureSoilTestUpdate.Id);
