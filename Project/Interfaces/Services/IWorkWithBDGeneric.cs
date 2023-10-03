@@ -17,17 +17,17 @@ namespace Project.Interfaces.Services
         /// <summary>
         /// Отправка запроса для получения всех объектов типа Т из базы данных.
         /// </summary>
-        /// <param name="adress">Адрес по которому отправляется запрос.</param>
+        /// <param name="address">Адрес по которому отправляется запрос.</param>
         /// <returns>Коллекция объектов типа Т.</returns>
-        public Task<ObservableCollection<T>> GetAll(string adress);
+        public Task<ObservableCollection<T>> GetAll(string address);
 
         /// <summary>
         /// Отправка запроса для получения объекта из базы данных по id.
         /// </summary>
-        /// <param name="adress">Адрес по которому отправляется запрос.</param>
+        /// <param name="address">Адрес по которому отправляется запрос.</param>
         /// <param name="id">Id объекта который необходимо получить из базы данных.</param>
         /// <returns>Объект типа Т.</returns>
-        public Task<T> Get(string adress, int id);
+        public Task<T> Get(string address, int id);
 
         /// <summary>
         /// Отправка запроса для добавления объекта в базу данных.
@@ -35,7 +35,7 @@ namespace Project.Interfaces.Services
         /// <param name="adress">Адрес по которому отправляется запрос.</param>
         /// <param name="item">Объект для добавления в базу данных.</param>
         /// <returns>Объект типа Т.</returns>
-        public Task<T> Add(string adress, T item);
+        public Task<T> Add(string address, T item);
 
         /// <summary>
         /// Отправка запроса для изменения объекта в базе данных.
@@ -43,7 +43,7 @@ namespace Project.Interfaces.Services
         /// <param name="adress">Адрес по которому отправляется запрос.</param>
         /// <param name="item">Объект для изменения в базе данных.</param>
         /// <returns></returns>
-        public Task Update(string adress, T item);
+        public Task Update(string address, T item);
 
         /// <summary>
         /// Отправка запроса для удаления объекта в базе данных.
@@ -51,6 +51,6 @@ namespace Project.Interfaces.Services
         /// <param name="adress">Адрес по которому отправляется запрос.</param>
         /// <param name="id">Id объекта который необходимо удалить из базы данных.</param>
         /// <returns></returns>
-        public Task Delete(string adress, int id);
+        public Task Delete(string address, int id);
     }
 }
