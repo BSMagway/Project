@@ -19,7 +19,6 @@ namespace Project.ViewModels
             IWorkWithBDGeneric<Test> testDbService)
         {
             MainUserControl = SelectNewTaskUserControl;
-            LoginUserControl = EmployeeLoginFormUserControl;
 
             _customerDBService = customerDBService;
             _moistureSoilTestDBService = moistureSoilTestDBService;

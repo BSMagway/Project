@@ -1,5 +1,4 @@
 ﻿using Project.Views.UserControls.CustomersUserControl;
-using Project.Views.UserControls.EmployeeUserControl;
 using Project.Views.UserControls.LoadUserControl;
 using Project.Views.UserControls.SelectUserControls;
 using Project.Views.UserControls.TestUserControls.Soil;
@@ -28,8 +27,6 @@ namespace Project.ViewModels
         private UserControl customersListUserControl;
 
         private UserControl moistureSoilTestUserControl;
-
-        private UserControl employeeLoginFormUserControl;
 
         /// <summary>
         /// Основной User Control отвечающий за основную область приложения.
@@ -256,25 +253,6 @@ namespace Project.ViewModels
             }
 
             set => moistureSoilTestUserControl = value;
-        }
-
-        /// <summary>
-        /// Элемент отвечающий за логин форму сотрудников.
-        /// </summary>
-        public UserControl EmployeeLoginFormUserControl
-        {
-            get
-            {
-                if (employeeLoginFormUserControl == null)
-                {
-                    employeeLoginFormUserControl = new EmployeeLoginFormUserControl();
-                    employeeLoginFormUserControl.DataContext = this;
-                }
-
-                return employeeLoginFormUserControl;
-            }
-
-            set => employeeLoginFormUserControl = value;
         }
     }
 

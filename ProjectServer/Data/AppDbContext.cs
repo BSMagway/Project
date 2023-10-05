@@ -36,11 +36,6 @@ public class AppDbContext : DbContext
     public DbSet<Customer> Customers { get; set; }
 
     /// <summary>
-    /// 
-    /// </summary>
-    public DbSet<Employee> Employees { get; set; }
-
-    /// <summary>
     /// Таблица измерений.
     /// </summary>
     public DbSet<Dimension> Dimensions { get; set; }
