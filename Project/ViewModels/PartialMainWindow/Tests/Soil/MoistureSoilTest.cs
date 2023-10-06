@@ -1,6 +1,8 @@
 ﻿using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
+using System;
 using System.Net.Http.Json;
+using System.Reflection.Metadata;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -68,7 +70,14 @@ namespace Project.ViewModels
         private bool CanCalculateMoistureCommandExecute(object p) => true;
         private void OnCalculateMoistureCommandExecuted(object p)
         {
-            MoistureTest.Calculate();
+            try
+            {
+                MoistureTest.Calculate();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
         /// <summary>
         /// Команда для сохранения и редактирования тестов по определению влажности грунта

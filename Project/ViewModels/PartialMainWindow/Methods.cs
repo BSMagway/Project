@@ -1,4 +1,5 @@
 ﻿using ProjectCommon.ViewModelBase;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,14 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task LoadCostumersFromBD()
         {
-            Customers = await _customerDBService.GetAll(CUSTOMER_ADRESS);
+            try
+            {
+                Customers = await _customerDBService.GetAll(CUSTOMER_ADRESS);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
 
         /// <summary>
@@ -22,8 +30,16 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task EditCostumer()
         {
-            await _customerDBService.Update(CUSTOMER_ADRESS, selectedCustomer);
-            Customers[Customers.IndexOf(Customers.First(x => x.Id == selectedCustomer.Id))] = selectedCustomer;
+            try
+            {
+                await _customerDBService.Update(CUSTOMER_ADRESS, selectedCustomer);
+                Customers[Customers.IndexOf(Customers.First(x => x.Id == selectedCustomer.Id))] = selectedCustomer;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+
         }
 
         /// <summary>
@@ -32,9 +48,17 @@ namespace Project.ViewModels
         /// <returns></returns>
         private async Task SaveCostumer()
         {
-            selectedCustomer = await _customerDBService.Add(CUSTOMER_ADRESS, selectedCustomer);
-            Customers.Add(selectedCustomer);
-            isSavedCustomer = true;
+            try
+            {
+                selectedCustomer = await _customerDBService.Add(CUSTOMER_ADRESS, selectedCustomer);
+                Customers.Add(selectedCustomer);
+                isSavedCustomer = true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+
         }
         #endregion
 
@@ -46,8 +70,15 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task LoadAllTest()
         {
-            var collection = await _testDBService.GetAll(LOAD_ALL_TEST_ADRESS);
-            LoadedListTests = collection;
+            try
+            {
+                var collection = await _testDBService.GetAll(LOAD_ALL_TEST_ADRESS);
+                LoadedListTests = collection;
+            }
+            catch (Exception ex)
+            { 
+                ErrorMessage = ex.Message;
+            }
         }
 
         /// <summary>
@@ -56,8 +87,15 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task LoadMoistureSoilTest()
         {
-            var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id);
-            MoistureTest = item;
+            try
+            {
+                var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id);
+                MoistureTest = item;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
         #endregion
     }

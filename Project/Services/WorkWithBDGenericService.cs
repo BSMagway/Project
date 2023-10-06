@@ -29,7 +29,7 @@ namespace Project.Services
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception();
+                throw new Exception("Ошибка получения списка.");
             }
             else
             {
@@ -47,7 +47,7 @@ namespace Project.Services
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception();
+                throw new Exception("Ошибка получения.");
             }
             else
             {
@@ -65,7 +65,7 @@ namespace Project.Services
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception();
+                throw new Exception("Ошибка добавления.");
             }
             else
             {
@@ -83,7 +83,7 @@ namespace Project.Services
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception();
+                throw new Exception("Ошибка обновления.");
             }
         }
 
@@ -93,7 +93,7 @@ namespace Project.Services
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception();
+                throw new Exception("Ошибка удаления.");
             }
         }
     }

@@ -36,6 +36,7 @@ namespace Project.ViewModels
                     break;
                 case TaskType.CostumersList:
                     {
+                        LoadCostumersFromBD();
                         MainUserControl = CustomersListUserControl;
                     }
                     break;
@@ -193,6 +194,7 @@ namespace Project.ViewModels
         private bool CanOpenSelectCustomerCommandExecute(object p) => true;
         private void OnOpenSelectCustomerCommandExecuted(object p)
         {
+            LoadCostumersFromBD();
             MainUserControl = CustomersSelectUserControl;
         }
         #endregion

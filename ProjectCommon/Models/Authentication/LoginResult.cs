@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjectCommon.Models.Authentication
 {
-    public class Response
+    public class LoginResult
     {
-        public string? Status { get; set; }
-        public string? Message { get; set; }
+        public string Jwt { get; set; }
     }
 }

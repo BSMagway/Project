@@ -14,6 +14,8 @@ namespace Project.ViewModels
 
         private Test testForLoading;
 
+        private string errorMessage = string.Empty;
+
         /// <summary>
         /// Статус теста сохранен или нет в базе данных.
         /// </summary>
@@ -84,6 +86,15 @@ namespace Project.ViewModels
         {
             get => testForLoading;
             set => Set(ref testForLoading, value);
+        }
+
+        /// <summary>
+        /// Сообщение о ошибке.
+        /// </summary>
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set => Set(ref errorMessage, value);
         }
     }
 }

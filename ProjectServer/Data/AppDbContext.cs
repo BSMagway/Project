@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectCommon.Models;
+using ProjectCommon.Models.Authentication;
 using ProjectCommon.Models.Base;
 using ProjectCommon.Models.Material.Gravel;
 using ProjectCommon.Models.Material.Soil;
-using System.Reflection.Metadata;
 
 namespace ProjectServer.Data;
 
@@ -18,6 +18,7 @@ public class AppDbContext : DbContext
     /// <param name="options">Опции создания контекста базы данных.</param>
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
+        Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
@@ -29,6 +30,11 @@ public class AppDbContext : DbContext
     {
         modelBuilder.Entity<Test>().UseTptMappingStrategy();
     }
+
+    /// <summary>
+    /// Таблица пользователей.
+    /// </summary>
+    public DbSet<User> Users { get; set; }
 
     /// <summary>
     /// Таблица заказчиков.

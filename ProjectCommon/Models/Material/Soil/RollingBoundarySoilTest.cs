@@ -51,19 +51,29 @@ namespace ProjectCommon.Models.Material.Soil
 
         public override void Calculate()
         {
-            if (SoilWetMassWithBox.DimensionValue == 0)
+            if (SoilWetMassWithBox.DimensionValue <= 0)
             {
-                throw new ArgumentOutOfRangeException("Значение массы влажного грунта с бюксой равно 0");
+                throw new ArgumentOutOfRangeException(null, "Значение массы влажного грунта с бюксой равно или меньше 0.");
             }
 
-            if (SoilDryMassWithBox.DimensionValue == 0)
+            if (SoilDryMassWithBox.DimensionValue <= 0)
             {
-                throw new ArgumentOutOfRangeException("Значение массы сухого грунта с бюксой равно 0");
+                throw new ArgumentOutOfRangeException(null, "Значение массы сухого грунта с бюксой равно или меньше 0.");
             }
 
-            if (BoxMass.DimensionValue == 0)
+            if (BoxMass.DimensionValue <= 0)
             {
-                throw new ArgumentOutOfRangeException("Значение массы бюксы равно 0");
+                throw new ArgumentOutOfRangeException(null, "Значение массы бюксы равно или меньше 0.");
+            }
+
+            if (SoilWetMassWithBox.DimensionValue < SoilDryMassWithBox.DimensionValue)
+            {
+                throw new ArgumentOutOfRangeException(null, "Значение массы влажного грунта меньше массы сухого грунта.");
+            }
+
+            if (SoilDryMassWithBox.DimensionValue <= BoxMass.DimensionValue)
+            {
+                throw new ArgumentOutOfRangeException(null, "Значение массы сухого грунта меньше или равна массы бюксы.");
             }
 
             RollingBoundary.DimensionValue = ((SoilWetMassWithBox.DimensionValue - SoilDryMassWithBox.DimensionValue)

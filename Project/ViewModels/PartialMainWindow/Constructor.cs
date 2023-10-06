@@ -24,8 +24,6 @@ namespace Project.ViewModels
             _moistureSoilTestDBService = moistureSoilTestDBService;
             _testDBService = testDbService;
 
-            LoadCostumersFromBD();
-
             #region Create Commands
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
             SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);

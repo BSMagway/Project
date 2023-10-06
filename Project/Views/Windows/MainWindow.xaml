@@ -19,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -33,7 +34,8 @@
 
         <UserControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="2" Content="{Binding LoginUserControl}"/>
 
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Text="{Binding ErrorMessage}"/>
         <Button Grid.Row="1" Grid.Column="6" Content="Возврат" Command="{Binding ReturnToNewTaskPageCommand}"/>
-        <UserControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding MainUserControl}"/>
+        <UserControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding MainUserControl}"/>
     </Grid>
 </Window>

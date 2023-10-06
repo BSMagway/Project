@@ -61,12 +61,33 @@ namespace ProjectCommon.Models.Material.Soil
 
         public override void Calculate()
         {
-            if (SoilMassWithRingAndPlate.DimensionValue != 0 && RingMass.DimensionValue != 0
-                && PlateMass.DimensionValue != 0 && InternalVolumeRing.DimensionValue != 0)
+            if (SoilMassWithRingAndPlate.DimensionValue <= 0)
             {
-                Density.DimensionValue = (SoilMassWithRingAndPlate.DimensionValue - RingMass.DimensionValue - PlateMass.DimensionValue)
-                    / InternalVolumeRing.DimensionValue;
+                throw new ArgumentOutOfRangeException(null, "Значение массы грунта с кольцами и пластинками равно или меньше 0.");
             }
+
+            if (RingMass.DimensionValue <= 0)
+            {
+                throw new ArgumentOutOfRangeException(null, "Значение массы кольца равно или меньше 0.");
+            }
+
+            if (PlateMass.DimensionValue <= 0)
+            {
+                throw new ArgumentOutOfRangeException(null, "Значение массы пластинок или меньше 0.");
+            }
+
+            if (InternalVolumeRing.DimensionValue <= 0)
+            {
+                throw new ArgumentOutOfRangeException(null, "Внутренний объем кольца равно или меньше 0.");
+            }
+
+            if (SoilMassWithRingAndPlate.DimensionValue <= (RingMass.DimensionValue + PlateMass.DimensionValue))
+            {
+                throw new ArgumentOutOfRangeException(null, "Значениемассы грунта с кольцами и пластинками меньше массы кольца с пластинками.");
+            }
+
+            Density.DimensionValue = (SoilMassWithRingAndPlate.DimensionValue - RingMass.DimensionValue - PlateMass.DimensionValue)
+                / InternalVolumeRing.DimensionValue;
         }
 
         /// <summary>
