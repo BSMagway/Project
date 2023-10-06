@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectCommon.Models.Material.Soil;
 using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 
@@ -7,6 +8,7 @@ namespace ProjectServer.Controllers.MaterialTests.Soil
     /// <summary>
     /// Контроллер для обработки запросов по работе с базой данных тестов по определению влажности грунта.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DensitySoilTestController : ControllerBase

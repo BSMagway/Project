@@ -11,7 +11,7 @@ namespace Project.ViewModels
     internal partial class MainWindowViewModel : ViewModel
     {
         private UserControl mainUserControl;
-        private UserControl loginUserControl;
+        private UserControl authUserControl;
 
         private UserControl selectNewTaskUserControl;
         private UserControl selectTypeTestUserControl;
@@ -40,10 +40,10 @@ namespace Project.ViewModels
         /// <summary>
         /// Вспомогательный User Control отвечающий за область приложения для логина.
         /// </summary>
-        public UserControl LoginUserControl
+        public UserControl AuthUserControl
         {
-            get => loginUserControl;
-            set => Set(ref loginUserControl, value);
+            get => authUserControl;
+            set => Set(ref authUserControl, value);
         }
 
         /// <summary>

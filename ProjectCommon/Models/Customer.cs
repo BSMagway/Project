@@ -1,6 +1,5 @@
 ﻿using ProjectCommon.Models.Base;
 using ProjectCommon.ViewModelBase;
-using System.Collections.ObjectModel;
 
 namespace ProjectCommon.Models
 {
@@ -14,12 +13,12 @@ namespace ProjectCommon.Models
         /// <summary>
         /// Id в базе данных.
         /// </summary>
-        public int Id { get; set; } 
+        public int Id { get; set; }
 
         /// <summary>
         /// Название организации заказчика.
         /// </summary>
-        public string Title 
+        public string Title
         {
             get => title;
             set => Set(ref title, value);
@@ -34,6 +33,9 @@ namespace ProjectCommon.Models
             set => Set(ref contractNumber, value);
         }
 
+        /// <summary>
+        /// Навигационное свойство тестов.
+        /// </summary>
         public ICollection<Test> Tests { get; } = new List<Test>();
     }
 }

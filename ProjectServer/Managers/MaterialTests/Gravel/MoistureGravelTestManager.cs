@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectCommon.Models.Material.Gravel;
-using ProjectCommon.Models.Material.Soil;
 using ProjectServer.Data;
 using ProjectServer.Interfaces.Managers;
 using ProjectServer.Interfaces.Managers.MaterialTests.Gravel;

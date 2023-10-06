@@ -1,5 +1,4 @@
 ﻿using Project.Interfaces.Services;
-using ProjectCommon.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Net;
@@ -21,8 +20,9 @@ namespace Project.Services
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
         };
 
-        public async Task<ObservableCollection<T>> GetAll(string address)
+        public async Task<ObservableCollection<T>> GetAll(string address, string jwt)
         {
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.GetAsync(address);
 
             var items = new ObservableCollection<T>();
@@ -39,10 +39,11 @@ namespace Project.Services
             return items;
         }
 
-        public async Task<T> Get(string address, int id)
+        public async Task<T> Get(string address, int id, string jwt)
         {
             var item = default(T);
 
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.GetAsync(address + "/" + id);
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
@@ -57,10 +58,11 @@ namespace Project.Services
             return item;
         }
 
-        public async Task<T> Add(string address, T item)
+        public async Task<T> Add(string address, T item, string jwt)
         {
             JsonContent content = JsonContent.Create(item, null, optionsCyr);
 
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.PostAsync(address, content);
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
@@ -75,10 +77,11 @@ namespace Project.Services
             return item;
         }
 
-        public async Task Update(string address, T item)
+        public async Task Update(string address, T item, string jwt)
         {
             JsonContent content = JsonContent.Create(item, null, optionsCyr);
 
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.PutAsync(address, content);
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
@@ -87,8 +90,9 @@ namespace Project.Services
             }
         }
 
-        public async Task Delete(string address, int id)
+        public async Task Delete(string address, int id, string jwt)
         {
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.DeleteAsync(address + "/" + id);
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)

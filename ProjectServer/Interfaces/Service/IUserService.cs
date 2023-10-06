@@ -4,7 +4,7 @@ namespace ProjectServer.Interfaces.Service
 {
     public interface IUserService
     {
-        LoginResult? Login(LoginRequest request);
+        User? Login(LoginRequest request);
 
         bool Register(RegisterRequest request);
     }

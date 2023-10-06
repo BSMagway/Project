@@ -3,6 +3,9 @@ using System;
 
 namespace Project.ViewModels.Commands
 {
+    /// <summary>
+    /// Реализация класса команды.
+    /// </summary>
     internal class LambdaCommand : Command
     {
         private readonly Action<object> _Execute;
@@ -14,11 +17,6 @@ namespace Project.ViewModels.Commands
             _CanExecute = CanExecute;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
         public override bool CanExecute(object? parameter) => _CanExecute?.Invoke(parameter) ?? true;
 
         public override void Execute(object? parameter) => _Execute(parameter);

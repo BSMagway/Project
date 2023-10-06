@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -16,24 +15,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Solution = LaboratoryTest
-// LaboratoryTest.WpfApp
-// LaboratoryTest.WebApi
-// LaboratoryTest.WebApi.Tests
-// LaboratoryTest.Common
-
-// N-Layer Tier архитектура (почитать)
-
-// JWT Auth (https://jasonwatmore.com/post/2021/12/14/net-6-jwt-authentication-tutorial-with-example-api)
-//https://www.c-sharpcorner.com/article/jwt-authentication-and-authorization-in-net-6-0-with-identity-framework/
-
-// Serilog, Worker (Coravel)
-// Проработать async-await для сервисов
-// Почитать про *.resx и зачем используется
-
-// UnitOfWork (https://metanit.com/sharp/mvc5/23.3.php)
-// Лучше использовать подход EF Core Migrations (https://metanit.com/sharp/entityframeworkcore/2.15.php)
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

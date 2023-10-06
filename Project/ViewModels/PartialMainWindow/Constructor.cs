@@ -1,14 +1,10 @@
 ﻿using Project.Interfaces.Services;
 using Project.ViewModels.Commands;
+using Project.Views.UserControls.AuthUserControl;
 using ProjectCommon.Models;
 using ProjectCommon.Models.Base;
 using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.ViewModels
 {
@@ -16,13 +12,16 @@ namespace Project.ViewModels
     {
         public MainWindowViewModel(IWorkWithBDGeneric<Customer> customerDBService,
             IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
-            IWorkWithBDGeneric<Test> testDbService)
+            IWorkWithBDGeneric<Test> testDbService,
+            IAuthInterface authService)
         {
             MainUserControl = SelectNewTaskUserControl;
+            AuthUserControl = new LoginUserControl();
 
             _customerDBService = customerDBService;
             _moistureSoilTestDBService = moistureSoilTestDBService;
             _testDBService = testDbService;
+            _authInterface = authService;
 
             #region Create Commands
             SelectNewTaskCommand = new LambdaCommand(OnSelectNewTaskCommandExecuted, CanSelectNewTaskCommandExecute);
@@ -37,6 +36,7 @@ namespace Project.ViewModels
             OpenFormForCustomerAddCommand = new LambdaCommand(OnOpenFormForCustomerAddCommandExecuted, CanOpenFormForCustomerAddCommandExecute);
             OpenFormForCustomerEditCommand = new LambdaCommand(OnOpenFormForCustomerEditCommandExecuted, CanOpenFormForCustomerEditCommandExecute);
             SaveEditCustomerInBDCommand = new LambdaCommand(OnSaveEditCustomerInBDCommandExecuted, CanSaveEditCustomerInBDCommandExecute);
+            LoginUserCommand = new LambdaCommand(OnLoginUserCommandExecuted, CanLoginUserCommandExecute);
             #endregion
         }
     }

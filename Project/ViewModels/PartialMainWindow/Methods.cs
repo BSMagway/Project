@@ -1,4 +1,5 @@
-﻿using ProjectCommon.ViewModelBase;
+﻿using Project.Views.UserControls.AuthUserControl;
+using ProjectCommon.ViewModelBase;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,6 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
-        #region Customer methods
         /// <summary>
         /// Загрузка списка заказчиков из базы данных.
         /// </summary>
@@ -16,7 +16,8 @@ namespace Project.ViewModels
         {
             try
             {
-                Customers = await _customerDBService.GetAll(CUSTOMER_ADRESS);
+                Customers = await _customerDBService.GetAll(CUSTOMER_ADRESS, User.Jwt);
+                MainUserControl = CustomersListUserControl;
             }
             catch (Exception ex)
             {
@@ -32,7 +33,7 @@ namespace Project.ViewModels
         {
             try
             {
-                await _customerDBService.Update(CUSTOMER_ADRESS, selectedCustomer);
+                await _customerDBService.Update(CUSTOMER_ADRESS, selectedCustomer, User.Jwt);
                 Customers[Customers.IndexOf(Customers.First(x => x.Id == selectedCustomer.Id))] = selectedCustomer;
             }
             catch (Exception ex)
@@ -50,7 +51,7 @@ namespace Project.ViewModels
         {
             try
             {
-                selectedCustomer = await _customerDBService.Add(CUSTOMER_ADRESS, selectedCustomer);
+                selectedCustomer = await _customerDBService.Add(CUSTOMER_ADRESS, selectedCustomer, User.Jwt);
                 Customers.Add(selectedCustomer);
                 isSavedCustomer = true;
             }
@@ -60,9 +61,6 @@ namespace Project.ViewModels
             }
 
         }
-        #endregion
-
-        #region Tests methods
 
         /// <summary>
         /// Загрузка короткого списка тестов из базы данных.
@@ -72,11 +70,12 @@ namespace Project.ViewModels
         {
             try
             {
-                var collection = await _testDBService.GetAll(LOAD_ALL_TEST_ADRESS);
+                var collection = await _testDBService.GetAll(LOAD_ALL_TEST_ADRESS, User.Jwt);
                 LoadedListTests = collection;
+                MainUserControl = LoadTestsListUserControl;
             }
             catch (Exception ex)
-            { 
+            {
                 ErrorMessage = ex.Message;
             }
         }
@@ -89,14 +88,32 @@ namespace Project.ViewModels
         {
             try
             {
-                var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id);
+                var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 MoistureTest = item;
+                MainUserControl = MoistureSoilTestUserControl;
             }
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
             }
         }
-        #endregion
+
+        /// <summary>
+        /// Метод для авторизации пользователя.
+        /// </summary>
+        /// <returns></returns>
+        public async Task LoginUser()
+        {
+            try
+            {
+                var item = await _authInterface.Login(LOGIN_ADRESS, LoginRequest);
+                User = item;
+                AuthUserControl = new LoggedUserControl();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
     }
 }

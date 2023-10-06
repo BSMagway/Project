@@ -23,6 +23,11 @@ namespace Project.ViewModels
         /// </summary>
         IWorkWithBDGeneric<Test> _testDBService;
 
+        /// <summary>
+        /// Сервис для работы с авторизацией пользователя.
+        /// </summary>
+        IAuthInterface _authInterface;
+
 
     }
 }

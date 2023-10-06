@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectCommon.Enums;
-using ProjectCommon.Models;
 using ProjectCommon.Models.Base;
 using ProjectServer.Data;
 using ProjectServer.Interfaces.Managers;

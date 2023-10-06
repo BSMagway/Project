@@ -18,5 +18,17 @@ namespace Project.ViewModels
         /// Адресная строка для работы с базой данных тестов по определению влажности грунта.
         /// </summary>
         private const string MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
+
+        /// <summary>
+        /// Адресная строка для регистрации пользователя.
+        /// </summary>
+        private const string REGISTER_ADRESS = "https://localhost:7143/api/User/Register";
+
+        /// <summary>
+        /// Адресная строка для логина пользователя.
+        /// </summary>
+        private const string LOGIN_ADRESS = "https://localhost:7143/api/User/Login";
+
+
     }
 }

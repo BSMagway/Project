@@ -18,12 +18,11 @@ public class AppDbContext : DbContext
     /// <param name="options">Опции создания контекста базы данных.</param>
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
     /// <summary>
-    /// 
+    /// Настройка создаваемой базы данных.
     /// </summary>
     /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,4 +1,5 @@
 ﻿using ProjectCommon.Models;
+using ProjectCommon.Models.Authentication;
 using ProjectCommon.Models.Base;
 using ProjectCommon.ViewModelBase;
 using System.Collections.ObjectModel;
@@ -7,6 +8,9 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
+        private User user;
+        private LoginRequest loginRequest;
+
         private ObservableCollection<Test> loadedListTests;
 
         private ObservableCollection<Customer> customers;
@@ -32,7 +36,43 @@ namespace Project.ViewModels
         private bool isEditingTest = false;
 
         /// <summary>
-        /// Сокращенный список всех тестов.
+        /// Пользователь.
+        /// </summary>
+        public User User
+        {
+            get
+            {
+                if (user == null)
+                {
+                    user = new User();
+                }
+
+                return user;
+            }
+
+            set => Set(ref user, value);
+        }
+
+        /// <summary>
+        /// Модель для логина.
+        /// </summary>
+        public LoginRequest LoginRequest
+        {
+            get
+            {
+                if (loginRequest == null)
+                {
+                    loginRequest = new LoginRequest();
+                }
+
+                return loginRequest;
+            }
+
+            set => Set(ref loginRequest, value);
+        }
+
+        /// <summary>
+        /// Список всех тестов.
         /// </summary>
         public ObservableCollection<Test> LoadedListTests
         {

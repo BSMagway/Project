@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectCommon.Models.Material.Gravel;
 using ProjectServer.Interfaces.Managers.MaterialTests.Gravel;
 
@@ -7,6 +8,7 @@ namespace ProjectServer.Controllers.MaterialTests.Gravel
     /// <summary>
     /// Контроллер для обработки запросов по работе с базой данных тестов по определению влажности щебня.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class MoistureGravelTestController : ControllerBase

@@ -1,6 +1,4 @@
-﻿using ProjectCommon.Models.Base;
-using ProjectCommon.ViewModelBase;
-using System.ComponentModel.DataAnnotations;
+﻿using ProjectCommon.ViewModelBase;
 
 namespace ProjectCommon.Models
 {
@@ -19,19 +17,19 @@ namespace ProjectCommon.Models
         /// <summary>
         /// Название испытанной величины.
         /// </summary>
-        public string? DimensionName {  get; set; }
+        public string? DimensionName { get; set; }
 
         /// <summary>
         /// Значение испытанной величины.
         /// </summary>
-        public double DimensionValue 
+        public double DimensionValue
         {
             get => dimensionValue;
             set => Set(ref dimensionValue, value);
         }
 
         /// <summary>
-        /// 
+        /// Базовый конструктор.
         /// </summary>
         public Dimension()
         {
@@ -39,9 +37,9 @@ namespace ProjectCommon.Models
         }
 
         /// <summary>
-        /// 
+        /// Конструктор для создания измерения с именем.
         /// </summary>
-        /// <param name="dimensionName"></param>
+        /// <param name="dimensionName">Имя измерения.</param>
         public Dimension(string dimensionName)
         {
             this.DimensionName = dimensionName;
@@ -49,10 +47,10 @@ namespace ProjectCommon.Models
         }
 
         /// <summary>
-        /// 
+        /// Конструктор для создания измерения с именем и значением.
         /// </summary>
-        /// <param name="dimensionName"></param>
-        /// <param name="dimensionValue"></param>
+        /// <param name="dimensionName">Имя измерения.</param>
+        /// <param name="dimensionValue">Значение измерения.</param>
         public Dimension(string dimensionName, double dimensionValue)
         {
             this.DimensionName = dimensionName;

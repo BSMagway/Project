@@ -10,16 +10,16 @@ namespace ProjectServer.Services
 {
     public class UserService : IUserService
     {
-        private readonly AppDbContext _dBcontext;
+        private readonly AppDbContext _dbContext;
 
         public UserService(AppDbContext dbContext)
         {
-            _dBcontext = dbContext;
+            _dbContext = dbContext;
         }
 
-        public LoginResult? Login(LoginRequest request)
+        public User? Login(LoginRequest request)
         {
-            var user = _dBcontext.Users
+            var user = _dbContext.Users
                 .Where(x => x.Username == request.Username)
                 .Where(x => x.Password == request.Password)
                 .FirstOrDefault();
@@ -37,24 +37,23 @@ namespace ProjectServer.Services
             };
 
             var token = new JwtSecurityToken(
-                issuer: "https://localhost:7183",
-                audience: "https://localhost:7183",
+                issuer: "https://localhost:7143",
+                audience: "https://localhost:7143",
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
+                expires: DateTime.UtcNow.AddMinutes(300),
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345")), SecurityAlgorithms.HmacSha256)
             );
 
-            return new LoginResult
-            {
-                Jwt = new JwtSecurityTokenHandler().WriteToken(token),
-            };
+            user.Jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return user;
         }
 
         public bool Register(RegisterRequest request)
         {
-            using (var trans = _dBcontext.Database.BeginTransaction())
+            using (var trans = _dbContext.Database.BeginTransaction())
             {
-                var hasUserExists = _dBcontext.Users.Any(x => x.Username == request.Username);
+                var hasUserExists = _dbContext.Users.Any(x => x.Username == request.Username);
 
                 if (hasUserExists)
                 {
@@ -65,10 +64,12 @@ namespace ProjectServer.Services
                 {
                     Username = request.Username,
                     Password = request.Password,
+                    LastName = request.LastName,
+                    FirstName = request.FirstName,
                 };
 
-                _dBcontext.Users.Add(user);
-                _dBcontext.SaveChanges();
+                _dbContext.Users.Add(user);
+                _dbContext.SaveChanges();
                 trans.Commit();
             }
 

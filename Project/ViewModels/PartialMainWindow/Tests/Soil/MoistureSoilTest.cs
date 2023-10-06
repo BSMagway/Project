@@ -1,11 +1,6 @@
 ﻿using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
 using System;
-using System.Net.Http.Json;
-using System.Reflection.Metadata;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,15 +8,11 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
-        #region Moisture Soil Test
-        #region Fields
         /// <summary>
         /// Тест по определению важности грунта
         /// </summary>
         private MoistureSoilTest moistureTest;
-        #endregion
 
-        #region Properties
         /// <summary>
         /// Тест по определению важности грунта
         /// </summary>
@@ -39,18 +30,22 @@ namespace Project.ViewModels
             set => Set(ref moistureTest, value);
         }
 
-        #endregion
-
-        #region Methods
         /// <summary>
         /// Метод по добавлению нового теста в бд
         /// </summary>
         /// <returns></returns>
         public async Task SaveNewMoistureSoilTest()
         {
-            await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+            try
+            {
+                await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureTest, User.Jwt);
+                isSavedTest = true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
-
 
         /// <summary>
         /// Метод дя редактирования теста в бд
@@ -58,11 +53,16 @@ namespace Project.ViewModels
         /// <returns></returns>
         public async Task EditMoistureSoilTest()
         {
-            await _moistureSoilTestDBService.Update(MOISTURE_SOIL_TEST_ADRESS, MoistureTest);
+            try
+            {
+                await _moistureSoilTestDBService.Update(MOISTURE_SOIL_TEST_ADRESS, MoistureTest, User.Jwt);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
-        #endregion
 
-        #region Commands
         /// <summary>
         /// Команда для расчета влажности грунта
         /// </summary>
@@ -79,6 +79,7 @@ namespace Project.ViewModels
                 ErrorMessage = ex.Message;
             }
         }
+
         /// <summary>
         /// Команда для сохранения и редактирования тестов по определению влажности грунта
         /// </summary>
@@ -93,10 +94,7 @@ namespace Project.ViewModels
             else
             {
                 SaveNewMoistureSoilTest();
-                isSavedTest = true;
             }
         }
-        #endregion
-        #endregion
     }
 }

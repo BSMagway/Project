@@ -9,8 +9,6 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
-        #region Select Commands
-
         /// <summary>
         /// Команда для выбора новой задачи (создание нового теста, загрузка существующего теста и тд.).
         /// </summary>
@@ -31,17 +29,14 @@ namespace Project.ViewModels
                 case TaskType.LoadTest:
                     {
                         LoadAllTest();
-                        MainUserControl = LoadTestsListUserControl;
                     }
                     break;
                 case TaskType.CostumersList:
                     {
                         LoadCostumersFromBD();
-                        MainUserControl = CustomersListUserControl;
                     }
                     break;
             }
-
         }
 
         /// <summary>
@@ -82,7 +77,6 @@ namespace Project.ViewModels
                     }
                     break;
             }
-
         }
 
         /// <summary>
@@ -110,11 +104,9 @@ namespace Project.ViewModels
         private void OnReturnToNewTaskPageCommandExecuted(object p)
         {
             MainUserControl = SelectNewTaskUserControl;
+            ErrorMessage = string.Empty;
         }
 
-        #endregion
-
-        #region Commands
         /// <summary>
         /// Команда отвечающая за загрузку теста из базы данных.
         /// </summary>
@@ -130,13 +122,13 @@ namespace Project.ViewModels
                     {
                         case ExperimentType.Moister:
                             LoadMoistureSoilTest();
-                            MainUserControl = MoistureSoilTestUserControl;
                             break;
                     }
 
                     break;
             }
         }
+
         /// <summary>
         /// Команда отвечающая за добавление нового и редактирование существующего заказчика.
         /// </summary>
@@ -156,7 +148,8 @@ namespace Project.ViewModels
             if (isSavedTest)
             {
                 MainUserControl = CustomersListUserControl;
-            } else
+            }
+            else
             {
                 MainUserControl = CustomersSelectUserControl;
             }
@@ -197,7 +190,6 @@ namespace Project.ViewModels
             LoadCostumersFromBD();
             MainUserControl = CustomersSelectUserControl;
         }
-        #endregion
 
         /// <summary>
         /// Команда для добавления выбранного заказчика в тест.
@@ -208,6 +200,16 @@ namespace Project.ViewModels
         {
             MoistureTest.Customer = SelectedCustomer;
             MainUserControl = MoistureSoilTestUserControl;
+        }
+
+        /// <summary>
+        /// Команда для авторизации пользователя.
+        /// </summary>
+        public ICommand LoginUserCommand { get; }
+        private bool CanLoginUserCommandExecute(object p) => true;
+        private void OnLoginUserCommandExecuted(object p)
+        {
+            LoginUser();
         }
     }
 }

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectServer.Interfaces.Managers;
-using ProjectServer.Managers;
 
 namespace ProjectServer.Controllers
 {
     /// <summary>
     /// Контролер для обработки запроса по получению короткого списка всех протоколов.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TestsController : ControllerBase
@@ -35,7 +36,7 @@ namespace ProjectServer.Controllers
             {
                 return BadRequest();
             }
-            
+
             return Ok(model);
         }
 

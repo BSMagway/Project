@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectCommon.Models;
 using ProjectServer.Interfaces.Managers;
 
@@ -7,6 +8,7 @@ namespace ProjectServer.Controllers
     /// <summary>
     /// Контроллер для обработки запросов по работе с базой данных Заказчиков.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase

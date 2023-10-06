@@ -1,15 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProjectCommon.ViewModelBase;
 
 namespace ProjectCommon.Models.Authentication
 {
-    public class LoginRequest
+    /// <summary>
+    /// Запрос для логина пользователя.
+    /// </summary>
+    public class LoginRequest : ViewModel
     {
-        public string Username { get; set; }
+        private string username = string.Empty;
+        private string password = string.Empty;
 
-        public string Password { get; set; }
+        /// <summary>
+        /// Логин.
+        /// </summary>
+        public string Username
+        {
+            get => username;
+            set => Set(ref username, value);
+        }
+
+        /// <summary>
+        /// Пароль.
+        /// </summary>
+        public string Password
+        {
+            get => password;
+            set => Set(ref password, value);
+        }
     }
 }

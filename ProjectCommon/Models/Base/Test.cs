@@ -3,13 +3,16 @@ using ProjectCommon.ViewModelBase;
 
 namespace ProjectCommon.Models.Base
 {
+    /// <summary>
+    /// Базовые данные теста.
+    /// </summary>
     public class Test : ViewModel
     {
         private int testNumber;
         private string materialName;
         private Customer customer;
         private string dateTest;
-        private string documentTest;       
+        private string documentTest;
 
         /// <summary>
         /// Id в базе данных.

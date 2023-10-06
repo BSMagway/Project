@@ -36,7 +36,7 @@
                      Grid.Column="0" 
                      Grid.ColumnSpan="6" 
                      Grid.RowSpan="2" 
-                     Content="{Binding LoginUserControl}"/>
+                     Content="{Binding AuthUserControl}"/>
 
         <TextBlock Grid.Row="2"
                    Grid.Column="0"

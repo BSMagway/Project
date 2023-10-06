@@ -3,19 +3,10 @@ using Project.Interfaces.Services;
 using Project.Services;
 using Project.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.DirectoryServices;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Project
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private static IServiceProvider? serviceProvider;
@@ -28,10 +19,11 @@ namespace Project
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = provider.GetRequiredService<MainWindowViewModel>()
-            }); 
-                
+            });
+
             services.AddSingleton<MainWindowViewModel>();
             services.AddScoped(typeof(IWorkWithBDGeneric<>), typeof(WorkWithBDGenericService<>));
+            services.AddTransient<IAuthInterface, AuthService>();
 
             return services;
         }

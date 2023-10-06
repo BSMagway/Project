@@ -1,5 +1,4 @@
-﻿using ProjectCommon.Models;
-using ProjectCommon.Models.Base;
+﻿using ProjectCommon.Models.Base;
 
 namespace ProjectServer.Interfaces.Managers
 {
