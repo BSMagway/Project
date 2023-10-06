@@ -25,10 +25,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0">
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
             <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Коэффициент фильтрации в продолном направлении</TextBlock>
         </Button>
-        <Button Grid.Row="0" Grid.Column="1">
+        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
             <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Коэффициент фильтрации в поперечном направлении</TextBlock>
         </Button>
     </Grid>

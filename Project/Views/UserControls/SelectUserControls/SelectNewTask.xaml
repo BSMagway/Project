@@ -28,10 +28,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Создать новый тест" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.NewTest}" ></Button>
-        <Button Grid.Row="0" Grid.Column="1" Content="Загрузить тест" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.LoadTest}"></Button>
-        <Button Grid.Row="0" Grid.Column="2" Content="Список заказчиков" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.CostumersList}"></Button>
-        <Button Grid.Row="0" Grid.Column="3" Content="3"></Button>
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.NewTest}" >
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Создать новый тест</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.LoadTest}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Загрузить тест</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Command="{Binding SelectNewTaskCommand}" CommandParameter="{x:Static enum:TaskType.CostumersList}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Список заказчиков</TextBlock>
+        </Button>
+
         
     </Grid>
 </UserControl>

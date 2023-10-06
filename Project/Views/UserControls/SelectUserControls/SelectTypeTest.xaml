@@ -26,10 +26,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Грунт" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Soil}" />
-        <Button Grid.Row="0" Grid.Column="1" Content="Песок" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Sand}"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="Щебень" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Gravel}"/>
-        <Button Grid.Row="0" Grid.Column="3" Content="ПГС" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.SandAndGravel}"/>
-        <Button Grid.Row="0" Grid.Column="4" Content="Геотекстиль" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Geotextile}"/>
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Content="Грунт" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Soil}" />
+        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="Песок" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Sand}"/>
+        <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Content="Щебень" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Gravel}"/>
+        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Content="ПГС" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.SandAndGravel}"/>
+        <Button Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Content="Геотекстиль" Command="{Binding SelectTypeTestCommand}" CommandParameter="{x:Static enum:MaterialType.Geotextile}"/>
     </Grid>
 </UserControl>

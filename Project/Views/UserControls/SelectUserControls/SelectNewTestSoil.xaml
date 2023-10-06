@@ -27,10 +27,17 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Влажность" Command="{Binding SelectSoilTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Moister}" />
-        <Button Grid.Row="0" Grid.Column="1" Content="1"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="2"/>
-        <Button Grid.Row="0" Grid.Column="3" Content="3"/>
-        <Button Grid.Row="0" Grid.Column="4" Content="4"/>
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectSoilTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Moister}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Влажность</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Command="{Binding SelectSoilTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Yield_Limit}" >
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Граница текучести</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Command="{Binding SelectSoilTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Rolling_Boundary}" >
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Граница раскатывания</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Command="{Binding SelectSoilTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Density}" >
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Плотность</TextBlock>
+        </Button>
     </Grid>
 </UserControl>
