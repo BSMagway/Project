@@ -13,13 +13,13 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="700" MinWidth="1050">
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.12*"/>
-            <RowDefinition Height="0.12*"/>
-            <RowDefinition Height="0.12*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -32,10 +32,33 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <UserControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="2" Content="{Binding LoginUserControl}"/>
+        <UserControl Grid.Row="0" 
+                     Grid.Column="0" 
+                     Grid.ColumnSpan="6" 
+                     Grid.RowSpan="2" 
+                     Content="{Binding LoginUserControl}"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Text="{Binding ErrorMessage}"/>
-        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="6" Content="Возврат" Command="{Binding ReturnToNewTaskPageCommand}" Margin="5" VerticalContentAlignment="Center"/>
-        <UserControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" Name="MainFrame" Content="{Binding MainUserControl}"/>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Ошибка:"/>
+
+        <TextBlock Grid.Row="2" 
+                   Grid.Column="1" 
+                   Grid.ColumnSpan="7" 
+                   Text="{Binding ErrorMessage}"
+                   Foreground="Red"/>
+        
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="1" 
+                Grid.Column="6" 
+                Content="Возврат" 
+                Command="{Binding ReturnToNewTaskPageCommand}" 
+                Margin="5" 
+                VerticalContentAlignment="Center"/>
+        
+        <UserControl Grid.Row="3" 
+                     Grid.Column="0" 
+                     Grid.ColumnSpan="7" 
+                     Content="{Binding MainUserControl}"/>
     </Grid>
 </Window>

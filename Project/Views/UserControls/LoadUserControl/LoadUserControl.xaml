@@ -18,12 +18,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding LoadedListTests}" 
+        <ListBox Grid.Row="0" 
+                 Grid.Column="0" 
+                 Grid.ColumnSpan="2" 
+                 ItemsSource="{Binding LoadedListTests}" 
                  SelectedItem="{Binding TestForLoading}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=TestNumber}" />
+                        <TextBlock FontSize="18" 
+                                   Text="{Binding Path=TestNumber}" />
                         <TextBlock Text="{Binding Path=DateTest}" />
                         <TextBlock Text="{Binding Path=MaterialName}" />
                         <TextBlock Text="{Binding Path=Customer.Title}" />
@@ -33,7 +37,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="1" Grid.Column="0" Content="Загрузить" Command="{Binding LoadTestFromBDCommand}"/>
-
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Content="Загрузить" 
+                Command="{Binding LoadTestFromBDCommand}"
+                Margin="5"/>
     </Grid>
 </UserControl>

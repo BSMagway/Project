@@ -10,21 +10,34 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0">Название компании</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedCustomer.Title}"/>
-        <TextBlock Grid.Row="1" Grid.Column="0">Номер договора</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCustomer.ContractNumber}"/>
+        
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0">Название компании</TextBlock>
+        
+        <TextBox Grid.Row="0"
+                 Grid.Column="1" 
+                 Text="{Binding SelectedCustomer.Title}"/>
+        
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="0">Номер договора</TextBlock>
+        
+        <TextBox Grid.Row="1" 
+                 Grid.Column="1" 
+                 Text="{Binding SelectedCustomer.ContractNumber}"/>
 
-        <Button Grid.Row="2" Content="Сохранить" Command="{Binding SaveEditCustomerInBDCommand}"/>
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="2" 
+                Content="Сохранить" 
+                Command="{Binding SaveEditCustomerInBDCommand}"
+                Margin="5"/>
 
     </Grid>
 </UserControl>
