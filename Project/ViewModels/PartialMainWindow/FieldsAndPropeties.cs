@@ -36,6 +36,11 @@ namespace Project.ViewModels
         private bool isEditingTest = false;
 
         /// <summary>
+        /// Статус выбирается ли в данный момент заказчик.
+        /// </summary>
+        private bool isSelectingCustomer = false;
+
+        /// <summary>
         /// Пользователь.
         /// </summary>
         public User User

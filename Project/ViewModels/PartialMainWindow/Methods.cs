@@ -17,7 +17,14 @@ namespace Project.ViewModels
             try
             {
                 Customers = await _customerDBService.GetAll(CUSTOMER_ADRESS, User.Jwt);
-                MainUserControl = CustomersListUserControl;
+                if (isSelectingCustomer)
+                {
+                    MainUserControl = CustomersSelectUserControl;
+                }
+                else
+                {
+                    MainUserControl = CustomersListUserControl;
+                }
             }
             catch (Exception ex)
             {

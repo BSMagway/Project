@@ -187,8 +187,8 @@ namespace Project.ViewModels
         private bool CanOpenSelectCustomerCommandExecute(object p) => true;
         private void OnOpenSelectCustomerCommandExecuted(object p)
         {
+            isSelectingCustomer = true;
             LoadCostumersFromBD();
-            MainUserControl = CustomersSelectUserControl;
         }
 
         /// <summary>
@@ -199,6 +199,7 @@ namespace Project.ViewModels
         private void OnLoadCustomerFromListCommandExecuted(object p)
         {
             MoistureTest.Customer = SelectedCustomer;
+            isSelectingCustomer = false;
             MainUserControl = MoistureSoilTestUserControl;
         }
 

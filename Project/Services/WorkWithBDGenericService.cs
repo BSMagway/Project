@@ -22,6 +22,7 @@ namespace Project.Services
 
         public async Task<ObservableCollection<T>> GetAll(string address, string jwt)
         {
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.GetAsync(address);
 
@@ -43,6 +44,7 @@ namespace Project.Services
         {
             var item = default(T);
 
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.GetAsync(address + "/" + id);
 
@@ -62,6 +64,7 @@ namespace Project.Services
         {
             JsonContent content = JsonContent.Create(item, null, optionsCyr);
 
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.PostAsync(address, content);
 
@@ -81,6 +84,7 @@ namespace Project.Services
         {
             JsonContent content = JsonContent.Create(item, null, optionsCyr);
 
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.PutAsync(address, content);
 
@@ -92,6 +96,7 @@ namespace Project.Services
 
         public async Task Delete(string address, int id, string jwt)
         {
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
             using var response = await httpClient.DeleteAsync(address + "/" + id);
 
