@@ -27,6 +27,7 @@ namespace Project.ViewModels
         private UserControl customersListUserControl;
 
         private UserControl moistureSoilTestUserControl;
+        private UserControl rollingBoundarySoilTestUserControl;
 
         /// <summary>
         /// Основной User Control отвечающий за основную область приложения.
@@ -253,6 +254,25 @@ namespace Project.ViewModels
             }
 
             set => moistureSoilTestUserControl = value;
+        }
+
+        /// <summary>
+        /// Элемент отвечающий за отображение теста на определение границы раскатываемости грунта.
+        /// </summary>
+        public UserControl RollingBoundarySoilTestUserControl
+        {
+            get
+            {
+                if (rollingBoundarySoilTestUserControl == null)
+                {
+                    rollingBoundarySoilTestUserControl = new RollingBoundarySoilTestUserControl();
+                    rollingBoundarySoilTestUserControl.DataContext = this;
+                }
+
+                return rollingBoundarySoilTestUserControl;
+            }
+
+            set => rollingBoundarySoilTestUserControl = value;
         }
     }
 

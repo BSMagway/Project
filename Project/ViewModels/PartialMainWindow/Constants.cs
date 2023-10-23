@@ -20,6 +20,11 @@ namespace Project.ViewModels
         private const string MOISTURE_SOIL_TEST_ADRESS = "https://localhost:7143/api/MoistureSoilTest";
 
         /// <summary>
+        /// Адресная строка для работы с базой данных тестов по определению границы раскатываемости грунта.
+        /// </summary>
+        private const string ROLLING_BOUNDARY_SOIL_TEST_ADRESS = "https://localhost:7143/api/RollingBoundarySoilTest";
+
+        /// <summary>
         /// Адресная строка для регистрации пользователя.
         /// </summary>
         private const string REGISTER_ADRESS = "https://localhost:7143/api/User/Register";

@@ -96,7 +96,7 @@ namespace Project.ViewModels
             try
             {
                 var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
-                MoistureTest = item;
+                MoistureSoilTest = item;
                 MainUserControl = MoistureSoilTestUserControl;
             }
             catch (Exception ex)

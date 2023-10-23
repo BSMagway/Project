@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Project.Views.UserControls.TestUserControls.Soil.MoistureSoilTestUC"
+﻿<UserControl x:Class="Project.Views.UserControls.TestUserControls.Soil.RollingBoundarySoilTestUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -55,29 +55,29 @@
 
         <TextBox Grid.Row="0" 
                  Grid.Column="1" 
-                 Text="{Binding MoistureSoilTest.TestNumber}"/>
+                 Text="{Binding RollingBoundarySoilTest.TestNumber}"/>
         
         <TextBox Grid.Row="1" 
                  Grid.Column="1" 
-                 Text="{Binding MoistureSoilTest.MaterialName}"/>
+                 Text="{Binding RollingBoundarySoilTest.MaterialName}"/>
         
         <TextBox Grid.Row="2" 
                  Grid.Column="1" 
-                 Text="{Binding MoistureSoilTest.DateTest}"/>
+                 Text="{Binding RollingBoundarySoilTest.DateTest}"/>
         
         <TextBox Grid.Row="3" 
                  Grid.Column="1" 
-                 Text="{Binding MoistureSoilTest.DocumentTest}"/>
+                 Text="{Binding RollingBoundarySoilTest.DocumentTest}"/>
         
         <TextBlock Grid.Row="5" 
                    Grid.Column="1" 
-                   Text="{Binding MoistureSoilTest.Customer.Title}" 
+                   Text="{Binding RollingBoundarySoilTest.Customer.Title}" 
                    Height="45" 
                    VerticalAlignment="Center"/>
         
         <TextBlock Grid.Row="6" 
                    Grid.Column="1" 
-                   Text="{Binding MoistureSoilTest.Customer.ContractNumber}"/>
+                   Text="{Binding RollingBoundarySoilTest.Customer.ContractNumber}"/>
 
         <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
                 Grid.Row="4" 
@@ -89,42 +89,42 @@
 
         <TextBlock Grid.Row="0" 
                    Grid.Column="2" 
-                   Text="{Binding MoistureSoilTest.SoilWetMassWithBox.DimensionName}"/>
+                   Text="{Binding RollingBoundarySoilTest.SoilWetMassWithBox.DimensionName}"/>
         
         <TextBlock Grid.Row="1" 
                    Grid.Column="2" 
-                   Text="{Binding MoistureSoilTest.SoilDryMassWithBox.DimensionName}"/>
+                   Text="{Binding RollingBoundarySoilTest.SoilDryMassWithBox.DimensionName}"/>
         
         <TextBlock Grid.Row="2" 
                    Grid.Column="2" 
-                   Text="{Binding MoistureSoilTest.BoxMass.DimensionName}"/>
+                   Text="{Binding RollingBoundarySoilTest.BoxMass.DimensionName}"/>
         
         <TextBlock Grid.Row="3" 
                    Grid.Column="2" 
-                   Text="{Binding MoistureSoilTest.Moisture.DimensionName}"/>
+                   Text="{Binding RollingBoundarySoilTest.RollingBoundary.DimensionName}"/>
         
         <TextBox Grid.Row="0" 
                  Grid.Column="3" 
-                 Text="{Binding MoistureSoilTest.SoilWetMassWithBox.DimensionValue}"/>
+                 Text="{Binding RollingBoundarySoilTest.SoilWetMassWithBox.DimensionValue}"/>
         
         <TextBox Grid.Row="1" 
                  Grid.Column="3" 
-                 Text="{Binding MoistureSoilTest.SoilDryMassWithBox.DimensionValue}"/>
+                 Text="{Binding RollingBoundarySoilTest.SoilDryMassWithBox.DimensionValue}"/>
         
         <TextBox Grid.Row="2" 
                  Grid.Column="3" 
-                 Text="{Binding MoistureSoilTest.BoxMass.DimensionValue}"/>
+                 Text="{Binding RollingBoundarySoilTest.BoxMass.DimensionValue}"/>
         
         <TextBlock Grid.Row="3" 
                    Grid.Column="3" 
-                   Text="{Binding MoistureSoilTest.Moisture.DimensionValue}"/>
+                   Text="{Binding RollingBoundarySoilTest.RollingBoundary.DimensionValue}"/>
         
         <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
                 Grid.Row="4" 
                 Grid.Column="2" 
                 Grid.ColumnSpan="2" 
                 Content="Рассчитать влажность" 
-                Command="{Binding CalculateMoistureSoilTestCommand}"
+                Command="{Binding CalculateRollingBoundarySoilTestCommand}"
                 VerticalContentAlignment="Center"
                 Margin="5"/>
         
@@ -133,7 +133,7 @@
                 Grid.Column="2" 
                 Grid.ColumnSpan="2" 
                 Content="Save" 
-                Command="{Binding SaveMoistureSoilTestCommand}"
+                Command="{Binding SaveRollingBoundarySoilTestCommand}"
                 VerticalContentAlignment="Center"
                 Margin="5"/>
     </Grid>

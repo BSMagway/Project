@@ -8,37 +8,34 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
-        /// <summary>
-        /// Тест по определению важности грунта
-        /// </summary>
-        private MoistureSoilTest moistureTest;
+        private MoistureSoilTest moistureSoilTest;
 
         /// <summary>
-        /// Тест по определению важности грунта
+        /// Тест по определению важности грунта.
         /// </summary>
-        public MoistureSoilTest MoistureTest
+        public MoistureSoilTest MoistureSoilTest
         {
             get
             {
-                if (moistureTest == null)
+                if (moistureSoilTest == null)
                 {
-                    moistureTest = new MoistureSoilTest();
+                    moistureSoilTest = new MoistureSoilTest();
                 }
 
-                return moistureTest;
+                return moistureSoilTest;
             }
-            set => Set(ref moistureTest, value);
+            set => Set(ref moistureSoilTest, value);
         }
 
         /// <summary>
-        /// Метод по добавлению нового теста в бд
+        /// Метод по добавлению нового теста по определению влажности грунта в базу данных.
         /// </summary>
         /// <returns></returns>
         public async Task SaveNewMoistureSoilTest()
         {
             try
             {
-                await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureTest, User.Jwt);
+                await _moistureSoilTestDBService.Add(MOISTURE_SOIL_TEST_ADRESS, MoistureSoilTest, User.Jwt);
                 isSavedTest = true;
             }
             catch (Exception ex)
@@ -48,14 +45,14 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Метод дя редактирования теста в бд
+        /// Метод дя редактирования теста по определению влажности грунта в базе данных.
         /// </summary>
         /// <returns></returns>
         public async Task EditMoistureSoilTest()
         {
             try
             {
-                await _moistureSoilTestDBService.Update(MOISTURE_SOIL_TEST_ADRESS, MoistureTest, User.Jwt);
+                await _moistureSoilTestDBService.Update(MOISTURE_SOIL_TEST_ADRESS, MoistureSoilTest, User.Jwt);
             }
             catch (Exception ex)
             {
@@ -64,15 +61,15 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Команда для расчета влажности грунта
+        /// Команда для расчета влажности грунта.
         /// </summary>
-        public ICommand CalculateMoistureCommand { get; }
-        private bool CanCalculateMoistureCommandExecute(object p) => true;
-        private void OnCalculateMoistureCommandExecuted(object p)
+        public ICommand CalculateMoistureSoilTestCommand { get; }
+        private bool CanCalculateMoistureSoilTestCommandExecute(object p) => true;
+        private void OnCalculateMoistureSoilTestCommandExecuted(object p)
         {
             try
             {
-                MoistureTest.Calculate();
+                MoistureSoilTest.Calculate();
             }
             catch (Exception ex)
             {
@@ -81,7 +78,7 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Команда для сохранения и редактирования тестов по определению влажности грунта
+        /// Команда для сохранения и редактирования тестов по определению влажности грунта.
         /// </summary>
         public ICommand SaveMoistureSoilTestCommand { get; }
         private bool CanSaveMoistureSoilTestCommandExecute(object p) => true;

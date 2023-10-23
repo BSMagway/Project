@@ -93,6 +93,9 @@ namespace Project.ViewModels
                 case ExperimentType.Moister:
                     MainUserControl = MoistureSoilTestUserControl;
                     break;
+                case ExperimentType.Rolling_Boundary:
+                    MainUserControl = RollingBoundarySoilTestUserControl;
+                    break;
             }
         }
 
@@ -198,7 +201,7 @@ namespace Project.ViewModels
         private bool CanLoadCustomerFromListCommandExecute(object p) => true;
         private void OnLoadCustomerFromListCommandExecuted(object p)
         {
-            MoistureTest.Customer = SelectedCustomer;
+            MoistureSoilTest.Customer = SelectedCustomer;
             isSelectingCustomer = false;
             MainUserControl = MoistureSoilTestUserControl;
         }

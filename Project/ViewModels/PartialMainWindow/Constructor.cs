@@ -12,6 +12,8 @@ namespace Project.ViewModels
     {
         public MainWindowViewModel(IWorkWithBDGeneric<Customer> customerDBService,
             IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
+            IWorkWithBDGeneric<RollingBoundarySoilTest> rollingBoundarySoilTestDBService,
+            IWorkWithBDGeneric<YieldLimitSoilTest> yieldLimitSoilTestDBService,
             IWorkWithBDGeneric<Test> testDbService,
             IAuthInterface authService)
         {
@@ -20,6 +22,8 @@ namespace Project.ViewModels
 
             _customerDBService = customerDBService;
             _moistureSoilTestDBService = moistureSoilTestDBService;
+            _rollingBoundarySoilTestDBService = rollingBoundarySoilTestDBService;
+            _yieldLimitSoilTestDBService = yieldLimitSoilTestDBService;
             _testDBService = testDbService;
             _authInterface = authService;
 
@@ -28,8 +32,10 @@ namespace Project.ViewModels
             SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
             ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
             SelectSoilTestCommand = new LambdaCommand(OnSelectSoilTestCommandExecuted, CanSelectSoilTestCommandExecute);
-            CalculateMoistureCommand = new LambdaCommand(OnCalculateMoistureCommandExecuted, CanCalculateMoistureCommandExecute);
+            CalculateMoistureSoilTestCommand = new LambdaCommand(OnCalculateMoistureSoilTestCommandExecuted, CanCalculateMoistureSoilTestCommandExecute);
             SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);
+            CalculateRollingBoundarySoilTestCommand = new LambdaCommand(OnCalculateRollingBoundarySoilTestCommandExecuted, CanCalculateRollingBoundarySoilTestCommandExecute);
+            SaveRollingBoundarySoilTestCommand = new LambdaCommand(OnSaveRollingBoundarySoilTestCommandExecuted, CanSaveRollingBoundarySoilTestCommandExecute);
             OpenSelectCustomerCommand = new LambdaCommand(OnOpenSelectCustomerCommandExecuted, CanOpenSelectCustomerCommandExecute);
             LoadCustomerFromListCommand = new LambdaCommand(OnLoadCustomerFromListCommandExecuted, CanLoadCustomerFromListCommandExecute);
             LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);

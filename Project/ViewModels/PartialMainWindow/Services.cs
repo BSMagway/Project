@@ -19,6 +19,16 @@ namespace Project.ViewModels
         IWorkWithBDGeneric<MoistureSoilTest> _moistureSoilTestDBService;
 
         /// <summary>
+        /// Сервис для работы с базой данных тестов по опеределнию предела раскатываемости грунта.
+        /// </summary>
+        IWorkWithBDGeneric<RollingBoundarySoilTest> _rollingBoundarySoilTestDBService;
+
+        /// <summary>
+        /// Сервис для работы с базой данных тестов по опеределнию предела текучести грунта.
+        /// </summary>
+        IWorkWithBDGeneric<YieldLimitSoilTest> _yieldLimitSoilTestDBService;
+
+        /// <summary>
         /// Сервис для работы с базой данных всех тестов с общей информацией о них.
         /// </summary>
         IWorkWithBDGeneric<Test> _testDBService;
