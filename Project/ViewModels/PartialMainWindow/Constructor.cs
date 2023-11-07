@@ -43,6 +43,10 @@ namespace Project.ViewModels
             OpenFormForCustomerEditCommand = new LambdaCommand(OnOpenFormForCustomerEditCommandExecuted, CanOpenFormForCustomerEditCommandExecute);
             SaveEditCustomerInBDCommand = new LambdaCommand(OnSaveEditCustomerInBDCommandExecuted, CanSaveEditCustomerInBDCommandExecute);
             LoginUserCommand = new LambdaCommand(OnLoginUserCommandExecuted, CanLoginUserCommandExecute);
+            OpenRegisterUserFormCommand = new LambdaCommand(OnOpenRegisterUserFormCommandExecuted, CanOpenRegisterUserFormCommandExecute);
+            ReturnToLoginUserFormCommand = new LambdaCommand(OnReturnToLoginUserFormCommandExecuted, CanReturnToLoginUserFormCommandExecute);
+            RegisterNewUserFormCommand = new LambdaCommand(OnRegisterNewUserFormCommandExecuted, CanRegisterNewUserFormCommandExecute);
+            ExitUserFormCommand = new LambdaCommand(OnExitUserFormCommandExecuted, CanExitUserFormCommandExecute);
             #endregion
         }
     }

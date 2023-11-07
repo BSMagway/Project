@@ -10,6 +10,7 @@ namespace Project.ViewModels
     {
         private User user;
         private LoginRequest loginRequest;
+        private RegisterRequest registerRequest;
 
         private ObservableCollection<Test> loadedListTests;
 
@@ -74,6 +75,24 @@ namespace Project.ViewModels
             }
 
             set => Set(ref loginRequest, value);
+        }
+
+        /// <summary>
+        /// Модель для регистрации.
+        /// </summary>
+        public RegisterRequest RegisterRequest
+        {
+            get
+            {
+                if (registerRequest == null)
+                {
+                    registerRequest = new RegisterRequest();
+                }
+
+                return registerRequest;
+            }
+
+            set => Set(ref registerRequest, value);
         }
 
         /// <summary>

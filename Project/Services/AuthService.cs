@@ -44,9 +44,20 @@ namespace Project.Services
             return item;
         }
 
-        public async Task Registration(string address, User user)
+        public async Task Registration(string address, RegisterRequest registerRequest)
         {
-            throw new NotImplementedException();
+            JsonContent content = JsonContent.Create(registerRequest, null, optionsCyr);
+
+            using var response = await httpClient.PostAsync(address, content);
+
+            if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new Exception("Ошибка входа.");
+            }
+            else
+            {
+                
+            }
         }
     }
 }

@@ -22,6 +22,6 @@ namespace Project.Interfaces.Services
         /// <param name="address">Адрес для отправки запроса на регистрацию.</param>
         /// <param name="user">Данные нового пользователя для регистрации.</param>
         /// <returns></returns>
-        public Task Registration(string address, User user);
+        public Task Registration(string address, RegisterRequest registerRequest);
     }
 }

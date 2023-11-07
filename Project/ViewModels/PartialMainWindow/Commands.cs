@@ -1,6 +1,8 @@
-﻿using Project.Views.UserControls.CustomersUserControl;
+﻿using Project.Views.UserControls.AuthUserControl;
+using Project.Views.UserControls.CustomersUserControl;
 using ProjectCommon.Enums;
 using ProjectCommon.Models;
+using ProjectCommon.Models.Authentication;
 using ProjectCommon.ViewModelBase;
 using System;
 using System.Windows.Input;
@@ -91,9 +93,11 @@ namespace Project.ViewModels
             switch (test)
             {
                 case ExperimentType.Moister:
+                    MoistureSoilTest = null;
                     MainUserControl = MoistureSoilTestUserControl;
                     break;
                 case ExperimentType.Rolling_Boundary:
+                    RollingBoundarySoilTest = null;
                     MainUserControl = RollingBoundarySoilTestUserControl;
                     break;
             }
@@ -214,6 +218,50 @@ namespace Project.ViewModels
         private void OnLoginUserCommandExecuted(object p)
         {
             LoginUser();
+        }
+
+        /// <summary>
+        /// Команда для авторизации пользователя.
+        /// </summary>
+        public ICommand OpenRegisterUserFormCommand { get; }
+        private bool CanOpenRegisterUserFormCommandExecute(object p) => true;
+        private void OnOpenRegisterUserFormCommandExecuted(object p)
+        {
+            RegisterRequest = new RegisterRequest();
+            AuthUserControl = new RegisterUserControl();
+            LoginRequest = null;
+        }
+
+        /// <summary>
+        /// Команда для возврата в меню логина.
+        /// </summary>
+        public ICommand ReturnToLoginUserFormCommand { get; }
+        private bool CanReturnToLoginUserFormCommandExecute(object p) => true;
+        private void OnReturnToLoginUserFormCommandExecuted(object p)
+        {
+            AuthUserControl = new LoginUserControl();
+        }
+
+        /// <summary>
+        /// Команда для регистрации нового пользователя.
+        /// </summary>
+        public ICommand RegisterNewUserFormCommand { get; }
+        private bool CanRegisterNewUserFormCommandExecute(object p) => true;
+        private void OnRegisterNewUserFormCommandExecuted(object p)
+        {
+            RegisterUser();
+        }
+
+        /// <summary>
+        /// Команда для выхода пользователя.
+        /// </summary>
+        public ICommand ExitUserFormCommand { get; }
+        private bool CanExitUserFormCommandExecute(object p) => true;
+        private void OnExitUserFormCommandExecuted(object p)
+        {
+            User = null;
+            LoginRequest = null;
+            AuthUserControl = new LoginUserControl();
         }
     }
 }

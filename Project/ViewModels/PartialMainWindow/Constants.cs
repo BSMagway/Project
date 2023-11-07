@@ -33,7 +33,5 @@ namespace Project.ViewModels
         /// Адресная строка для логина пользователя.
         /// </summary>
         private const string LOGIN_ADRESS = "https://localhost:7143/api/User/Login";
-
-
     }
 }

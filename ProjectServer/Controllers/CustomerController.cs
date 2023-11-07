@@ -71,7 +71,7 @@ namespace ProjectServer.Controllers
 
             if (customerAdded is null)
             {
-                NotFound();
+                return NotFound();
             }
 
             return Ok(customerAdded);

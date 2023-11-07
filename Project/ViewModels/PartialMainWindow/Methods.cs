@@ -122,5 +122,22 @@ namespace Project.ViewModels
                 ErrorMessage = ex.Message;
             }
         }
+
+        /// <summary>
+        /// Метод для авторизации пользователя.
+        /// </summary>
+        /// <returns></returns>
+        public async Task RegisterUser()
+        {
+            try
+            {
+                await _authInterface.Registration(REGISTER_ADRESS, RegisterRequest);
+                AuthUserControl = new LoginUserControl();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
     }
 }

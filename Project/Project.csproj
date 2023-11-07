@@ -36,6 +36,9 @@
     <Compile Update="Views\UserControls\AuthUserControl\LoggedUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UserControls\AuthUserControl\RegisterUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UserControls\SelectUserControls\SelectNewTestSand.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

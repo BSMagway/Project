@@ -48,7 +48,7 @@
                 Grid.Column="2"
                 Content="Register"
                 Margin="5"
-                Command=""/>
+                Command="{Binding OpenRegisterUserFormCommand}"/>
 
 
 
