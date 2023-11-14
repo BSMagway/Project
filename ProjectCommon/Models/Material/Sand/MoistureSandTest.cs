@@ -12,65 +12,65 @@ namespace ProjectCommon.Models.Material.Sand
         /// <summary>
         /// Id результата измерения массы влажного песка.
         /// </summary>
-        public int? GravelWetMassId { get; set; }
+        public int? SandWetMassId { get; set; }
 
         /// <summary>
         /// Результат измерения массы влажного песка.
         /// </summary>
-        public Dimension GravelWetMass { get; set; }
+        public Dimension SandWetMass { get; set; }
 
         /// <summary>
         /// Id результата измерения массы сухого песка.
         /// </summary>
-        public int? GravelDryMassId { get; set; }
+        public int? SandDryMassId { get; set; }
 
         /// <summary>
         /// Результат измерения массы сухого песка.
         /// </summary>
-        public Dimension GravelDryMass { get; set; }
+        public Dimension SandDryMass { get; set; }
 
         /// <summary>
         /// Id результата влажности пробы песка.
         /// </summary>
-        public int? MoistureId { get; set; }
+        public int? SandMoistureId { get; set; }
 
         /// <summary>
         /// Рассчитанная влажность пробы песка.
         /// </summary>
-        public Dimension Moisture { get; set; }
+        public Dimension SandMoisture { get; set; }
 
         public override void Calculate()
         {
-            if (GravelWetMass.DimensionValue <= 0)
+            if (SandWetMass.DimensionValue <= 0)
             {
-                throw new ArgumentOutOfRangeException("Значение массы пробы во влажном состоянии меньше или равно 0.");
+                throw new ArgumentOutOfRangeException("Значение массы пробы песка во влажном состоянии меньше или равно 0.");
             }
 
-            if (GravelDryMass.DimensionValue <= 0)
+            if (SandDryMass.DimensionValue <= 0)
             {
-                throw new ArgumentOutOfRangeException("Значение массы пробы в сухом состоянии меньше или равно 0.");
+                throw new ArgumentOutOfRangeException("Значение массы пробы песка в сухом состоянии меньше или равно 0.");
             }
 
-            if (GravelDryMass.DimensionValue > GravelWetMass.DimensionValue)
+            if (SandDryMass.DimensionValue > SandWetMass.DimensionValue)
             {
-                throw new ArgumentOutOfRangeException("Значение массы пробы в сухом состоянии больше массы пробы во влажном состоянии.");
+                throw new ArgumentOutOfRangeException("Значение массы пробы песка в сухом состоянии больше массы пробы песка во влажном состоянии.");
             }
 
-            Moisture.DimensionValue = ((GravelWetMass.DimensionValue - GravelDryMass.DimensionValue)
-                / GravelDryMass.DimensionValue) * 100;
+            SandMoisture.DimensionValue = ((SandWetMass.DimensionValue - SandDryMass.DimensionValue)
+                / SandDryMass.DimensionValue) * 100;
 
         }
 
         /// <summary>
-        /// Конструктор для создания теста по определению влажности грунта.
+        /// Конструктор для создания теста по определению влажности песка.
         /// </summary>
         public MoistureSandTest()
         {
-            GravelWetMass = new Dimension("Масса пробы во влажном состоянии, г");
-            GravelDryMass = new Dimension("Масса пробы в сухом состоянии, г");
-            Moisture = new Dimension("Влажность щебня, %");
+            SandWetMass = new Dimension("Масса пробы песка во влажном состоянии, г");
+            SandDryMass = new Dimension("Масса пробы песка в сухом состоянии, г");
+            SandMoisture = new Dimension("Влажность песка, %");
 
-            MaterialEnum = MaterialType.Gravel;
+            MaterialEnum = MaterialType.Sand;
             TestEnum = ExperimentType.Moister;
         }
     }
