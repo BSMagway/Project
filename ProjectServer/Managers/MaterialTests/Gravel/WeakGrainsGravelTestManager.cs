@@ -6,7 +6,7 @@ using ProjectServer.Interfaces.Managers.MaterialTests.Gravel;
 
 namespace ProjectServer.Managers.MaterialTests.Gravel
 {
-    /// <inheritdoc cref="IMoistureGravelTestManager"/>
+    /// <inheritdoc cref="IWeakGrainsGravelTestManager"/>
     public class WeakGrainsGravelTestManager : IWeakGrainsGravelTestManager
     {
         private readonly AppDbContext _appDb;
@@ -14,7 +14,7 @@ namespace ProjectServer.Managers.MaterialTests.Gravel
         private readonly ICustomerManager _customerManager;
 
         /// <summary>
-        /// Конструктор менеджера по работе с базой данных тестов по определению влажности щебня.
+        /// Конструктор менеджера по работе с базой данных тестов по определению содержания зерен слабых пород.
         /// </summary>
         /// <param name="appDb">База данных.</param>
         /// <param name="dimensionManager">Менеджер по работе с базой данных измерений.</param>
