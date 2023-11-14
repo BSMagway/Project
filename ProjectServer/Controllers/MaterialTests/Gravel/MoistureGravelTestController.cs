@@ -48,7 +48,7 @@ namespace ProjectServer.Controllers.MaterialTests.Gravel
         /// <param name="moistureGravelTest">Тест для добавления.</param>
         /// <returns>Статус запроса. В случае успешного добавления возвращается добавленный тест.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] MoistureSandTest moistureGravelTest)
+        public async Task<IActionResult> Add([FromBody] MoistureGravelTest moistureGravelTest)
         {
             var model = await _moistureGravelTestManager.AddAsync(moistureGravelTest);
 
@@ -66,7 +66,7 @@ namespace ProjectServer.Controllers.MaterialTests.Gravel
         /// <param name="moistureGravelTest">Тест по определению влажности щебня для которого необходимо внести изменения.</param>
         /// <returns>Статус запроса.</returns>
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] MoistureSandTest moistureGravelTest)
+        public async Task<IActionResult> Update([FromBody] MoistureGravelTest moistureGravelTest)
         {
             var resultMoistureGravelTestUpdate = await _moistureGravelTestManager.UpdateAsync(moistureGravelTest);
 

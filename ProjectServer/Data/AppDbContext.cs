@@ -73,6 +73,6 @@ public class AppDbContext : DbContext
     /// <summary>
     /// Таблица с информацией тестов по определению влажности щебня.
     /// </summary>
-    public DbSet<MoistureSandTest> MoistureGravelTests { get; set; }
+    public DbSet<MoistureGravelTest> MoistureGravelTests { get; set; }
 }
 

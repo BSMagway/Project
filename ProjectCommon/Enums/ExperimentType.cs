@@ -65,5 +65,11 @@
         /// </summary>
         Bulk_Density = 11,
 
+        /// <summary>
+        /// Фильтрация.
+        /// </summary>
+        Filtration = 12,
+        
+
     }
 }

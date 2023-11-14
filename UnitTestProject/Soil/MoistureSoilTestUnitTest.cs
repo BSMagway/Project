@@ -1,6 +1,6 @@
 using ProjectCommon.Models.Material.Soil;
 
-namespace UnitTestProject
+namespace UnitTestProject.Soil
 {
     [TestClass]
     public class MoistureSoilTestUnitTest
@@ -19,7 +19,7 @@ namespace UnitTestProject
 
             moistureSoilTest.Calculate();
 
-            var expectedResult = ((soilWetMass - soilDryMass) / (soilDryMass - boxMass)) * 100.0;
+            var expectedResult = (soilWetMass - soilDryMass) / (soilDryMass - boxMass) * 100.0;
 
             Assert.AreEqual(expectedResult, moistureSoilTest.Moisture.DimensionValue);
         }

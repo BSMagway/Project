@@ -26,7 +26,7 @@ namespace ProjectServer.Managers.MaterialTests.Gravel
             _customerManager = customerManager;
         }
 
-        public async Task<MoistureSandTest> GetAsync(int moistureGravelTestId)
+        public async Task<MoistureGravelTest> GetAsync(int moistureGravelTestId)
         {
             var model = await _appDb.MoistureGravelTests.FirstOrDefaultAsync(moistureGravelTest => moistureGravelTest.Id == moistureGravelTestId);
 
@@ -38,7 +38,7 @@ namespace ProjectServer.Managers.MaterialTests.Gravel
             return model;
         }
 
-        public async Task<MoistureSandTest> AddAsync(MoistureSandTest moistureGravelTest)
+        public async Task<MoistureGravelTest> AddAsync(MoistureGravelTest moistureGravelTest)
         {
             moistureGravelTest.GravelWetMass = await _dimensionManager.AddAsync(moistureGravelTest.GravelWetMass);
             moistureGravelTest.GravelDryMass = await _dimensionManager.AddAsync(moistureGravelTest.GravelDryMass);
@@ -70,7 +70,7 @@ namespace ProjectServer.Managers.MaterialTests.Gravel
             return true;
         }
 
-        public async Task<bool> UpdateAsync(MoistureSandTest moistureGravelTestUpdate)
+        public async Task<bool> UpdateAsync(MoistureGravelTest moistureGravelTestUpdate)
         {
             var dbMoistureGravelTest = await _appDb.MoistureGravelTests
                 .FirstOrDefaultAsync(moistureGravelTest => moistureGravelTest.Id == moistureGravelTestUpdate.Id);
