@@ -2,9 +2,9 @@
 
 namespace Project.Views.UserControls.TestUserControls.Soil
 {
-    public partial class MoistureSoilTestUC : UserControl
+    public partial class YieldLimitSoilTestUserControl : UserControl
     {
-        public MoistureSoilTestUC()
+        public YieldLimitSoilTestUserControl()
         {
             InitializeComponent();
         }

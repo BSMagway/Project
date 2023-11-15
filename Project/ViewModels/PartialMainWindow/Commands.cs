@@ -100,6 +100,36 @@ namespace Project.ViewModels
                     RollingBoundarySoilTest = null;
                     MainUserControl = RollingBoundarySoilTestUserControl;
                     break;
+                case ExperimentType.Yield_Limit:
+                    YieldLimitSoilTest = null;
+                    MainUserControl = YieldLimitSoilTestUserControl;
+                    break;
+                case ExperimentType.Density:
+                    DensitySoilTest = null;
+                    MainUserControl = DensitySoilTestUserControl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Команда для выбора вида испытания ПГС.
+        /// </summary>
+        public ICommand SelectSandAndGravelTestCommand { get; }
+        private bool CanSelectSandAndGravelTestCommandExecute(object p) => true;
+        private void OnSelectSandAndGravelTestCommandExecuted(object p)
+        {
+            var test = (Enum)p;
+
+            switch (test)
+            {
+                case ExperimentType.Density:
+                    BulkDensitySandAndGravelTest = null;
+                    MainUserControl = BulkDensitySandAndGravelTestUserControl;
+                    break;
+                default:
+                    break;
             }
         }
 

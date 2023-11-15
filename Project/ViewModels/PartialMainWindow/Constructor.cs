@@ -70,6 +70,7 @@ namespace Project.ViewModels
             SelectTypeTestCommand = new LambdaCommand(OnSelectTypeTestCommandExecuted, CanSelectTypeTestCommandExecute);
             ReturnToNewTaskPageCommand = new LambdaCommand(OnReturnToNewTaskPageCommandExecuted, CanReturnToNewTaskPageCommandExecute);
             SelectSoilTestCommand = new LambdaCommand(OnSelectSoilTestCommandExecuted, CanSelectSoilTestCommandExecute);
+            SelectSandAndGravelTestCommand = new LambdaCommand(OnSelectSandAndGravelTestCommandExecuted, CanSelectSandAndGravelTestCommandExecute);
             
             CalculateMoistureSoilTestCommand = new LambdaCommand(OnCalculateMoistureSoilTestCommandExecuted, CanCalculateMoistureSoilTestCommandExecute);
             SaveMoistureSoilTestCommand = new LambdaCommand(OnSaveMoistureSoilTestCommandExecuted, CanSaveMoistureSoilTestCommandExecute);

@@ -2,9 +2,9 @@
 
 namespace Project.Views.UserControls.TestUserControls.Gravel
 {
-    public partial class MoistureGravelTestUC : UserControl
+    public partial class ClayInLumpsGravelTestUserControl : UserControl
     {
-        public MoistureGravelTestUC()
+        public ClayInLumpsGravelTestUserControl()
         {
             InitializeComponent();
         }

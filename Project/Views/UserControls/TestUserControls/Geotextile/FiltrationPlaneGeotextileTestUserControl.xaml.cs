@@ -2,9 +2,9 @@
 
 namespace Project.Views.UserControls.TestUserControls.Geotextile
 {
-    public partial class MoistureGeotextileTestUC : UserControl
+    public partial class FiltrationPlaneGeotextileTestUserControl : UserControl
     {
-        public MoistureGeotextileTestUC()
+        public FiltrationPlaneGeotextileTestUserControl()
         {
             InitializeComponent();
         }

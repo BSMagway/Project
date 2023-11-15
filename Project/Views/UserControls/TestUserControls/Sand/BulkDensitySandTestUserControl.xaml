@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Project.Views.UserControls.TestUserControls.Sand.BulkDensitySandTestUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:Project.ViewModels"
+             d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
+             xmlns:local="clr-namespace:Project.Views.UserControls.TestUserControls.Sand"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Grid.Column="0" 
+                   Text="Номер протокола"/>
+        
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="0" 
+                   Text="Материал"/>
+        
+        <TextBlock Grid.Row="2" 
+                   Grid.Column="0" 
+                   Text="Дата испытания"/>
+        
+        <TextBlock Grid.Row="3" 
+                   Grid.Column="0" 
+                   Text="Нормативный документ"/>
+        
+        <TextBlock Grid.Row="5" 
+                   Grid.Column="0" 
+                   Text="Заказчик"/>
+        
+        <TextBlock Grid.Row="6" 
+                   Grid.Column="0" 
+                   Text="Номер договора"/>
+
+        <TextBox Grid.Row="0" 
+                 Grid.Column="1" 
+                 Text="{Binding BulkDensitySandTest.TestNumber}"/>
+        
+        <TextBox Grid.Row="1" 
+                 Grid.Column="1" 
+                 Text="{Binding BulkDensitySandTest.MaterialName}"/>
+        
+        <TextBox Grid.Row="2" 
+                 Grid.Column="1" 
+                 Text="{Binding BulkDensitySandTest.DateTest}"/>
+        
+        <TextBox Grid.Row="3" 
+                 Grid.Column="1" 
+                 Text="{Binding BulkDensitySandTest.DocumentTest}"/>
+        
+        <TextBlock Grid.Row="5" 
+                   Grid.Column="1" 
+                   Text="{Binding BulkDensitySandTest.Customer.Title}" 
+                   Height="45" 
+                   VerticalAlignment="Center"/>
+        
+        <TextBlock Grid.Row="6" 
+                   Grid.Column="1" 
+                   Text="{Binding BulkDensitySandTest.Customer.ContractNumber}"/>
+
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="4" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" 
+                Content="Выбрать заказчика" 
+                Command="{Binding OpenSelectCustomerCommand}"                
+                Margin="5"/>
+
+        <TextBlock Grid.Row="0" 
+                   Grid.Column="2" 
+                   Text="{Binding BulkDensitySandTest.BulkDensityCylinderWithSandMass.DimensionName}"/>
+        
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="2" 
+                   Text="{Binding BulkDensitySandTest.BulkDensityCylinderMass.DimensionName}"/>
+        
+        <TextBlock Grid.Row="2" 
+                   Grid.Column="2" 
+                   Text="{Binding BulkDensitySandTest.CylinderVolume.DimensionName}"/>
+        
+        <TextBlock Grid.Row="3" 
+                   Grid.Column="2" 
+                   Text="{Binding BulkDensitySandTest.SandBulkDensity.DimensionName}"/>
+        
+        <TextBox Grid.Row="0" 
+                 Grid.Column="3" 
+                 Text="{Binding BulkDensitySandTest.BulkDensityCylinderWithSandMass.DimensionValue}"/>
+        
+        <TextBox Grid.Row="1" 
+                 Grid.Column="3" 
+                 Text="{Binding BulkDensitySandTest.BulkDensityCylinderMass.DimensionValue}"/>
+        
+        <TextBox Grid.Row="2" 
+                 Grid.Column="3" 
+                 Text="{Binding BulkDensitySandTest.CylinderVolume.DimensionValue}"/>
+        
+        <TextBlock Grid.Row="3" 
+                   Grid.Column="3" 
+                   Text="{Binding BulkDensitySandTest.SandBulkDensity.DimensionValue}"/>
+        
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="4" 
+                Grid.Column="2" 
+                Grid.ColumnSpan="2" 
+                Content="Рассчитать влажность" 
+                Command="{Binding CalculateBulkDensitySandTestCommand}"
+                VerticalContentAlignment="Center"
+                Margin="5"/>
+        
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                Grid.Row="5" 
+                Grid.Column="2" 
+                Grid.ColumnSpan="2" 
+                Content="Save" 
+                Command="{Binding SaveBulkDensitySandTestCommand}"
+                VerticalContentAlignment="Center"
+                Margin="5"/>
+    </Grid>
+</UserControl>

@@ -2,9 +2,9 @@
 
 namespace Project.Views.UserControls.TestUserControls.Sand
 {
-    public partial class MoistureSandTestUC : UserControl
+    public partial class DustSandTestUserControl : UserControl
     {
-        public MoistureSandTestUC()
+        public DustSandTestUserControl()
         {
             InitializeComponent();
         }
