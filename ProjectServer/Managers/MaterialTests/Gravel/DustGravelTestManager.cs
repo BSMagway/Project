@@ -73,7 +73,7 @@ namespace ProjectServer.Managers.MaterialTests.Gravel
         public async Task<bool> UpdateAsync(DustGravelTest dustGravelTestUpdate)
         {
             var dbDustGravelTest = await _appDb.DustGravelTests
-                .FirstOrDefaultAsync(flakyGrainsGravelTest => flakyGrainsGravelTest.Id == dustGravelTestUpdate.Id);
+                .FirstOrDefaultAsync(dustGravelTest => dustGravelTest.Id == dustGravelTestUpdate.Id);
 
             if (dbDustGravelTest == null)
             {
