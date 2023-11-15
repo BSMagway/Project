@@ -4,13 +4,17 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProjectServer.Data;
 using ProjectServer.Interfaces.Managers;
+using ProjectServer.Interfaces.Managers.MaterialTests.Geotextile;
 using ProjectServer.Interfaces.Managers.MaterialTests.Gravel;
 using ProjectServer.Interfaces.Managers.MaterialTests.Sand;
+using ProjectServer.Interfaces.Managers.MaterialTests.SandAndGravel;
 using ProjectServer.Interfaces.Managers.MaterialTests.Soil;
 using ProjectServer.Interfaces.Service;
 using ProjectServer.Managers;
+using ProjectServer.Managers.MaterialTests.Geotextile;
 using ProjectServer.Managers.MaterialTests.Gravel;
 using ProjectServer.Managers.MaterialTests.Sand;
+using ProjectServer.Managers.MaterialTests.SandAndGravel;
 using ProjectServer.Managers.MaterialTests.Soil;
 using ProjectServer.Services;
 using System.Text;
@@ -77,12 +81,28 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddScoped<IMoistureSoilTestManager, MoistureSoilTestManager>();
 builder.Services.AddScoped<IDensitySoilTestManager, DensitySoilTestManager>();
 builder.Services.AddScoped<IYieldLimitSoilTestManager, YieldLimitSoilTestManager>();
 builder.Services.AddScoped<IRollingBoundarySoilTestManager, RollingBoundarySoilTestManager>();
 
 builder.Services.AddScoped<IMoistureGravelTestManager, MoistureGravelTestManager>();
+builder.Services.AddScoped<IWeakGrainsGravelTestManager, WeakGrainsGravelTestManager>();
+builder.Services.AddScoped<IFlakyGrainsGravelTestManager, FlakyGrainsGravelTestManager>();
+builder.Services.AddScoped<IDustGravelTestManager, DustGravelTestManager>();
+builder.Services.AddScoped<ICrushedGrainsGravelTestManager, CrushedGrainsGravelTestManager>();
+builder.Services.AddScoped<ICrushabilityGravelTestManager, CrushabilityGravelTestManager>();
+builder.Services.AddScoped<IClayInLumpsGravelTestManager, ClayInLumpsGravelTestManager>();
+builder.Services.AddScoped<IBulkDensityGravelTestManager, BulkDensityGravelTestManager>();
+
+builder.Services.AddScoped<IMoistureSandTestManager, MoistureSandTestManager>();
+builder.Services.AddScoped<IDustSandTestManager, DustSandTestManager>();
+builder.Services.AddScoped<IBulkDensitySandTestManager, BulkDensitySandTestManager>();
+
+builder.Services.AddScoped<IBulkDensitySandAndGravelTestManager, BulkDensitySandAndGravelTestManager>();
+
+builder.Services.AddScoped<IFiltrationPlaneGeotextileTestManager, FiltrationPlaneGeotextileTestManager>();
 
 builder.Services.AddScoped<ITestsManager, TestsManager>();
 builder.Services.AddScoped<ICustomerManager, CustomerManager>();

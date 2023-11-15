@@ -3,6 +3,10 @@ using Project.ViewModels.Commands;
 using Project.Views.UserControls.AuthUserControl;
 using ProjectCommon.Models;
 using ProjectCommon.Models.Base;
+using ProjectCommon.Models.Material.Geotextile;
+using ProjectCommon.Models.Material.Gravel;
+using ProjectCommon.Models.Material.Sand;
+using ProjectCommon.Models.Material.SandAndGravel;
 using ProjectCommon.Models.Material.Soil;
 using ProjectCommon.ViewModelBase;
 
@@ -14,6 +18,20 @@ namespace Project.ViewModels
             IWorkWithBDGeneric<MoistureSoilTest> moistureSoilTestDBService,
             IWorkWithBDGeneric<RollingBoundarySoilTest> rollingBoundarySoilTestDBService,
             IWorkWithBDGeneric<YieldLimitSoilTest> yieldLimitSoilTestDBService,
+            IWorkWithBDGeneric<DensitySoilTest> densitySoilTestDBService,
+            IWorkWithBDGeneric<WeakGrainsGravelTest> weakGrainsGravelTestDBService,
+            IWorkWithBDGeneric<MoistureGravelTest> moistureGravelTestDBService,
+            IWorkWithBDGeneric<FlakyGrainsGravelTest> flakyGrainsGravelTestDBService,
+            IWorkWithBDGeneric<DustGravelTest> dustGravelTestDBService,
+            IWorkWithBDGeneric<CrushedGrainsGravelTest> crushedGrainsGravelTestDBService,
+            IWorkWithBDGeneric<CrushabilityGravelTest> crushabilityGravelTestDBService,
+            IWorkWithBDGeneric<ClayInLumpsGravelTest> clayInLumpsGravelTestDBService,
+            IWorkWithBDGeneric<BulkDensityGravelTest> bulkDensityGravelTestDBService,
+            IWorkWithBDGeneric<BulkDensitySandAndGravelTest> bulkDensitySandAndGravelTestDBService,
+            IWorkWithBDGeneric<FiltrationPlaneGeotextileTest> filtrationPlaneGeotextileTestDBService,
+            IWorkWithBDGeneric<MoistureSandTest> moistureSandTestDBService,
+            IWorkWithBDGeneric<DustSandTest> dustSandTestDBService,
+            IWorkWithBDGeneric<BulkDensitySandTest> bulkDensitySandTestDBService,
             IWorkWithBDGeneric<Test> testDbService,
             IAuthInterface authService)
         {
@@ -21,9 +39,29 @@ namespace Project.ViewModels
             AuthUserControl = new LoginUserControl();
 
             _customerDBService = customerDBService;
+
             _moistureSoilTestDBService = moistureSoilTestDBService;
             _rollingBoundarySoilTestDBService = rollingBoundarySoilTestDBService;
             _yieldLimitSoilTestDBService = yieldLimitSoilTestDBService;
+            _densitySoilTestDBService = densitySoilTestDBService;
+
+            _weakGrainsGravelTestDBService = weakGrainsGravelTestDBService;
+            _moistureGravelTestDBService = moistureGravelTestDBService;
+            _flakyGrainsGravelTestDBService = flakyGrainsGravelTestDBService;
+            _dustGravelTestDBService = dustGravelTestDBService;
+            _crushedGrainsGravelTestDBService = crushedGrainsGravelTestDBService;
+            _crushabilityGravelTestDBService = crushabilityGravelTestDBService;
+            _clayInLumpsGravelTestDBService = clayInLumpsGravelTestDBService;
+            _bulkDensityGravelTestDBService = bulkDensityGravelTestDBService;
+
+            _bulkDensitySandAndGravelTestDBService = bulkDensitySandAndGravelTestDBService;
+
+            _filtrationPlaneGeotextileTestDBService = filtrationPlaneGeotextileTestDBService;
+
+            _moistureSandTestDBService = moistureSandTestDBService;
+            _dustSandTestDBService = dustSandTestDBService;
+            _bulkDensitySandTestDBService = bulkDensitySandTestDBService;
+
             _testDBService = testDbService;
             _authInterface = authService;
 
