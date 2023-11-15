@@ -11,7 +11,7 @@ namespace Project.ViewModels
         private YieldLimitSoilTest yieldLimitSoilTest;
 
         /// <summary>
-        /// Тест по определению границы раскатываемости грунта.
+        /// Тест по определению предела текучести грунта.
         /// </summary>
         public YieldLimitSoilTest YieldLimitSoilTest
         {
@@ -28,7 +28,7 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Метод по добавлению нового теста по определению границы раскатываемости в базе данных.
+        /// Метод по добавлению нового теста по определению предела текучести грунта в базе данных.
         /// </summary>
         /// <returns></returns>
         public async Task SaveNewYieldLimitSoilTest()
@@ -45,14 +45,14 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Метод дя редактирования теста по определению границы расскатываемости в базе данных.
+        /// Метод дя редактирования теста по определению предела текучести грунта в базе данных.
         /// </summary>
         /// <returns></returns>
         public async Task EditYieldLimitSoilTest()
         {
             try
             {
-                await _rollingBoundarySoilTestDBService.Update(ROLLING_BOUNDARY_SOIL_TEST_ADRESS, RollingBoundarySoilTest, User.Jwt);
+                await _yieldLimitSoilTestDBService.Update(YIELD_LIMIT_SOIL_TEST_ADRESS, YieldLimitSoilTest, User.Jwt);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Команда для расчета границы раскатываемости грунта.
+        /// Команда для расчета предела текучести грунта грунта.
         /// </summary>
         public ICommand CalculateYieldLimitSoilTestCommand { get; }
         private bool CanCalculateYieldLimitSoilTestCommandExecute(object p) => true;
@@ -78,7 +78,7 @@ namespace Project.ViewModels
         }
 
         /// <summary>
-        /// Команда для сохранения и редактирования тестов по определению границы раскатываемости грунта.
+        /// Команда для сохранения и редактирования тестов по определению предела текучести грунта грунта.
         /// </summary>
         public ICommand SaveYieldLimitSoilTestCommand { get; }
         private bool CanSaveYieldLimitSoilTestCommandExecute(object p) => true;

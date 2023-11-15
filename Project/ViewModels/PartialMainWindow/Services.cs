@@ -63,7 +63,7 @@ namespace Project.ViewModels
         IWorkWithBDGeneric<CrushedGrainsGravelTest> _crushedGrainsGravelTestDBService;
 
         /// <summary>
-        /// Сервис для работы с базой данных тестов по опеределнию предела дробимости щебня.
+        /// Сервис для работы с базой данных тестов по опеределнию дробимости щебня.
         /// </summary>
         IWorkWithBDGeneric<CrushabilityGravelTest> _crushabilityGravelTestDBService;
 
