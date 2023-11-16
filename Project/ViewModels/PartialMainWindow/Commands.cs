@@ -134,6 +134,102 @@ namespace Project.ViewModels
         }
 
         /// <summary>
+        /// Команда для выбора вида испытания щебня.
+        /// </summary>
+        public ICommand SelectGravelTestCommand { get; }
+        private bool CanSelectGravelTestCommandExecute(object p) => true;
+        private void OnSelectGravelTestCommandExecuted(object p)
+        {
+            var test = (Enum)p;
+
+            switch (test)
+            {
+                case ExperimentType.Weak_Grains:
+                    WeakGrainsGravelTest = null;
+                    MainUserControl = WeakGrainsGravelTestUserControl;
+                    break;
+                case ExperimentType.Moister:
+                    MoistureGravelTest = null;
+                    MainUserControl = MoistureGravelTestUserControl;
+                    break;
+                case ExperimentType.Flaky_Grains:
+                    FlakyGrainsGravelTest = null;
+                    MainUserControl = FlakyGrainsGravelTestUserControl;
+                    break;
+                case ExperimentType.Dust:
+                    DustGravelTest = null;
+                    MainUserControl = DustGravelTestUserControl;
+                    break;
+                case ExperimentType.Crushed_Grains:
+                    CrushedGrainsGravelTest = null;
+                    MainUserControl = CrushedGrainsGravelTestUserControl;
+                    break;
+                case ExperimentType.Crushability:
+                    CrushabilityGravelTest = null;
+                    MainUserControl = CrushabilityGravelTestUserControl;
+                    break;
+                case ExperimentType.Clay_In_Lumps:
+                    ClayInLumpsGravelTest = null;
+                    MainUserControl = ClayInLumpsGravelTestUserControl;
+                    break;
+                case ExperimentType.Bulk_Density:
+                    BulkDensityGravelTest = null;
+                    MainUserControl = BulkDensityGravelTestUserControl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Команда для выбора вида испытания геотекстиля.
+        /// </summary>
+        public ICommand SelectGeotextileTestCommand { get; }
+        private bool CanSelectGeotextileTestCommandExecute(object p) => true;
+        private void OnSelectGeotextileTestCommandExecuted(object p)
+        {
+            var test = (Enum)p;
+
+            switch (test)
+            {
+                case ExperimentType.Filtration:
+                    FiltrationPlaneGeotextileTest = null;
+                    MainUserControl = FiltrationPlaneGeotextileTestUserControl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Команда для выбора вида испытания грунта.
+        /// </summary>
+        public ICommand SelectSandTestCommand { get; }
+        private bool CanSelectSandTestCommandExecute(object p) => true;
+        private void OnSelectSandTestCommandExecuted(object p)
+        {
+            var test = (Enum)p;
+
+            switch (test)
+            {
+                case ExperimentType.Moister:
+                    MoistureSandTest = null;
+                    MainUserControl = MoistureGravelTestUserControl;
+                    break;
+                case ExperimentType.Dust:
+                    DustSandTest = null;
+                    MainUserControl = DustSandTestUserControl;
+                    break;
+                case ExperimentType.Bulk_Density:
+                    BulkDensitySandTest = null;
+                    MainUserControl = BulkDensitySandTestUserControl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Команда возвращения к меню выбора новой задачи.
         /// </summary>
         public ICommand ReturnToNewTaskPageCommand { get; }
@@ -154,14 +250,92 @@ namespace Project.ViewModels
             switch (TestForLoading.MaterialEnum)
             {
                 case MaterialType.Soil:
-
                     switch (TestForLoading.TestEnum)
                     {
                         case ExperimentType.Moister:
                             LoadMoistureSoilTest();
                             break;
+                        case ExperimentType.Rolling_Boundary:
+                            LoadRollingBoundarySoilTest();
+                            break;
+                        case ExperimentType.Yield_Limit:
+                            LoadYieldLimitSoilTest();
+                            break;
+                        case ExperimentType.Density:
+                            LoadDensitySoilTest();
+                            break;
+                        default: 
+                            break;
                     }
-
+                 break;
+                case MaterialType.Gravel:
+                    switch (TestForLoading.TestEnum)
+                    {
+                        case ExperimentType.Weak_Grains:
+                            LoadWeakGrainsGravelTest();
+                            break;
+                        case ExperimentType.Moister:
+                            LoadMoistureGravelTest();
+                            break;
+                        case ExperimentType.Flaky_Grains:
+                            LoadFlakyGrainsGravelTest();
+                            break;
+                        case ExperimentType.Dust:
+                            LoadDustSandTest();
+                            break;
+                        case ExperimentType.Crushed_Grains:
+                            LoadCrushedGrainsGravelTest();
+                            break;
+                        case ExperimentType.Crushability:
+                            LoadCrushabilityGravelTest();
+                            break;
+                        case ExperimentType.Clay_In_Lumps:
+                            LoadClayInLumpsGravelTest();
+                            break;
+                        case ExperimentType.Bulk_Density:
+                            LoadBulkDensityGravelTest();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.Sand:
+                    switch (TestForLoading.TestEnum)
+                    {
+                        case ExperimentType.Moister:
+                            LoadMoistureSandTest();
+                            break;
+                        case ExperimentType.Dust:
+                            LoadDustSandTest();
+                            break;
+                        case ExperimentType.Bulk_Density:
+                            LoadBulkDensitySandTest();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.SandAndGravel:
+                    switch (TestForLoading.TestEnum)
+                    {
+                        case ExperimentType.Bulk_Density:
+                            LoadBulkDensitySandAndGravelTest();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.Geotextile:
+                    switch (TestForLoading.TestEnum)
+                    {
+                        case ExperimentType.Filtration:
+                            LoadFiltrationPlaneGeotextileTest();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default: 
                     break;
             }
         }

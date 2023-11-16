@@ -6,6 +6,7 @@
       xmlns:vm="clr-namespace:Project.ViewModels"
       d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
       xmlns:local="clr-namespace:Project.Views.UserControls.SelectUserControls"
+      xmlns:enum="clr-namespace:ProjectCommon.Enums;assembly=ProjectCommon"       
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
@@ -25,11 +26,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectGeotextileTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Filtration}">
             <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Коэффициент фильтрации в продолном направлении</TextBlock>
-        </Button>
-        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Коэффициент фильтрации в поперечном направлении</TextBlock>
         </Button>
     </Grid>
 </UserControl>

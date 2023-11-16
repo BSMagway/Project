@@ -6,6 +6,7 @@
       xmlns:vm="clr-namespace:Project.ViewModels"
       d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
       xmlns:local="clr-namespace:Project.Views.UserControls.SelectUserControls"
+      xmlns:enum="clr-namespace:ProjectCommon.Enums;assembly=ProjectCommon"       
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
@@ -25,10 +26,29 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Content="Влажность" />
-        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="1"/>
-        <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Content="2"/>
-        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Content="3"/>
-        <Button Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Content="4"/>
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Weak_Grains}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Зерна слабых пород</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Moister}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Влажность</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Flaky_Grains}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Зерна пластинчатой (лещадной) и игловатой формы</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Dust}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Пылевато-глинистые частицы</TextBlock>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Crushed_Grains}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Дробленые зерна в щебне из гравия</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Crushability}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Дробимость</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Clay_In_Lumps}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Глина в комках</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Bulk_Density}">
+            <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Насыпная плотность</TextBlock>
+        </Button>
     </Grid>
 </UserControl>
