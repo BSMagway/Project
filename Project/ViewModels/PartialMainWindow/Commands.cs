@@ -298,7 +298,7 @@ namespace Project.ViewModels
                             LoadFlakyGrainsGravelTest();
                             break;
                         case ExperimentType.Dust:
-                            LoadDustSandTest();
+                            LoadDustGravelTest();
                             break;
                         case ExperimentType.Crushed_Grains:
                             LoadCrushedGrainsGravelTest();
