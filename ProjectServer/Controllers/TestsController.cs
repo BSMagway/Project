@@ -33,7 +33,6 @@ namespace ProjectServer.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var model = await _testManager.GetAsync();
-            _logger.LogError("111");
 
             if (model is null)
             {
