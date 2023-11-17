@@ -52,11 +52,7 @@ namespace Project.Services
 
             if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception("Ошибка входа.");
-            }
-            else
-            {
-                
+                throw new Exception("Ошибка регистрации.");
             }
         }
     }

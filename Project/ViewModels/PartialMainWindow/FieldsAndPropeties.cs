@@ -3,12 +3,16 @@ using ProjectCommon.Models.Authentication;
 using ProjectCommon.Models.Base;
 using ProjectCommon.ViewModelBase;
 using System.Collections.ObjectModel;
+using NLog;
 
 namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        /// <summary>
+        /// Логирование в фаил.
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private User user;
         private LoginRequest loginRequest;

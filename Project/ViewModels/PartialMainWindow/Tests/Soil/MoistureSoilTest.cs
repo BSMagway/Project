@@ -41,6 +41,7 @@ namespace Project.ViewModels
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
+                Logger.Error(ex);
             }
         }
 
@@ -57,6 +58,7 @@ namespace Project.ViewModels
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
+                Logger.Error(ex);
             }
         }
 
@@ -74,7 +76,6 @@ namespace Project.ViewModels
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
-                Logger.Error(ex, "Goodbye cruel world");
             }
         }
 

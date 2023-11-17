@@ -34,7 +34,7 @@ namespace Project
         {
             var config = new NLog.Config.LoggingConfiguration();
 
-            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "${basedir}/logs/${shortdate}.log"};
+            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "${basedir}/logs/${shortdate}.log" };
         
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
           
