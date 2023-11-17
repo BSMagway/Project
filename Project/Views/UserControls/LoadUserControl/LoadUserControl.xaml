@@ -43,5 +43,12 @@
                 Content="Загрузить" 
                 Command="{Binding LoadTestFromBDCommand}"
                 Margin="5"/>
+
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Content="Удалить" 
+                Command="{Binding DeleteTestFromBDCommand}"
+                Margin="5"/>
     </Grid>
 </UserControl>

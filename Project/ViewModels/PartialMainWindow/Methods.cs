@@ -468,5 +468,311 @@ namespace Project.ViewModels
                 Logger.Error(ex);
             }
         }
+
+        /// <summary>
+        /// Удаление теста по определению влажности грунта из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteMoistureSoilTest()
+        {
+            try
+            {
+                await _moistureSoilTestDBService.Delete(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению предела раскатываемости грунта из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteRollingBoundarySoilTest()
+        {
+            try
+            {
+                await _rollingBoundarySoilTestDBService.Delete(ROLLING_BOUNDARY_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению предела текучести грунта из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteYieldLimitSoilTest()
+        {
+            try
+            {
+                await _yieldLimitSoilTestDBService.Delete(YIELD_LIMIT_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению плотности грунта из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteDensitySoilTest()
+        {
+            try
+            {
+                await _densitySoilTestDBService.Delete(DENSITY_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению содержания зерен слабых пород из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteWeakGrainsGravelTest()
+        {
+            try
+            {
+                await _weakGrainsGravelTestDBService.Delete(WEAK_GRAINS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению влажности щебня из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteMoistureGravelTest()
+        {
+            try
+            {
+                await _moistureGravelTestDBService.Delete(MOISTURE_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению содержания зерен пластинчатой (лещадной) и игловатой формы из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteFlakyGrainsGravelTest()
+        {
+            try
+            {
+                await _flakyGrainsGravelTestDBService.Delete(FLAKY_GRAINS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению содержания пылевидных и глинистых частиц в щебне из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteDustGravelTest()
+        {
+            try
+            {
+                await _dustGravelTestDBService.Delete(DUST_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению содержания дробленых зерен в щебне из гравия из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteCrushedGrainsGravelTest()
+        {
+            try
+            {
+                await _crushedGrainsGravelTestDBService.Delete(CRUSHED_GRAINS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению дробимости щебня из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteCrushabilityGravelTest()
+        {
+            try
+            {
+                await _crushabilityGravelTestDBService.Delete(CRUSHABILITY_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению содержания глины в комках в щебне из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteClayInLumpsGravelTest()
+        {
+            try
+            {
+                await _clayInLumpsGravelTestDBService.Delete(CLAY_IN_LUMPS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению насыпной плотности щебня из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteBulkDensityGravelTest()
+        {
+            try
+            {
+                await _bulkDensityGravelTestDBService.Delete(BULK_DENSITY_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению насыпной плотности ПГС из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteBulkDensitySandAndGravelTest()
+        {
+            try
+            {
+                await _bulkDensitySandAndGravelTestDBService.Delete(BULK_DENSITY_SAND_AND_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению фильтрации в плоскости геотекстильного полотна из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteFiltrationPlaneGeotextileTest()
+        {
+            try
+            {
+                await _filtrationPlaneGeotextileTestDBService.Delete(FILTRATION_PLANE_GEOTEXTILE_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению влажности песка из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteMoistureSandTest()
+        {
+            try
+            {
+                await _moistureSandTestDBService.Delete(MOISTURE_SAND_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению содержания пылевидных и глинистых частиц в песке из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteDustSandTest()
+        {
+            try
+            {
+                await _dustSandTestDBService.Delete(DUST_SAND_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// Удаление теста по определению насыпной плотности песка из базы данных по id.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteBulkDensitySandTest()
+        {
+            try
+            {
+                await _bulkDensitySandTestDBService.Delete(BULK_DENSITY_SAND_TEST_ADRESS, TestForLoading.Id, User.Jwt);
+                LoadedListTests.Remove(TestForLoading);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                Logger.Error(ex);
+            }
+        }
     }
 }

@@ -114,11 +114,12 @@ namespace Project.ViewModels
             CalculateBulkDensitySandTestCommand = new LambdaCommand(OnCalculateBulkDensitySandTestCommandExecuted, CanCalculateBulkDensitySandTestCommandExecute);
             SaveBulkDensitySandTestCommand = new LambdaCommand(OnSaveBulkDensitySandTestCommandExecuted, CanSaveBulkDensitySandTestCommandExecute);
 
-
             OpenSelectCustomerCommand = new LambdaCommand(OnOpenSelectCustomerCommandExecuted, CanOpenSelectCustomerCommandExecute);
             LoadCustomerFromListCommand = new LambdaCommand(OnLoadCustomerFromListCommandExecuted, CanLoadCustomerFromListCommandExecute);
+
             LoadTestFromBDCommand = new LambdaCommand(OnLoadTestFromBDCommandExecuted, CanLoadTestFromBDCommandExecute);
- 
+            DeleteTestFromBDCommand = new LambdaCommand(OnDeleteTestFromBDCommandExecuted, CanDeleteTestFromBDCommandExecute);
+
             OpenFormForCustomerAddCommand = new LambdaCommand(OnOpenFormForCustomerAddCommandExecuted, CanOpenFormForCustomerAddCommandExecute);
             OpenFormForCustomerEditCommand = new LambdaCommand(OnOpenFormForCustomerEditCommandExecuted, CanOpenFormForCustomerEditCommandExecute);
             SaveEditCustomerInBDCommand = new LambdaCommand(OnSaveEditCustomerInBDCommandExecuted, CanSaveEditCustomerInBDCommandExecute);
