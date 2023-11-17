@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _flakyGrainsGravelTestDBService.Add(FLAKY_GRAINS_GRAVEL_TEST_ADRESS, FlakyGrainsGravelTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _flakyGrainsGravelTestDBService.Update(FLAKY_GRAINS_GRAVEL_TEST_ADRESS, FlakyGrainsGravelTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

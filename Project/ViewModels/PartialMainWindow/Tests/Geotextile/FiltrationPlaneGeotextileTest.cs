@@ -38,6 +38,7 @@ namespace Project.ViewModels
             {
                 await _filtrationPlaneGeotextileTestDBService.Add(FILTRATION_PLANE_GEOTEXTILE_TEST_ADRESS, FiltrationPlaneGeotextileTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -55,6 +56,7 @@ namespace Project.ViewModels
             try
             {
                 await _filtrationPlaneGeotextileTestDBService.Update(FILTRATION_PLANE_GEOTEXTILE_TEST_ADRESS, FiltrationPlaneGeotextileTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

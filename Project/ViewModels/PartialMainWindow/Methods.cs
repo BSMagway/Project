@@ -101,6 +101,7 @@ namespace Project.ViewModels
             {
                 await _authInterface.Registration(REGISTER_ADRESS, RegisterRequest);
                 AuthUserControl = new LoginUserControl();
+                ErrorMessage = "Вы зарегистрировались.";
             }
             catch (Exception ex)
             {

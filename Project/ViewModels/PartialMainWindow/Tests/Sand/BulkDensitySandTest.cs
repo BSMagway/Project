@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _bulkDensitySandTestDBService.Add(BULK_DENSITY_SAND_TEST_ADRESS, BulkDensitySandTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _bulkDensitySandTestDBService.Update(BULK_DENSITY_SAND_TEST_ADRESS, BulkDensitySandTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

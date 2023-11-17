@@ -38,6 +38,7 @@ namespace Project.ViewModels
             {
                 await _weakGrainsGravelTestDBService.Add(WEAK_GRAINS_GRAVEL_TEST_ADRESS, WeakGrainsGravelTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -55,6 +56,7 @@ namespace Project.ViewModels
             try
             {
                 await _weakGrainsGravelTestDBService.Update(WEAK_GRAINS_GRAVEL_TEST_ADRESS, WeakGrainsGravelTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

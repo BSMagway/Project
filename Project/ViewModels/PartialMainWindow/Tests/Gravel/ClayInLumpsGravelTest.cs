@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _clayInLumpsGravelTestDBService.Add(CLAY_IN_LUMPS_GRAVEL_TEST_ADRESS, ClayInLumpsGravelTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _clayInLumpsGravelTestDBService.Update(CLAY_IN_LUMPS_GRAVEL_TEST_ADRESS, ClayInLumpsGravelTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

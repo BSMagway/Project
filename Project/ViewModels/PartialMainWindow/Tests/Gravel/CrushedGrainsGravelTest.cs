@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _crushedGrainsGravelTestDBService.Add(CRUSHED_GRAINS_GRAVEL_TEST_ADRESS, CrushedGrainsGravelTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _crushedGrainsGravelTestDBService.Update(CRUSHED_GRAINS_GRAVEL_TEST_ADRESS, CrushedGrainsGravelTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

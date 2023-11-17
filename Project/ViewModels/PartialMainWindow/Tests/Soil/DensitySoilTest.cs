@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _densitySoilTestDBService.Add(DENSITY_SOIL_TEST_ADRESS, DensitySoilTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _densitySoilTestDBService.Update(DENSITY_SOIL_TEST_ADRESS, DensitySoilTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

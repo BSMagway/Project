@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _crushabilityGravelTestDBService.Add(CRUSHABILITY_GRAVEL_TEST_ADRESS, CrushabilityGravelTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _crushabilityGravelTestDBService.Update(CRUSHABILITY_GRAVEL_TEST_ADRESS, CrushabilityGravelTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _rollingBoundarySoilTestDBService.Add(ROLLING_BOUNDARY_SOIL_TEST_ADRESS, RollingBoundarySoilTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _rollingBoundarySoilTestDBService.Update(ROLLING_BOUNDARY_SOIL_TEST_ADRESS, RollingBoundarySoilTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {

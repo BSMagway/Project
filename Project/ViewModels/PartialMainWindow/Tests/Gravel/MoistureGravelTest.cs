@@ -37,6 +37,7 @@ namespace Project.ViewModels
             {
                 await _moistureGravelTestDBService.Add(MOISTURE_GRAVEL_TEST_ADRESS, MoistureGravelTest, User.Jwt);
                 isSavedTest = true;
+                ErrorMessage = "Протокол сохранен.";
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace Project.ViewModels
             try
             {
                 await _moistureGravelTestDBService.Update(MOISTURE_GRAVEL_TEST_ADRESS, MoistureGravelTest, User.Jwt);
+                ErrorMessage = "Протокол изменен.";
             }
             catch (Exception ex)
             {
