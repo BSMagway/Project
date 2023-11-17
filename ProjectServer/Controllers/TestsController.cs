@@ -13,14 +13,16 @@ namespace ProjectServer.Controllers
     public class TestsController : ControllerBase
     {
         private readonly ITestsManager _testManager;
+        private readonly ILogger<TestsController> _logger;
 
         /// <summary>
         /// Конструктор контролера по получению короткого списка всех протоколов.
         /// </summary>
         /// <param name="moistureSoilTestService">Интерфейс по работе с базой данный для получения короткого списка всех протоколов.</param>
-        public TestsController(ITestsManager testManager)
+        public TestsController(ITestsManager testManager, ILogger<TestsController> logger)
         {
             _testManager = testManager;
+            _logger = logger;
         }
 
         /// <summary>
@@ -31,6 +33,7 @@ namespace ProjectServer.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var model = await _testManager.GetAsync();
+            _logger.LogError("111");
 
             if (model is null)
             {
