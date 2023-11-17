@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
 using NLog;
-using NLog.Extensions.Logging;
 using Project.Interfaces.Services;
 using Project.Services;
 using Project.ViewModels;
@@ -25,16 +22,7 @@ namespace Project
                 DataContext = provider.GetRequiredService<MainWindowViewModel>()
             });
 
-            services.AddSingleton<MainWindowViewModel>().AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.ClearProviders();
-                loggingBuilder.AddNLog(serviceProvider =>
-                {
-                    var config = serviceProvider.GetService(typeof(IConfiguration)) as IConfiguration;
-                    var filename = "NLog.config";
-                    return LogManager.Setup().LoadConfigurationFromFile(filename).LogFactory;
-                });
-            });
+            services.AddSingleton<MainWindowViewModel>();
 
             services.AddScoped(typeof(IWorkWithBDGeneric<>), typeof(WorkWithBDGenericService<>));
             services.AddTransient<IAuthInterface, AuthService>();
@@ -44,6 +32,13 @@ namespace Project
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            var config = new NLog.Config.LoggingConfiguration();
+
+            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "${basedir}/logs/${shortdate}.log"};
+        
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+          
+            LogManager.Configuration = config;
 
             MainWindow mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
