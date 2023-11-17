@@ -115,7 +115,7 @@
                 Grid.Row="4" 
                 Grid.Column="2" 
                 Grid.ColumnSpan="2" 
-                Content="Рассчитать влажность" 
+                Content="Рассчитать" 
                 Command="{Binding CalculateMoistureSandTestCommand}"
                 VerticalContentAlignment="Center"
                 Margin="5"/>

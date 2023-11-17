@@ -132,7 +132,7 @@
                 Grid.Row="6" 
                 Grid.Column="2" 
                 Grid.ColumnSpan="2" 
-                Content="Рассчитать влажность" 
+                Content="Рассчитать" 
                 Command="{Binding CalculateFiltrationPlaneGeotextileTestCommand}"
                 VerticalContentAlignment="Center"
                 Margin="5"/>

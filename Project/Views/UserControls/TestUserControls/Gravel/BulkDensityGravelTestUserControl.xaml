@@ -124,7 +124,7 @@
                 Grid.Row="5" 
                 Grid.Column="2" 
                 Grid.ColumnSpan="2" 
-                Content="Рассчитать влажность" 
+                Content="Рассчитать" 
                 Command="{Binding CalculateBulkDensityGravelTestCommand}"
                 VerticalContentAlignment="Center"
                 Margin="5"/>

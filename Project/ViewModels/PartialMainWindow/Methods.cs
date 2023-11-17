@@ -138,6 +138,7 @@ namespace Project.ViewModels
             {
                 var item = await _moistureSoilTestDBService.Get(MOISTURE_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 MoistureSoilTest = item;
+                EditTest = item;
                 MainUserControl = MoistureSoilTestUserControl;
             }
             catch (Exception ex)
@@ -157,6 +158,7 @@ namespace Project.ViewModels
             {
                 var item = await _rollingBoundarySoilTestDBService.Get(ROLLING_BOUNDARY_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 RollingBoundarySoilTest = item;
+                EditTest = item;
                 MainUserControl = RollingBoundarySoilTestUserControl;
             }
             catch (Exception ex)
@@ -176,6 +178,7 @@ namespace Project.ViewModels
             {
                 var item = await _yieldLimitSoilTestDBService.Get(YIELD_LIMIT_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 YieldLimitSoilTest = item;
+                EditTest = item;
                 MainUserControl = YieldLimitSoilTestUserControl;
             }
             catch (Exception ex)
@@ -195,6 +198,7 @@ namespace Project.ViewModels
             {
                 var item = await _densitySoilTestDBService.Get(DENSITY_SOIL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 DensitySoilTest = item;
+                EditTest = item;
                 MainUserControl = DensitySoilTestUserControl;
             }
             catch (Exception ex)
@@ -214,6 +218,7 @@ namespace Project.ViewModels
             {
                 var item = await _weakGrainsGravelTestDBService.Get(WEAK_GRAINS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 WeakGrainsGravelTest = item;
+                EditTest = item;
                 MainUserControl = WeakGrainsGravelTestUserControl;
             }
             catch (Exception ex)
@@ -233,6 +238,7 @@ namespace Project.ViewModels
             {
                 var item = await _moistureGravelTestDBService.Get(MOISTURE_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 MoistureGravelTest = item;
+                EditTest = item;
                 MainUserControl = MoistureGravelTestUserControl;
             }
             catch (Exception ex)
@@ -252,6 +258,7 @@ namespace Project.ViewModels
             {
                 var item = await _flakyGrainsGravelTestDBService.Get(FLAKY_GRAINS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 FlakyGrainsGravelTest = item;
+                EditTest = item;
                 MainUserControl = FlakyGrainsGravelTestUserControl;
             }
             catch (Exception ex)
@@ -271,6 +278,7 @@ namespace Project.ViewModels
             {
                 var item = await _dustGravelTestDBService.Get(DUST_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 DustGravelTest = item;
+                EditTest = item;
                 MainUserControl = DustGravelTestUserControl;
             }
             catch (Exception ex)
@@ -290,6 +298,7 @@ namespace Project.ViewModels
             {
                 var item = await _crushedGrainsGravelTestDBService.Get(CRUSHED_GRAINS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 CrushedGrainsGravelTest = item;
+                EditTest = item;
                 MainUserControl = CrushedGrainsGravelTestUserControl;
             }
             catch (Exception ex)
@@ -309,6 +318,7 @@ namespace Project.ViewModels
             {
                 var item = await _crushabilityGravelTestDBService.Get(CRUSHABILITY_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 CrushabilityGravelTest = item;
+                EditTest = item;
                 MainUserControl = CrushabilityGravelTestUserControl;
             }
             catch (Exception ex)
@@ -328,6 +338,7 @@ namespace Project.ViewModels
             {
                 var item = await _clayInLumpsGravelTestDBService.Get(CLAY_IN_LUMPS_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 ClayInLumpsGravelTest = item;
+                EditTest = item;
                 MainUserControl = ClayInLumpsGravelTestUserControl;
             }
             catch (Exception ex)
@@ -347,6 +358,7 @@ namespace Project.ViewModels
             {
                 var item = await _bulkDensityGravelTestDBService.Get(BULK_DENSITY_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 BulkDensityGravelTest = item;
+                EditTest = item;
                 MainUserControl = BulkDensityGravelTestUserControl;
             }
             catch (Exception ex)
@@ -366,6 +378,7 @@ namespace Project.ViewModels
             {
                 var item = await _bulkDensitySandAndGravelTestDBService.Get(BULK_DENSITY_SAND_AND_GRAVEL_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 BulkDensitySandAndGravelTest = item;
+                EditTest = item;
                 MainUserControl = BulkDensitySandAndGravelTestUserControl;
             }
             catch (Exception ex)
@@ -385,6 +398,7 @@ namespace Project.ViewModels
             {
                 var item = await _filtrationPlaneGeotextileTestDBService.Get(FILTRATION_PLANE_GEOTEXTILE_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 FiltrationPlaneGeotextileTest = item;
+                EditTest = item;
                 MainUserControl = FiltrationPlaneGeotextileTestUserControl;
             }
             catch (Exception ex)
@@ -404,6 +418,7 @@ namespace Project.ViewModels
             {
                 var item = await _moistureSandTestDBService.Get(MOISTURE_SAND_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 MoistureSandTest = item;
+                EditTest = item;
                 MainUserControl = MoistureSandTestUserControl;
             }
             catch (Exception ex)
@@ -423,6 +438,7 @@ namespace Project.ViewModels
             {
                 var item = await _dustSandTestDBService.Get(DUST_SAND_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 DustSandTest = item;
+                EditTest = item;
                 MainUserControl = DustSandTestUserControl;
             }
             catch (Exception ex)
@@ -442,6 +458,7 @@ namespace Project.ViewModels
             {
                 var item = await _bulkDensitySandTestDBService.Get(BULK_DENSITY_SAND_TEST_ADRESS, TestForLoading.Id, User.Jwt);
                 BulkDensitySandTest = item;
+                EditTest = item;
                 MainUserControl = BulkDensitySandTestUserControl;
             }
             catch (Exception ex)

@@ -24,6 +24,7 @@ namespace Project.ViewModels
         private Customer selectedCustomer;
 
         private Test testForLoading;
+        private Test editTest;
 
         private string errorMessage = string.Empty;
 
@@ -156,6 +157,15 @@ namespace Project.ViewModels
         {
             get => testForLoading;
             set => Set(ref testForLoading, value);
+        }
+
+        /// <summary>
+        /// Редактируемый тест.
+        /// </summary>
+        public Test EditTest
+        {
+            get => editTest;
+            set => Set(ref editTest, value);
         }
 
         /// <summary>

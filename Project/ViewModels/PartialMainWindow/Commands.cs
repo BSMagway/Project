@@ -94,18 +94,22 @@ namespace Project.ViewModels
             {
                 case ExperimentType.Moister:
                     MoistureSoilTest = null;
+                    EditTest = MoistureSoilTest;
                     MainUserControl = MoistureSoilTestUserControl;
                     break;
                 case ExperimentType.Rolling_Boundary:
                     RollingBoundarySoilTest = null;
+                    EditTest = RollingBoundarySoilTest;
                     MainUserControl = RollingBoundarySoilTestUserControl;
                     break;
                 case ExperimentType.Yield_Limit:
                     YieldLimitSoilTest = null;
+                    EditTest = YieldLimitSoilTest;
                     MainUserControl = YieldLimitSoilTestUserControl;
                     break;
                 case ExperimentType.Density:
                     DensitySoilTest = null;
+                    EditTest = DensitySoilTest;
                     MainUserControl = DensitySoilTestUserControl;
                     break;
                 default:
@@ -126,6 +130,7 @@ namespace Project.ViewModels
             {
                 case ExperimentType.Density:
                     BulkDensitySandAndGravelTest = null;
+                    EditTest = BulkDensitySandAndGravelTest;
                     MainUserControl = BulkDensitySandAndGravelTestUserControl;
                     break;
                 default:
@@ -146,34 +151,42 @@ namespace Project.ViewModels
             {
                 case ExperimentType.Weak_Grains:
                     WeakGrainsGravelTest = null;
+                    EditTest = WeakGrainsGravelTest;
                     MainUserControl = WeakGrainsGravelTestUserControl;
                     break;
                 case ExperimentType.Moister:
                     MoistureGravelTest = null;
+                    EditTest = MoistureGravelTest;
                     MainUserControl = MoistureGravelTestUserControl;
                     break;
                 case ExperimentType.Flaky_Grains:
                     FlakyGrainsGravelTest = null;
+                    EditTest = FlakyGrainsGravelTest;
                     MainUserControl = FlakyGrainsGravelTestUserControl;
                     break;
                 case ExperimentType.Dust:
                     DustGravelTest = null;
+                    EditTest = DustGravelTest;
                     MainUserControl = DustGravelTestUserControl;
                     break;
                 case ExperimentType.Crushed_Grains:
                     CrushedGrainsGravelTest = null;
+                    EditTest = CrushedGrainsGravelTest;
                     MainUserControl = CrushedGrainsGravelTestUserControl;
                     break;
                 case ExperimentType.Crushability:
                     CrushabilityGravelTest = null;
+                    EditTest = CrushabilityGravelTest;
                     MainUserControl = CrushabilityGravelTestUserControl;
                     break;
                 case ExperimentType.Clay_In_Lumps:
                     ClayInLumpsGravelTest = null;
+                    EditTest = ClayInLumpsGravelTest;
                     MainUserControl = ClayInLumpsGravelTestUserControl;
                     break;
                 case ExperimentType.Bulk_Density:
                     BulkDensityGravelTest = null;
+                    EditTest = BulkDensityGravelTest;
                     MainUserControl = BulkDensityGravelTestUserControl;
                     break;
                 default:
@@ -194,6 +207,7 @@ namespace Project.ViewModels
             {
                 case ExperimentType.Filtration:
                     FiltrationPlaneGeotextileTest = null;
+                    EditTest = FiltrationPlaneGeotextileTest;
                     MainUserControl = FiltrationPlaneGeotextileTestUserControl;
                     break;
                 default:
@@ -214,14 +228,17 @@ namespace Project.ViewModels
             {
                 case ExperimentType.Moister:
                     MoistureSandTest = null;
+                    EditTest = MoistureSandTest;
                     MainUserControl = MoistureGravelTestUserControl;
                     break;
                 case ExperimentType.Dust:
                     DustSandTest = null;
+                    EditTest = DustSandTest;
                     MainUserControl = DustSandTestUserControl;
                     break;
                 case ExperimentType.Bulk_Density:
                     BulkDensitySandTest = null;
+                    EditTest = BulkDensitySandTest;
                     MainUserControl = BulkDensitySandTestUserControl;
                     break;
                 default:
@@ -409,9 +426,131 @@ namespace Project.ViewModels
         private bool CanLoadCustomerFromListCommandExecute(object p) => true;
         private void OnLoadCustomerFromListCommandExecuted(object p)
         {
-            MoistureSoilTest.Customer = SelectedCustomer;
-            isSelectingCustomer = false;
-            MainUserControl = MoistureSoilTestUserControl;
+            switch (EditTest.MaterialEnum)
+            {
+                case MaterialType.Soil:
+                    switch (EditTest.TestEnum)
+                    {
+                        case ExperimentType.Moister:
+                            MoistureSoilTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = MoistureSoilTestUserControl;
+                            break;
+                        case ExperimentType.Rolling_Boundary:
+                            RollingBoundarySoilTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = RollingBoundarySoilTestUserControl;
+                            break;
+                        case ExperimentType.Yield_Limit:
+                            YieldLimitSoilTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = YieldLimitSoilTestUserControl;
+                            break;
+                        case ExperimentType.Density:
+                            DensitySoilTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = DensitySoilTestUserControl;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.Gravel:
+                    switch (EditTest.TestEnum)
+                    {
+                        case ExperimentType.Weak_Grains:
+                            WeakGrainsGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = WeakGrainsGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Moister:
+                            MoistureGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = MoistureGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Flaky_Grains:
+                            FlakyGrainsGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = FlakyGrainsGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Dust:
+                            DustGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = DustGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Crushed_Grains:
+                            CrushedGrainsGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = CrushedGrainsGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Crushability:
+                            CrushabilityGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = CrushabilityGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Clay_In_Lumps:
+                            ClayInLumpsGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = ClayInLumpsGravelTestUserControl; 
+                            break;
+                        case ExperimentType.Bulk_Density:
+                            BulkDensityGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = BulkDensityGravelTestUserControl; 
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.Sand:
+                    switch (EditTest.TestEnum)
+                    {
+                        case ExperimentType.Moister:
+                            MoistureSandTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = MoistureSandTestUserControl; 
+                            break;
+                        case ExperimentType.Dust:
+                            DustSandTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = DustSandTestUserControl; 
+                            break;
+                        case ExperimentType.Bulk_Density:
+                            BulkDensitySandTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = BulkDensitySandTestUserControl; 
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.SandAndGravel:
+                    switch (EditTest.TestEnum)
+                    {
+                        case ExperimentType.Bulk_Density:
+                            BulkDensitySandAndGravelTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = BulkDensitySandAndGravelTestUserControl; 
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case MaterialType.Geotextile:
+                    switch (EditTest.TestEnum)
+                    {
+                        case ExperimentType.Filtration:
+                            FiltrationPlaneGeotextileTest.Customer = SelectedCustomer;
+                            isSelectingCustomer = false;
+                            MainUserControl = FiltrationPlaneGeotextileTestUserControl; 
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>

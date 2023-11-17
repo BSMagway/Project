@@ -32,8 +32,6 @@ namespace ProjectServer.Managers
                 _logger.LogError(ex.Message);
                 return null;
             }
-
-
         }
     }
 }
