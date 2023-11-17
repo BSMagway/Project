@@ -8,6 +8,8 @@ namespace Project.ViewModels
 {
     internal partial class MainWindowViewModel : ViewModel
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private User user;
         private LoginRequest loginRequest;
         private RegisterRequest registerRequest;
