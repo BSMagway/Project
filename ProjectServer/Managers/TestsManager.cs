@@ -11,16 +11,29 @@ namespace ProjectServer.Managers
     public class TestsManager : ITestsManager
     {
         private readonly AppDbContext _appDb;
+        private readonly ILogger<TestsManager> _logger;
 
-        public TestsManager(AppDbContext appDb)
+        public TestsManager(AppDbContext appDb, ILogger<TestsManager> logger)
         {
             _appDb = appDb;
+            _logger = logger;
         }
 
         public async Task<Test[]> GetAsync()
         {
-            var model = await _appDb.Tests.Include(item => item.Customer).ToArrayAsync();
-            return model;
+            try
+            {
+                var model = await _appDb.Tests.Include(item => item.Customer).ToArrayAsync();
+                return model;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+
+
         }
     }
 }
