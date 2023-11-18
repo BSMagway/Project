@@ -24,17 +24,21 @@ namespace Project.ViewModels
             {
                 case TaskType.NewTest:
                     {
+                        ErrorMessage = string.Empty;
                         MainUserControl = SelectTypeTestUserControl;
                         isSavedTest = false;
                     }
                     break;
                 case TaskType.LoadTest:
                     {
+                        ErrorMessage = string.Empty;
                         LoadAllTest();
+                        isEditingTest = true;
                     }
                     break;
                 case TaskType.CostumersList:
                     {
+                        ErrorMessage = string.Empty;
                         LoadCostumersFromBD();
                     }
                     break;
@@ -255,6 +259,10 @@ namespace Project.ViewModels
         {
             MainUserControl = SelectNewTaskUserControl;
             ErrorMessage = string.Empty;
+            isSavedTest = true;
+            isSavedCustomer = true;
+            isEditingTest = false;
+            isSelectingCustomer = false;
         }
 
         /// <summary>
