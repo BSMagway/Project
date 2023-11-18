@@ -83,7 +83,7 @@ namespace ProjectCommon.Models.Material.Gravel
             BulkDensityCylinderMass = new Dimension("Масса мерного цилиндра, г");
             BulkDensityCylinderWithGravelMass = new Dimension("Масса мерного цилиндра со щебнем, г");
             CylinderVolume = new Dimension("Объема мерного цилиндра, м\u00B3");
-            GravelBulkDensity = new Dimension("Насыпная плотность, кг/м\u00B3");
+            GravelBulkDensity = new Dimension("Насыпная плотность щебня, кг/м\u00B3");
 
             MaterialEnum = MaterialType.Gravel;
             TestEnum = ExperimentType.Bulk_Density;

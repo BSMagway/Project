@@ -128,7 +128,7 @@ namespace Project.ViewModels
 
             switch (test)
             {
-                case ExperimentType.Density:
+                case ExperimentType.Bulk_Density:
                     BulkDensitySandAndGravelTest = null;
                     EditTest = BulkDensitySandAndGravelTest;
                     MainUserControl = BulkDensitySandAndGravelTestUserControl;
@@ -229,7 +229,7 @@ namespace Project.ViewModels
                 case ExperimentType.Moister:
                     MoistureSandTest = null;
                     EditTest = MoistureSandTest;
-                    MainUserControl = MoistureGravelTestUserControl;
+                    MainUserControl = MoistureSandTestUserControl;
                     break;
                 case ExperimentType.Dust:
                     DustSandTest = null;
@@ -473,6 +473,24 @@ namespace Project.ViewModels
                 SaveCostumer();
             }
 
+            if (isSavedTest)
+            {
+                MainUserControl = CustomersListUserControl;
+            }
+            else
+            {
+                MainUserControl = CustomersSelectUserControl;
+            }
+
+        }
+
+        /// <summary>
+        /// Команда отвечающая за возвращение из меню добавление нового и редактирование существующего заказчика в меню списка заказчиков.
+        /// </summary>
+        public ICommand ReturnFromSaveEditCustomerInBDCommand { get; }
+        private bool CanReturnFromSaveEditCustomerInBDCommandExecute(object p) => true;
+        private void OnReturnFromSaveEditCustomerInBDCommandExecuted(object p)
+        {
             if (isSavedTest)
             {
                 MainUserControl = CustomersListUserControl;

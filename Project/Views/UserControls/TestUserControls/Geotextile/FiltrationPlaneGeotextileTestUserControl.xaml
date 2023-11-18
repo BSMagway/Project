@@ -69,13 +69,13 @@
                  Grid.Column="1" 
                  Text="{Binding FiltrationPlaneGeotextileTest.DocumentTest}"/>
         
-        <TextBlock Grid.Row="5" 
+        <TextBlock Grid.Row="4" 
                    Grid.Column="1" 
                    Text="{Binding FiltrationPlaneGeotextileTest.Customer.Title}" 
                    Height="45" 
                    VerticalAlignment="Center"/>
         
-        <TextBlock Grid.Row="6" 
+        <TextBlock Grid.Row="5" 
                    Grid.Column="1" 
                    Text="{Binding FiltrationPlaneGeotextileTest.Customer.ContractNumber}"/>
 
@@ -95,11 +95,11 @@
                    Grid.Column="2" 
                    Text="{Binding FiltrationPlaneGeotextileTest.TimeWaterFiltration.DimensionName}"/>
         
-        <TextBlock Grid.Row="3" 
+        <TextBlock Grid.Row="2" 
                    Grid.Column="2" 
                    Text="{Binding FiltrationPlaneGeotextileTest.ThicknessPackage.DimensionName}"/>
 
-        <TextBlock Grid.Row="4" 
+        <TextBlock Grid.Row="3" 
                    Grid.Column="2" 
                    Text="{Binding FiltrationPlaneGeotextileTest.ActualTemperature.DimensionName}"/>
 
@@ -116,11 +116,11 @@
                  Grid.Column="3" 
                  Text="{Binding FiltrationPlaneGeotextileTest.TimeWaterFiltration.DimensionValue}"/>
 
-        <TextBox Grid.Row="3" 
+        <TextBox Grid.Row="2" 
                    Grid.Column="3" 
                    Text="{Binding FiltrationPlaneGeotextileTest.ThicknessPackage.DimensionValue}"/>
 
-        <TextBox Grid.Row="4" 
+        <TextBox Grid.Row="3" 
                    Grid.Column="3" 
                    Text="{Binding FiltrationPlaneGeotextileTest.ActualTemperature.DimensionValue}"/>
 

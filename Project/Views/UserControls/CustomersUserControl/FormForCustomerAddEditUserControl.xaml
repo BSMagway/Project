@@ -38,6 +38,13 @@
                 Content="Сохранить" 
                 Command="{Binding SaveEditCustomerInBDCommand}"
                 Margin="5"/>
+        
+        <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
+                Grid.Row="2"
+                Grid.Column="1"
+                Content="Назад" 
+                Command="{Binding ReturnFromSaveEditCustomerInBDCommand}"
+                Margin="5"/>
 
     </Grid>
 </UserControl>

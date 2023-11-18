@@ -26,7 +26,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Bulk_Density}">
+        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Command="{Binding SelectSandAndGravelTestCommand}" CommandParameter="{x:Static enum:ExperimentType.Bulk_Density}">
             <TextBlock TextWrapping="Wrap" Padding="5" TextAlignment="Center">Насыпная плотность</TextBlock>
         </Button>
     </Grid>

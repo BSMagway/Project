@@ -123,6 +123,7 @@ namespace Project.ViewModels
             OpenFormForCustomerAddCommand = new LambdaCommand(OnOpenFormForCustomerAddCommandExecuted, CanOpenFormForCustomerAddCommandExecute);
             OpenFormForCustomerEditCommand = new LambdaCommand(OnOpenFormForCustomerEditCommandExecuted, CanOpenFormForCustomerEditCommandExecute);
             SaveEditCustomerInBDCommand = new LambdaCommand(OnSaveEditCustomerInBDCommandExecuted, CanSaveEditCustomerInBDCommandExecute);
+            ReturnFromSaveEditCustomerInBDCommand = new LambdaCommand(OnReturnFromSaveEditCustomerInBDCommandExecuted, CanReturnFromSaveEditCustomerInBDCommandExecute);
 
             LoginUserCommand = new LambdaCommand(OnLoginUserCommandExecuted, CanLoginUserCommandExecute);
             OpenRegisterUserFormCommand = new LambdaCommand(OnOpenRegisterUserFormCommandExecuted, CanOpenRegisterUserFormCommandExecute);

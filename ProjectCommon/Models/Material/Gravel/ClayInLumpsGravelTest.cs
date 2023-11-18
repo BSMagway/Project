@@ -67,7 +67,7 @@ namespace ProjectCommon.Models.Material.Gravel
         {
             GravelClayInLumpsMass = new Dimension("Масса глины в комках, г");
             GravelMass = new Dimension("Масса аналитической пробы, г");
-            GravelClayInLumps = new Dimension("Содержание зерен слабых пород, %");
+            GravelClayInLumps = new Dimension("Содержание глины в комках, %");
 
             MaterialEnum = MaterialType.Gravel;
             TestEnum = ExperimentType.Clay_In_Lumps;
