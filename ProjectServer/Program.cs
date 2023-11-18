@@ -19,7 +19,6 @@ using ProjectServer.Managers.MaterialTests.Sand;
 using ProjectServer.Managers.MaterialTests.SandAndGravel;
 using ProjectServer.Managers.MaterialTests.Soil;
 using ProjectServer.Services;
-using System;
 using System.Text;
 using System.Text.Json.Serialization;
 
