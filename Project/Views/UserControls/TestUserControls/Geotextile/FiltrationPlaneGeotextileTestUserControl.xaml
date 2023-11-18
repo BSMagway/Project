@@ -69,13 +69,13 @@
                  Grid.Column="1" 
                  Text="{Binding FiltrationPlaneGeotextileTest.DocumentTest}"/>
         
-        <TextBlock Grid.Row="4" 
+        <TextBlock Grid.Row="5" 
                    Grid.Column="1" 
                    Text="{Binding FiltrationPlaneGeotextileTest.Customer.Title}" 
                    Height="45" 
                    VerticalAlignment="Center"/>
         
-        <TextBlock Grid.Row="5" 
+        <TextBlock Grid.Row="6" 
                    Grid.Column="1" 
                    Text="{Binding FiltrationPlaneGeotextileTest.Customer.ContractNumber}"/>
 

@@ -91,7 +91,7 @@ namespace ProjectCommon.Models.Material.Geotextile
         /// </summary>
         public FiltrationPlaneGeotextileTest()
         {
-            WaterVolume = new Dimension("Объем профильтровавшейся воды, м\u00B3");
+            WaterVolume = new Dimension("Объем профильтровавшейся воды, см\u00B3");
             TimeWaterFiltration = new Dimension("Время за которое профильтровалась вода, с");
             ThicknessPackage = new Dimension("Толщина пакета образцов геотекстиля, см");
             ActualTemperature = new Dimension("Фактическая температура воды, \u2103");
